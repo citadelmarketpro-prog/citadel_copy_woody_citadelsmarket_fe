@@ -1,36 +1,44 @@
-import ServicesSection from "@/components/site/ServicesSection";
-import CryptoHeroSection from "@/components/site/AnotherSampleHero";
-import Navbar from "@/components/site/SampleNavbar";
-import HowItWorks from "@/components/site/HowItWorks";
-import VerifiedCompanySection from "@/components/site/VerifiedCompany";
-import FAQSection from "@/components/site/FAQs";
-import TeamSection from "@/components/site/TeamSection";
-import GlobalStatsSection from "@/components/site/GlobalStatsSection";
-import InstrumentsSection from "@/components/site/InstrumentsSection";
-import ReadyToStartSection from "@/components/site/ReadyToStartSection";
-import TopLeadersSection from "@/components/site/TopLeadersSection";
-import Footer from "@/components/site/FooterSection";
-import EnhancedNavbar from "@/components/site/EnhancedNavbar";
-import LiquidityProvidersSection from "@/components/site/LiquidityProvidersSection";
+"use client";
 
-export default function Home() {
+import Navbar from "@/components/newlanding/Navbar";
+import HeroSection from "@/components/newlanding/HeroSection";
+import PlatformSection from "@/components/newlanding/PlatformSection";
+import AboutSection from "@/components/newlanding/AboutSection";
+import StatsSection from "@/components/newlanding/StatsSection";
+import TrustedSection from "@/components/newlanding/TrustedSection";
+import FeaturesSection from "@/components/newlanding/FeaturesSection";
+import StockDerivativesSection from "@/components/newlanding/StockDerivativesSection";
+import MirrorTradingSection from "@/components/newlanding/MirrorTradingSection";
+import ForexSection from "@/components/newlanding/ForexSection";
+import WhyCopyTradingSection from "@/components/newlanding/WhyCopyTradingSection";
+import StocksSection from "@/components/newlanding/StocksSection";
+import FindYourselfSection from "@/components/newlanding/FindYourselfSection";
+import PayLessSection from "@/components/newlanding/PayLessSection";
+import TradingFingertipsSection from "@/components/newlanding/TradingFingertipsSection";
+import BecomeProSection from "@/components/newlanding/BecomeProSection";
+import SiteFooter from "@/components/newlanding/SiteFooter";
+
+export default function SampleLandingPage() {
   return (
-    <>
-      <EnhancedNavbar />
-      <CryptoHeroSection />
-      <GlobalStatsSection />
-      <ServicesSection />
-      <HowItWorks />
-      <InstrumentsSection />
-      <ReadyToStartSection />
-      <LiquidityProvidersSection />
-      <TeamSection />
-      <TopLeadersSection />
-      <FAQSection />
-
-      <VerifiedCompanySection />
-      <Footer />
-    </>
+    <div className="font-sans bg-white landing-grid-bg">
+      <Navbar />
+      <HeroSection />
+      <PlatformSection />
+      <AboutSection />
+      <StatsSection />
+      <TrustedSection />
+      <FeaturesSection />
+      <StockDerivativesSection />
+      <MirrorTradingSection />
+      <ForexSection />
+      <WhyCopyTradingSection />
+      <StocksSection />
+      <FindYourselfSection />
+      <PayLessSection />
+      <TradingFingertipsSection />
+      <BecomeProSection />
+      <SiteFooter />
+    </div>
   );
 }
 
