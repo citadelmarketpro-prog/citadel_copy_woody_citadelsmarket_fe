@@ -1,28 +1,10 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { FadeUp, ZoomIn } from "./motion";
 import LiquidityProvidersSection from "@/components/site/LiquidityProvidersSection";
-
-// ── Our Values ──────────────────────────────────────────────────────────────
-
-const values = [
-  {
-    head: "Transparency",
-    body: "We believe in open and honest communication. All trading performance, strategies, and fees are clearly disclosed so users can make informed decisions with full confidence.",
-  },
-  {
-    head: "Trust & Security",
-    body: "Our platform is built with robust security measures and a commitment to safeguarding our users' funds and data. We prioritize ethical practices to build long-term trust with every trader.",
-  },
-  {
-    head: "Empowerment",
-    body: "We simplify investing by making professional trading accessible to everyone. Through intuitive tools and expert-curated strategies, we help users grow their portfolios with ease and confidence.",
-  },
-];
-
-// ── Achievements ─────────────────────────────────────────────────────────────
 
 const awards = [
   "/sample-landing/best-partners-program-global-2024-min.svg",
@@ -34,69 +16,73 @@ const awards = [
   "/sample-landing/most-transparent-broker-asia-2024-min.svg",
 ];
 
-// ── Footer nav ────────────────────────────────────────────────────────────────
-
-const footerCols = [
-  {
-    head: "Trades",
-    links: [
-      { label: "Swing Trading", href: "/swing-trading" },
-      { label: "FX & Futures", href: "/futures" },
-      { label: "Buy Options", href: "/option-trading" },
-      { label: "Oil & Gas", href: "/oil-and-gas" },
-    ],
-  },
-  {
-    head: "Tools",
-    links: [
-      { label: "Option Copy Trading", href: "/option-trading" },
-      { label: "FX & Advance Trading", href: "/advance-trading" },
-      { label: "Buy Live Trading", href: "/trading-live" },
-      { label: "Copy Trading", href: "/option-copy-trading" },
-    ],
-  },
-  {
-    head: "Company",
-    links: [
-      { label: "About us", href: "/about" },
-      { label: "Insurance", href: "/insurance" },
-      { label: "Demo Account", href: "/register" },
-    ],
-  },
-  {
-    head: "Support",
-    links: [
-      { label: "Contact Us", href: "/contact" },
-      { label: "System Status", href: "/system-status" },
-      { label: "Latest market news", href: "/trade-news" },
-      { label: "Refer a Friend", href: "/refer-a-friend" },
-    ],
-  },
-  {
-    head: "Legals",
-    links: [
-      { label: "Terms & Conditions", href: "/terms-and-condition" },
-      { label: "Privacy Policy", href: "/privacy-policy" },
-      { label: "AML Policy", href: "/aml-policy" },
-      { label: "Regulations (SEC)", href: "/regulations" },
-    ],
-  },
-];
-
-// ── Combined component ────────────────────────────────────────────────────────
-
 export default function SiteFooter() {
+  const t = useTranslations("footer");
+
+  const values = [
+    { head: t("v1Head"), body: t("v1Body") },
+    { head: t("v2Head"), body: t("v2Body") },
+    { head: t("v3Head"), body: t("v3Body") },
+  ];
+
+  const footerCols = [
+    {
+      head: t("tradesCol"),
+      links: [
+        { label: t("swingTrading"), href: "/swing-trading" },
+        { label: t("fxFutures"), href: "/futures" },
+        { label: t("buyOptions"), href: "/option-trading" },
+        { label: t("oilGas"), href: "/oil-and-gas" },
+      ],
+    },
+    {
+      head: t("toolsCol"),
+      links: [
+        { label: t("optionCopy"), href: "/option-trading" },
+        { label: t("fxAdvance"), href: "/advance-trading" },
+        { label: t("buyLive"), href: "/trading-live" },
+        { label: t("copyTrading"), href: "/option-copy-trading" },
+      ],
+    },
+    {
+      head: t("companyCol"),
+      links: [
+        { label: t("aboutUs"), href: "/about" },
+        { label: t("insurance"), href: "/insurance" },
+        { label: t("demoAccount"), href: "/register" },
+      ],
+    },
+    {
+      head: t("supportCol"),
+      links: [
+        { label: t("contactUs"), href: "/contact" },
+        { label: t("systemStatus"), href: "/system-status" },
+        { label: t("latestNews"), href: "/trade-news" },
+        { label: t("referFriend"), href: "/refer-a-friend" },
+      ],
+    },
+    {
+      head: t("legalsCol"),
+      links: [
+        { label: t("termsConditions"), href: "/terms-and-condition" },
+        { label: t("privacyPolicy"), href: "/privacy-policy" },
+        { label: t("amlPolicy"), href: "/aml-policy" },
+        { label: t("regulations"), href: "/regulations" },
+      ],
+    },
+  ];
+
   return (
     <>
       {/* Our Values */}
       <section className="py-14 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Our Values</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">{t("valuesTitle")}</h2>
           </FadeUp>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {values.map((v, i) => (
-              <ZoomIn key={v.head} delay={0.1 * i}>
+              <ZoomIn key={i} delay={0.1 * i}>
                 <div
                   className="rounded-xl p-6 min-h-44"
                   style={{
@@ -131,7 +117,7 @@ export default function SiteFooter() {
       <section className="py-14 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
-            <h2 className="text-4xl font-bold text-gray-900 mb-10">Achievements</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-10">{t("achievementsTitle")}</h2>
           </FadeUp>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 items-center">
             {awards.map((src, i) => (
@@ -166,10 +152,10 @@ export default function SiteFooter() {
             <div className="bg-[#181c25] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
               <div>
                 <h2 className="text-3xl sm:text-5xl font-extrabold text-white leading-tight mb-4">
-                  Trade with a trusted broker
+                  {t("ctaTitle")}
                 </h2>
                 <p className="text-white text-base">
-                  Use our demo account and learn how to trade by using risk-free virtual funds.
+                  {t("ctaDesc")}
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row lg:flex-col gap-3 flex-shrink-0 w-full sm:w-auto">
@@ -177,13 +163,13 @@ export default function SiteFooter() {
                   href="/register"
                   className="inline-flex items-center justify-center gap-3 px-5 py-3 bg-emerald-600 text-white font-extrabold rounded-full text-base hover:bg-emerald-500 transition-colors no-underline w-full sm:w-auto"
                 >
-                  Try free demo
+                  {t("tryDemo")}
                 </Link>
                 <Link
                   href="/register"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 text-white font-extrabold rounded-full text-base hover:bg-emerald-500 transition-colors no-underline w-full sm:w-auto"
                 >
-                  Trader&apos;s Hub
+                  {t("tradersHub")}
                 </Link>
               </div>
             </div>
@@ -214,12 +200,12 @@ export default function SiteFooter() {
               </div>
 
               <nav className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 flex-1 max-w-4xl">
-                {footerCols.map((col) => (
-                  <div key={col.head}>
+                {footerCols.map((col, ci) => (
+                  <div key={ci}>
                     <h3 className="text-white text-base font-semibold mb-3">{col.head}</h3>
                     <ul className="space-y-3 list-none p-0 m-0">
                       {col.links.map((l) => (
-                        <li key={l.label}>
+                        <li key={l.href}>
                           <Link
                             href={l.href}
                             className="text-gray-400 hover:text-white transition-colors text-xs no-underline"
@@ -237,33 +223,13 @@ export default function SiteFooter() {
             <div className="mt-8 border border-[#383838] rounded-xl p-5">
               <div className="space-y-4 text-gray-400 text-xs leading-relaxed">
                 <p>
-                  <strong>Risk Warning:</strong> CFDs are complex instruments and come with a high risk of losing money
-                  rapidly due to leverage. You should consider copying a Lead Trader we provide that understand how CFDs
-                  work without the risk of losing your money. Trading derivatives is risky. It isn&apos;t suitable for
-                  everyone but only suitable for Lead Traders; you could lose substantially more than your initial
-                  investment if you don&apos;t copy trades from Lead Traders.
+                  <strong>{t("riskWarning")}:</strong> {t("riskText")}
                 </p>
-                <p>
-                  <strong>Citadels Market</strong> is a global financial services provider. Citadels Market is a
-                  registered trademark of the group, that operates among various entities.
-                </p>
-                <p>
-                  Citadels Market Limited is registered in Canada, registration number: 2023-00465. Registered
-                  address: Lower Mount Royal, AB T2T 5H7, Canada.
-                </p>
-                <p>
-                  Citadels Market Limited is registered in the United Kingdom, Company number 1054675. Registered
-                  address: 100 Pall Mall, St. James&apos;s London SW1Y 5NQ, United Kingdom.
-                </p>
-                <p>
-                  Citadels Market is a Global financial service provider. Citadels Market is a registered
-                  trademark of the Citadel Group. All trading involves risk. Past performance is not indicative of
-                  future results. The content of this website must not be construed as personal advice.
-                </p>
-                <p>
-                  © 2025 This website and technology/platform services are owned and operated by Citadels Market
-                  Limited, with Registered address: 11264 Playa Court Culver City, California. SEC: (000-56441).
-                </p>
+                <p>{t("companyDesc1")}</p>
+                <p>{t("companyDesc2")}</p>
+                <p>{t("companyDesc3")}</p>
+                <p>{t("companyDesc4")}</p>
+                <p>{t("companyDesc5")}</p>
               </div>
             </div>
           </div>

@@ -1,15 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { FadeLeft, FadeRight } from "./motion";
 
-const bullets = [
-  "Open larger trades with less money using leverage",
-  "Hold your trades open for longer with cheap funding rates",
-  "Keep more of your profits with low trading fees",
-];
+export default async function PayLessSection() {
+  const t = await getTranslations("payLess");
 
-export default function PayLessSection() {
+  const bullets = [t("b1"), t("b2"), t("b3")];
+
   return (
     <section className="py-14 sm:py-20 bg-[#0a0a0a] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,14 +16,14 @@ export default function PayLessSection() {
           <div className="flex flex-col lg:flex-row items-end gap-8 px-6 sm:px-12 pt-16">
             <FadeLeft className="flex-1 pb-8 lg:pb-16">
               <h3 className="text-3xl sm:text-4xl font-bold text-white leading-tight mb-3">
-                Pay less, trade more
+                {t("title")}
               </h3>
               <p className="text-gray-400 text-base mb-6">
-                When you trade with us, you can start small and still earn big.
+                {t("subtitle")}
               </p>
               <ul className="space-y-4 mb-8 list-none p-0 m-0">
-                {bullets.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
+                {bullets.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -49,10 +48,10 @@ export default function PayLessSection() {
                   className="flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-500 transition-colors no-underline"
                   style={{ boxShadow: "rgba(16,185,129,0.4) 0px 4px 0px 0px, #0a0a0a 0px 0px 0px 1px inset" }}
                 >
-                  Get Started
+                  {t("getStarted")}
                   <ArrowRight className="w-5 h-5" />
                 </Link>
-                <span className="text-gray-400 text-sm">Leverage may magnify your losses</span>
+                <span className="text-gray-400 text-sm">{t("disclaimer")}</span>
               </div>
             </FadeLeft>
             <FadeRight delay={0.15} className="flex-shrink-0 self-end">

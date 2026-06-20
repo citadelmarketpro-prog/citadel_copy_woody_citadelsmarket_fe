@@ -1,5 +1,3 @@
-"use client";
-
 import Navbar from "@/components/newlanding/Navbar";
 import HeroSection from "@/components/newlanding/HeroSection";
 import PlatformSection from "@/components/newlanding/PlatformSection";
