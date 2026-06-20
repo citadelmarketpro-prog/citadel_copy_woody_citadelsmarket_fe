@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import ScrollReveal from "@/components/site/ScrollReveal";
 import Navbar from "@/components/site/SampleNavbar";
@@ -32,7 +32,7 @@ const TermsOfServicePage = () => {
                 Acceptance of Terms
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                By accessing and using Citadel Markets Pro services, you
+                By accessing and using Citadels Market services, you
                 acknowledge that you have read, understood, and agree to be
                 bound by these Terms of Service and all applicable laws and
                 regulations. If you do not agree with any of these terms, you
@@ -71,7 +71,7 @@ const TermsOfServicePage = () => {
                   <span className="font-semibold text-gray-900 dark:text-white">
                     Account Security
                   </span>{" "}
-                  - You agree to immediately notify Citadel Markets Pro of any
+                  - You agree to immediately notify Citadels Market of any
                   unauthorized use of your account or any other breach of
                   security. We will not be liable for any loss or damage arising
                   from your failure to protect your account information.
@@ -95,7 +95,7 @@ const TermsOfServicePage = () => {
                 Trading Services
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Citadel Markets Pro provides access to financial trading
+                Citadels Market provides access to financial trading
                 services including, but not limited to, forex, commodities,
                 indices, and cryptocurrencies. All trading activities are
                 subject to market conditions and our platform terms.
@@ -180,7 +180,7 @@ const TermsOfServicePage = () => {
                 All content, features, and functionality of our platform,
                 including but not limited to text, graphics, logos, icons,
                 images, software, and data compilations, are the exclusive
-                property of Citadel Markets Pro and are protected by
+                property of Citadels Market and are protected by
                 international copyright, trademark, and other intellectual
                 property laws.
               </p>
@@ -243,7 +243,7 @@ const TermsOfServicePage = () => {
                 Modifications to Terms
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                Citadel Markets Pro reserves the right to modify or replace
+                Citadels Market reserves the right to modify or replace
                 these Terms of Service at any time at our sole discretion. We
                 will provide notice of any material changes by posting the new
                 terms on this page and updating the &quot;Last Updated&quot;
@@ -262,7 +262,7 @@ const TermsOfServicePage = () => {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 These Terms of Service shall be governed by and construed in
                 accordance with applicable international financial regulations
-                and the laws of the jurisdiction in which Citadel Markets Pro
+                and the laws of the jurisdiction in which Citadels Market
                 operates, without regard to its conflict of law provisions. Any
                 disputes arising from these terms shall be subject to the
                 exclusive jurisdiction of the courts in that jurisdiction.

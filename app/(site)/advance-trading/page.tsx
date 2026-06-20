@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import {
   Brain,
   FlaskConical,
@@ -48,7 +48,7 @@ export default function AdvanceTradingPage() {
               Advanced Trading Account
             </h1>
             <p className="text-gray-300 text-base max-w-xl leading-relaxed">
-              Citadel Pros Market has been sharing financial freedom with traders since 2014 — continuously
+              Citadels Market has been sharing financial freedom with traders since 2014 — continuously
               improving the platform so traders can enjoy the freedom to trade whenever and wherever they like.
             </p>
           </FadeUp>

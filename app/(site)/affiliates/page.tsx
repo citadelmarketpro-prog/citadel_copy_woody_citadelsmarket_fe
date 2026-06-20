@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import ScrollReveal from "@/components/site/ScrollReveal";
 import Navbar from "@/components/site/SampleNavbar";
@@ -33,7 +33,7 @@ const AffiliateProgramPage = () => {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
                 Our Affiliate Program rewards you for introducing new clients to
-                Citadel Markets Pro. Earn competitive commissions on every
+                Citadels Market. Earn competitive commissions on every
                 referral who signs up and makes their first deposit. Whether
                 you&apos;re a content creator, financial blogger, or simply
                 passionate about trading, our program offers you a lucrative
@@ -113,7 +113,7 @@ const AffiliateProgramPage = () => {
                     Step 1: Get Your Referral Code
                   </h3>
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Once you create an account with Citadel Markets Pro, you
+                    Once you create an account with Citadels Market, you
                     automatically receive a unique referral code. You can find
                     this code in your dashboard under the Referrals section.
                   </p>
@@ -304,7 +304,7 @@ const AffiliateProgramPage = () => {
                 Program Termination
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Citadel Markets Pro reserves the right to terminate affiliate
+                Citadels Market reserves the right to terminate affiliate
                 accounts for violation of program rules or suspicious activity.
                 Affiliates may also voluntarily leave the program at any time.
               </p>

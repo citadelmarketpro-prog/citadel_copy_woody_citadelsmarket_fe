@@ -1,9 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
+import LangSwitcher from "./LangSwitcher";
 
 const navItems = [
   {
@@ -63,10 +64,10 @@ export default function Navbar() {
         <Link href="/" className="flex-shrink-0">
           <Image
             src="/images/logo_light.png"
-            alt="Citadel Pros Market"
+            alt="Citadels Market"
             width={180}
             height={60}
-            className="h-16 w-auto object-contain"
+            className="h-10 w-auto object-contain"
           />
         </Link>
 
@@ -118,9 +119,10 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <LangSwitcher />
           <Link
             href="/register"
-            className="hidden sm:inline-flex items-center px-5 py-2 bg-emerald-600 text-white text-sm font-semibold rounded-lg hover:bg-emerald-500 transition-colors"
+            className="inline-flex items-center px-3 py-1.5 sm:px-5 sm:py-2 bg-white text-emerald-700 text-xs sm:text-sm font-semibold rounded-lg hover:bg-emerald-50 transition-colors"
           >
             Get Started
           </Link>
@@ -178,10 +180,17 @@ export default function Navbar() {
           )}
           <Link
             href="/register"
-            className="block mt-3 text-center py-2.5 bg-emerald-600 text-white text-sm font-semibold rounded-lg no-underline"
+            className="block mt-3 text-center py-2.5 bg-white text-emerald-700 text-sm font-semibold rounded-lg no-underline"
             onClick={() => setMobileOpen(false)}
           >
             Get Started
+          </Link>
+          <Link
+            href="/login"
+            className="block mt-2 text-center py-2.5 border border-white/30 text-white text-sm font-semibold rounded-lg no-underline"
+            onClick={() => setMobileOpen(false)}
+          >
+            Login
           </Link>
         </div>
       )}

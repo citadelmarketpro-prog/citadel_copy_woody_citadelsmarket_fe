@@ -1,29 +1,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FadeLeft, FadeRight } from "./motion";
+import { getTranslations } from "next-intl/server";
 
-export default function PlatformSection() {
+export default async function PlatformSection() {
+  const t = await getTranslations("platform");
   return (
-    <section className="py-14 sm:py-20">
+    <section className="py-14 sm:py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <FadeLeft>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
-              A user-friendly trading platform
+              {t("title")}
             </h2>
             <p className="text-gray-600 text-base leading-relaxed">
-              Invest alongside top investors without micromanaging.
+              {t("desc1")}
             </p>
             <p className="text-gray-600 text-base leading-relaxed mb-8 mt-4">
-              Gain exposure to professionally managed investment strategies. Entries, exits, and
-              rebalancing are automatically adjusted to your investment amount—helping remove emotion
-              from long-term investing.
+              {t("desc2")}
             </p>
             <Link
               href="/register"
               className="inline-block px-8 py-3 bg-emerald-600 text-white font-semibold rounded-full hover:bg-emerald-500 transition-colors no-underline"
             >
-              Try now
+              {t("tryNow")}
             </Link>
           </FadeLeft>
 

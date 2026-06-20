@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { Shuffle, TrendingUp } from "lucide-react";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
@@ -53,7 +53,7 @@ export default function OptionCopyTradingPage() {
               Option Copy Trading
             </h1>
             <p className="text-gray-300 text-base max-w-xl leading-relaxed">
-              Citadel Pros Market has been sharing financial freedom with traders since 2014 — continuously
+              Citadels Market has been sharing financial freedom with traders since 2014 — continuously
               improving the platform so traders can enjoy the freedom to trade whenever and wherever they like.
             </p>
           </FadeUp>
@@ -82,7 +82,7 @@ export default function OptionCopyTradingPage() {
                 signals, where followers can replicate the same entries and exits in real time.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                At Citadel Pros Market, copy trading is focused exclusively on equities. You can copy
+                At Citadels Market, copy trading is focused exclusively on equities. You can copy
                 positions across a broad range of publicly listed stocks — from high-growth technology
                 companies to stable, dividend-paying blue chips — all within a regulated, transparent
                 environment.

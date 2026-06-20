@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { useState } from "react";
@@ -7,56 +7,56 @@ const regulations = [
   {
     id: "SEC",
     flag: "/sample-landing/us.png",
-    title: "Citadel Pros Market USA",
-    body: 'Citadel Pros Market is authorised and regulated by the Securities & Exchange Commission ("SEC") with number 000-56441.',
+    title: "Citadels Market USA",
+    body: 'Citadels Market is authorised and regulated by the Securities & Exchange Commission ("SEC") with number 000-56441.',
   },
   {
     id: "ASIC",
     flag: "/sample-landing/au.png",
-    title: "Citadel Pros Market Australia",
-    body: 'Citadel Pros Market is authorised and regulated by the Australian Securities & Investments Commission ("ASIC") with AFSL number 416259.',
+    title: "Citadels Market Australia",
+    body: 'Citadels Market is authorised and regulated by the Australian Securities & Investments Commission ("ASIC") with AFSL number 416259.',
   },
   {
     id: "AUSTRAC",
     flag: "/sample-landing/au.png",
-    title: "Citadel Pros Market Digital PTY LTD (Australia)",
-    body: "Citadel Pros Market Digital Pty Ltd is licensed by ASIC as a Corporate Authorised Representative (AFS Representative Number 001285278) of Citadel Pros Market Australia Pty Ltd (AFSL 416279) and is registered as a Digital Currency Exchange with AUSTRAC with Registration No. 100284469.",
+    title: "Citadels Market Digital PTY LTD (Australia)",
+    body: "Citadels Market Digital Pty Ltd is licensed by ASIC as a Corporate Authorised Representative (AFS Representative Number 001285278) of Citadels Market Australia Pty Ltd (AFSL 416279) and is registered as a Digital Currency Exchange with AUSTRAC with Registration No. 100284469.",
   },
   {
     id: "BaFin",
     flag: "/sample-landing/de.png",
-    title: "Citadel Pros Market Asset Management (Germany)",
-    body: 'Citadel Pros Market Asset Management GmbH is authorised and regulated by the German Federal Financial Supervisory Authority ("BaFin") with license number HRB 73417.',
+    title: "Citadels Market Asset Management (Germany)",
+    body: 'Citadels Market Asset Management GmbH is authorised and regulated by the German Federal Financial Supervisory Authority ("BaFin") with license number HRB 73417.',
   },
   {
     id: "CIMA",
     flag: "/sample-landing/ky.png",
-    title: "Citadel Pros Market Atlantic Corporation",
-    body: 'Citadel Pros Market Atlantic Corporation is authorised and regulated by the Cayman Islands Monetary Authority ("CIMA") with license number 1811356.',
+    title: "Citadels Market Atlantic Corporation",
+    body: 'Citadels Market Atlantic Corporation is authorised and regulated by the Cayman Islands Monetary Authority ("CIMA") with license number 1811356.',
   },
   {
     id: "ESCA",
     flag: "/sample-landing/ae.png",
-    title: "Citadel Pros Market Global Financial Services LLC",
-    body: "Citadel Pros Market Global Financial Services LLC of the UAE is regulated by the Securities and Commodities Authority of the UAE, as a Category 1 Trading Broker for Over-the-Counter Derivatives Contracts and Foreign Exchange Spot Markets, under ESCA license number 20200000088.",
+    title: "Citadels Market Global Financial Services LLC",
+    body: "Citadels Market Global Financial Services LLC of the UAE is regulated by the Securities and Commodities Authority of the UAE, as a Category 1 Trading Broker for Over-the-Counter Derivatives Contracts and Foreign Exchange Spot Markets, under ESCA license number 20200000088.",
   },
   {
     id: "FSC",
     flag: "/sample-landing/bvi.png",
-    title: "Citadel Pros Market FX International",
-    body: 'Citadel Pros Market FX International Corporation is authorized and regulated by the Financial Services Commission of the British Virgin Islands ("FSC") with license number SIBA/L/14/1098.',
+    title: "Citadels Market FX International",
+    body: 'Citadels Market FX International Corporation is authorized and regulated by the Financial Services Commission of the British Virgin Islands ("FSC") with license number SIBA/L/14/1098.',
   },
   {
     id: "FMA",
     flag: "/sample-landing/at.png",
-    title: "Citadel Pros Market Austria",
-    body: 'Citadel Pros Market Asset Management GmbH – Austria branch is authorised and regulated by the Financial Markets Authority ("FMA") with license number 491179z.',
+    title: "Citadels Market Austria",
+    body: 'Citadels Market Asset Management GmbH – Austria branch is authorised and regulated by the Financial Markets Authority ("FMA") with license number 491179z.',
   },
   {
     id: "MAS",
     flag: "/sample-landing/MS.png",
-    title: "Citadel Pros Market Global Markets PTE. LTD",
-    body: 'Citadel Pros Market Global Markets PTE. LTD. is authorised and regulated by the Monetary Authority of Singapore ("MAS") with license number CMS101144.',
+    title: "Citadels Market Global Markets PTE. LTD",
+    body: 'Citadels Market Global Markets PTE. LTD. is authorised and regulated by the Monetary Authority of Singapore ("MAS") with license number CMS101144.',
   },
   {
     id: "TFG",
@@ -67,8 +67,8 @@ const regulations = [
   {
     id: "VFSC",
     flag: "/sample-landing/vu.png",
-    title: "Citadel Pros Market Pacific",
-    body: 'Citadel Pros Market Pacific (V) Ltd is authorised and regulated by the Vanuatu Financial Services Commission ("VFSC") with license number 700497.',
+    title: "Citadels Market Pacific",
+    body: 'Citadels Market Pacific (V) Ltd is authorised and regulated by the Vanuatu Financial Services Commission ("VFSC") with license number 700497.',
   },
 ];
 

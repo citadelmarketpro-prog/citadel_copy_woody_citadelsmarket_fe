@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin } from "lucide-react";
+﻿import { Mail, Phone, MapPin } from "lucide-react";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
 import { FadeLeft, FadeRight, FadeUp, ZoomIn } from "@/components/newlanding/motion";
@@ -67,10 +67,10 @@ export default function ContactPage() {
                   <Mail size={20} className="text-emerald-600" strokeWidth={1.75} />
                 </div>
                 <a
-                  href="mailto:support@citadelmarketspro.com"
+                  href="mailto:support@citadelsmarket.com"
                   className="text-gray-700 hover:text-emerald-600 transition-colors text-sm"
                 >
-                  support@citadelmarketspro.com
+                  support@citadelsmarket.com
                 </a>
               </div>
               {phones.map((p) => (
@@ -94,7 +94,7 @@ export default function ContactPage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Citadel Pros Market office location"
+                  title="Citadels Market office location"
                 />
               </div>
             </FadeRight>

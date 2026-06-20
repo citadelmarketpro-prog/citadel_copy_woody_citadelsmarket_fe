@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import Image from "next/image";
 import ScrollReveal from "@/components/site/ScrollReveal";
@@ -80,7 +80,7 @@ const LiquidityProvidersSection = () => {
               Liquidity Providers
             </h2>
             <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-              Citadel Markets Pro currently has a variety of liquidity
+              Citadels Market currently has a variety of liquidity
               providers, including but not limited to:
             </p>
           </div>

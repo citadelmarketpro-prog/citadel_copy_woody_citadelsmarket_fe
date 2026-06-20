@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 
@@ -217,8 +217,7 @@ const LiquidityProvidersSection = () => {
       id="liquidity-providers"
       className="py-8 md:py-14 relative"
       style={{
-        background:
-          "linear-gradient(135deg, #0a1a2f 0%, #1a3a4f 50%, #2a4a3f 100%)",
+        background: "#0a0a0a",
       }}
     >
       <div className="container mx-auto px-4">
@@ -227,7 +226,7 @@ const LiquidityProvidersSection = () => {
             LIQUIDITY PROVIDERS
           </h2>
           <h5 className="text-white text-base md:text-lg lg:text-xl opacity-90">
-            Citadel Markets Pro currently has a variety of liquidity providers, including
+            Citadels Market currently has a variety of liquidity providers, including
             but not limited to:
           </h5>
         </div>

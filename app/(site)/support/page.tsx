@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import ScrollReveal from "@/components/site/ScrollReveal";
 import Navbar from "@/components/site/SampleNavbar";
@@ -32,7 +32,7 @@ const SupportCenterPage = () => {
                 Welcome to Our Support Center
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-                At Citadel Markets Pro, we are committed to providing you with
+                At Citadels Market, we are committed to providing you with
                 exceptional support throughout your trading experience. Our
                 dedicated support team is available to assist you with any
                 questions, concerns, or technical issues you may encounter while
@@ -56,7 +56,7 @@ const SupportCenterPage = () => {
                 Getting Started
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-                If you&apos;re new to Citadel Markets Pro, we recommend starting
+                If you&apos;re new to Citadels Market, we recommend starting
                 with these essential resources to help you navigate our platform
                 effectively:
               </p>

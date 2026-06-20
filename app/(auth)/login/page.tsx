@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -98,28 +98,22 @@ export default function LoginPage() {
           transition={{ duration: 0.6 }}
           className="w-full max-w-sm space-y-6 flex flex-col"
         >
-          <Link
-            href="/"
-            className="hidden dark:flex text-2xl md:text-4xl mb-10 font-extrabold self-center tracking-tight items-center gap-1 text-emerald-600 dark:bg-gradient-to-r dark:from-white dark:via-emerald-200 dark:to-emerald-400 dark:bg-clip-text dark:text-transparent"
-          >
+          <Link href="/" className="hidden dark:flex self-center">
             <Image
               alt="logo"
               src={"/images/logo_dark.png"}
-              className="h-30 md:h-40 w-auto"
-              width={1000}
-              height={1000}
+              className="h-20 w-auto"
+              width={400}
+              height={120}
             />
           </Link>
-          <Link
-            href="/"
-            className="flex dark:hidden text-2xl md:text-4xl mb-10 font-extrabold self-center tracking-tight items-center gap-1 text-emerald-600 dark:bg-gradient-to-r dark:from-white dark:via-emerald-200 dark:to-emerald-400 dark:bg-clip-text dark:text-transparent"
-          >
+          <Link href="/" className="flex dark:hidden self-center">
             <Image
               alt="logo"
               src={"/images/logo_light.png"}
-              className="h-30 md:h-40 w-auto"
-              width={1000}
-              height={1000}
+              className="h-20 w-auto"
+              width={400}
+              height={120}
             />
           </Link>
 
@@ -275,7 +269,7 @@ export default function LoginPage() {
           </div>
           <div className="text-center mt-1 text-sm space-y-2.5">
             <p className="text-gray-400 dark:text-gray-700">
-              Copyright &copy; {new Date().getFullYear()} Citadel Markets Pro
+              Copyright &copy; {new Date().getFullYear()} Citadels Market
             </p>
             <div className="flex items-center justify-center gap-4">
               <Link
@@ -286,7 +280,7 @@ export default function LoginPage() {
               </Link>
               <Link
                 className="text-emerald-500 hover:underline"
-                href={"/terms-service"}
+                href={"/terms-and-condition"}
               >
                 Terms of service
               </Link>

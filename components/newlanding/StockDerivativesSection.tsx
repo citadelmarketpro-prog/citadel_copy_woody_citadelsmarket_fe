@@ -1,6 +1,8 @@
 import { FadeUp } from "./motion";
+import { getTranslations } from "next-intl/server";
 
-export default function StockDerivativesSection() {
+export default async function StockDerivativesSection() {
+  const t = await getTranslations("stockDerivatives");
   return (
     <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <FadeUp>
@@ -15,20 +17,17 @@ export default function StockDerivativesSection() {
 
           <div className="relative z-10 p-10 sm:p-16 max-w-xl">
             <div className="text-2xl font-bold text-white mb-8 leading-tight">
-              Trade Stock derivatives:
+              {t("title")}
             </div>
             <div className="space-y-4 text-white text-sm leading-relaxed">
               <div>
-                <strong>Access a Wide Range of Instruments –</strong> Trade options, futures, and other stock
-                derivatives across major global markets.
+                <strong>{t("p1Head")}</strong> {t("p1")}
               </div>
               <div>
-                <strong>Leverage Market Opportunities –</strong> Use derivatives to hedge, speculate, or enhance
-                portfolio performance with strategic exposure.
+                <strong>{t("p2Head")}</strong> {t("p2")}
               </div>
               <div>
-                <strong>Advanced Tools &amp; Real-Time Data –</strong> Make informed decisions with powerful trading
-                tools, analytics, and up-to-the-second market data.
+                <strong>{t("p3Head")}</strong> {t("p3")}
               </div>
             </div>
           </div>

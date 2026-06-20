@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -219,28 +219,22 @@ export default function VerifyEmailPage() {
           className="w-full max-w-md space-y-6"
         >
           {/* Logo */}
-          <Link
-            href="/"
-            className="hidden dark:flex text-2xl md:text-4xl mb-10 font-extrabold self-center tracking-tight items-center gap-1 justify-center"
-          >
+          <Link href="/" className="hidden dark:flex justify-center">
             <Image
               alt="logo"
               src="/images/logo_dark.png"
-              className="h-30 md:h-40 w-auto"
-              width={1000}
-              height={1000}
+              className="h-20 w-auto"
+              width={400}
+              height={120}
             />
           </Link>
-          <Link
-            href="/"
-            className="flex dark:hidden text-2xl md:text-4xl mb-10 font-extrabold self-center tracking-tight items-center gap-1 justify-center"
-          >
+          <Link href="/" className="flex dark:hidden justify-center">
             <Image
               alt="logo"
               src="/images/logo_light.png"
-              className="h-30 md:h-40 w-auto"
-              width={1000}
-              height={1000}
+              className="h-20 w-auto"
+              width={400}
+              height={120}
             />
           </Link>
 
@@ -360,7 +354,7 @@ export default function VerifyEmailPage() {
           <h2 className="text-3xl font-bold text-white">One More Step!</h2>
           <p className="text-white/90 text-lg max-w-md">
             Verify your email to unlock all features and start your trading
-            journey with Citadel Markets Pro.
+            journey with Citadels Market.
           </p>
         </motion.div>
       </div>

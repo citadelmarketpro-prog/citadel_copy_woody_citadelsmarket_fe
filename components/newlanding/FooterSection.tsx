@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 import { FadeUp } from "./motion";
 
@@ -65,7 +65,7 @@ export default function FooterSection() {
               <Link href="/">
                 <Image
                   src="/images/logo_light.png"
-                  alt="Citadel Pros Market"
+                  alt="Citadels Market"
                   width={100}
                   height={36}
                   className="h-16 w-auto object-contain"
@@ -104,19 +104,19 @@ export default function FooterSection() {
                 investment if you don&apos;t copy trades from Lead Traders.
               </p>
               <p>
-                <strong>Citadel Pros Market</strong> is a global financial services provider. Citadel Pros Market is a
+                <strong>Citadels Market</strong> is a global financial services provider. Citadels Market is a
                 registered trademark of the group, that operates among various entities.
               </p>
               <p>
-                Citadel Pros Market Limited is registered in Canada, registration number: 2023-00465. Registered
+                Citadels Market Limited is registered in Canada, registration number: 2023-00465. Registered
                 address: Lower Mount Royal, AB T2T 5H7, Canada.
               </p>
               <p>
-                Citadel Pros Market Limited is registered in the United Kingdom, Company number 1054675. Registered
+                Citadels Market Limited is registered in the United Kingdom, Company number 1054675. Registered
                 address: 100 Pall Mall, St. James&apos;s London SW1Y 5NQ, United Kingdom.
               </p>
               <p>
-                © 2025 This website and technology/platform services are owned and operated by Citadel Pros Market
+                © 2025 This website and technology/platform services are owned and operated by Citadels Market
                 Limited, with Registered address: 11264 Playa Court Culver City, California. SEC: (000-56441).
               </p>
             </div>

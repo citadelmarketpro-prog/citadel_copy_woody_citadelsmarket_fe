@@ -3,6 +3,8 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 
 import { Analytics } from "@vercel/analytics/next";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/mode/theme-provider";
@@ -89,30 +91,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "https://www.citadelsmarket.com/favicon.ico" },
-      {
-        url: "https://www.citadelsmarket.com/favicon-16x16.png",
-        sizes: "16x16",
-        type: "image/png",
-      },
-      {
-        url: "https://www.citadelsmarket.com/favicon-32x32.png",
-        sizes: "32x32",
-        type: "image/png",
-      },
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: [
-      {
-        url: "https://www.citadelsmarket.com/apple-touch-icon.png",
-        sizes: "180x180",
-      },
-    ],
-    other: [
-      {
-        rel: "mask-icon",
-        url: "/safari-pinned-tab.svg",
-      },
-    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
   manifest: "/site.webmanifest",
   alternates: {
@@ -128,13 +111,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         {/* Additional SEO meta tags */}
         <meta name="application-name" content="Citadels Market" />
@@ -150,14 +136,16 @@ export default function RootLayout({
         />
       </head>
       <body className={`${poppins.variable} font-sans antialiased `}>
-        <ThemeProvider
-          disableTransitionOnChange
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-        >
-          {children}
-        </ThemeProvider>
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider
+            disableTransitionOnChange
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+          >
+            {children}
+          </ThemeProvider>
+        </NextIntlClientProvider>
         <Toaster
           position="top-right" // positions: top-left, top-center, bottom-right, etc.
           richColors // enables colored toasts
@@ -178,7 +166,7 @@ export default function RootLayout({
         {/* <LiveChat /> */}
 
         <Script
-          src="//code.jivosite.com/widget/fekUvZsGiI"
+          src="//code.jivosite.com/widget/nvVuiYFcsp"
           strategy="afterInteractive"
         />
       </body>

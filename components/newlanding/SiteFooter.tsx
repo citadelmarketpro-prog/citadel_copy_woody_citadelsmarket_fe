@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -205,7 +205,7 @@ export default function SiteFooter() {
                 <Link href="/">
                   <Image
                     src="/images/logo_light.png"
-                    alt="Citadel Pros Market"
+                    alt="Citadels Market"
                     width={200}
                     height={72}
                     className="h-24 w-auto object-contain"
@@ -244,24 +244,24 @@ export default function SiteFooter() {
                   investment if you don&apos;t copy trades from Lead Traders.
                 </p>
                 <p>
-                  <strong>Citadel Pros Market</strong> is a global financial services provider. Citadel Pros Market is a
+                  <strong>Citadels Market</strong> is a global financial services provider. Citadels Market is a
                   registered trademark of the group, that operates among various entities.
                 </p>
                 <p>
-                  Citadel Pros Market Limited is registered in Canada, registration number: 2023-00465. Registered
+                  Citadels Market Limited is registered in Canada, registration number: 2023-00465. Registered
                   address: Lower Mount Royal, AB T2T 5H7, Canada.
                 </p>
                 <p>
-                  Citadel Pros Market Limited is registered in the United Kingdom, Company number 1054675. Registered
+                  Citadels Market Limited is registered in the United Kingdom, Company number 1054675. Registered
                   address: 100 Pall Mall, St. James&apos;s London SW1Y 5NQ, United Kingdom.
                 </p>
                 <p>
-                  Citadel Pros Market is a Global financial service provider. Citadel Pros Market is a registered
+                  Citadels Market is a Global financial service provider. Citadels Market is a registered
                   trademark of the Citadel Group. All trading involves risk. Past performance is not indicative of
                   future results. The content of this website must not be construed as personal advice.
                 </p>
                 <p>
-                  © 2025 This website and technology/platform services are owned and operated by Citadel Pros Market
+                  © 2025 This website and technology/platform services are owned and operated by Citadels Market
                   Limited, with Registered address: 11264 Playa Court Culver City, California. SEC: (000-56441).
                 </p>
               </div>

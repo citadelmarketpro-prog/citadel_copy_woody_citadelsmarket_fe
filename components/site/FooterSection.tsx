@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useState } from "react";
 import Link from "next/link";
 import { Twitter, Linkedin, ChevronDown, ChevronUp } from "lucide-react";
@@ -139,14 +139,14 @@ const Footer = () => {
               Disclaimer
             </h5>
             <p className="dark:text-gray-400 text-gray-600 text-xs leading-relaxed mb-4">
-              Citadel Markets Pro is a Global financial service provider.
-              Citadel Markets Pro is a registered trademark of the Citadel
+              Citadels Market is a Global financial service provider.
+              Citadels Market is a registered trademark of the Citadel
               Group. All trading involves risk. Past performance is not
               indicative of future results. The content of this website must not
               be construed as personal advice.
             </p>
             <p className="dark:text-gray-500 text-gray-500 text-xs">
-              © Copyright {new Date().getFullYear()} Citadel Markets Pro
+              © Copyright {new Date().getFullYear()} Citadels Market
             </p>
           </div>
         </div>

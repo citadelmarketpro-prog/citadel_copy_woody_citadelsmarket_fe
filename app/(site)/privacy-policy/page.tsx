@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
 import { FadeUp } from "@/components/newlanding/motion";
@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
           <FadeUp>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">Privacy Policy</h1>
             <p className="text-gray-300 text-base max-w-xl leading-relaxed">
-              Your privacy is important to us. This policy explains how Citadel Pros Market
+              Your privacy is important to us. This policy explains how Citadels Market
               collects, uses, and protects your personal information.
             </p>
           </FadeUp>
@@ -42,7 +42,7 @@ export default function PrivacyPolicyPage() {
           <FadeUp>
             <h2 className="text-2xl font-bold text-gray-900 mt-2 mb-4">Personal Information</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              When you apply for or maintain a Citadel Pros Market Demo or Live account, we collect
+              When you apply for or maintain a Citadels Market Demo or Live account, we collect
               personal information about you for business purposes — to evaluate your financial
               needs, to process your requests and transactions, to inform you about products and
               services that may be of interest to you, and to provide client service. You may choose
@@ -73,9 +73,9 @@ export default function PrivacyPolicyPage() {
           <FadeUp>
             <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Security Technology</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Citadel Pros Market uses Secure Socket Layer (SSL) encryption technology to protect
+              Citadels Market uses Secure Socket Layer (SSL) encryption technology to protect
               certain information that you submit. This type of technology protects you from having
-              your information intercepted by anyone other than Citadel Pros Market while it is
+              your information intercepted by anyone other than Citadels Market while it is
               being transmitted to us. We work hard to ensure that our websites are secure and that
               they meet industry standards.
             </p>
@@ -109,24 +109,24 @@ export default function PrivacyPolicyPage() {
               Sharing Information with Third Parties
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Citadel Pros Market does not disclose your personal information to third parties,
+              Citadels Market does not disclose your personal information to third parties,
               except as described in this policy. Third-party disclosures may include sharing such
               information with non-affiliated companies that perform support services for your
-              account or facilitate your transactions with Citadel Pros Market, including those that
+              account or facilitate your transactions with Citadels Market, including those that
               provide professional, legal, or accounting advice.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              Non-affiliated companies that assist Citadel Pros Market in providing services to you
+              Non-affiliated companies that assist Citadels Market in providing services to you
               are required to maintain the confidentiality of such information to the extent they
               receive it, and to use your personal information only in the course of providing such
-              services and only for the purposes that Citadel Pros Market dictates.
+              services and only for the purposes that Citadels Market dictates.
             </p>
           </FadeUp>
 
           <FadeUp>
             <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Regulatory Disclosure</h2>
             <p className="text-gray-700 leading-relaxed">
-              Under limited circumstances, Citadel Pros Market may disclose your personal
+              Under limited circumstances, Citadels Market may disclose your personal
               information to third parties as permitted by, or to comply with, applicable laws and
               regulations. For example, we may disclose personal information to cooperate with
               regulatory authorities and law enforcement agencies, to comply with subpoenas or other

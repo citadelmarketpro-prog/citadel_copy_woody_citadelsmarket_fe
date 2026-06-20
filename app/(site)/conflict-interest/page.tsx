@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import Navbar from "@/components/site/SampleNavbar";
 import Link from "next/link";
@@ -31,7 +31,7 @@ const ConflictOfInterestPolicyPage = () => {
                 Our Commitment to Fair Practice
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Citadel Markets Pro is committed to maintaining the highest
+                Citadels Market is committed to maintaining the highest
                 standards of integrity and fairness in all aspects of our
                 business operations. This Conflict of Interest Policy outlines
                 how we identify, manage, and mitigate potential conflicts that
@@ -102,7 +102,7 @@ const ConflictOfInterestPolicyPage = () => {
                 Identifying Conflicts of Interest
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Citadel Markets Pro has established comprehensive procedures to
+                Citadels Market has established comprehensive procedures to
                 identify potential conflicts of interest that may arise in the
                 course of providing our services. We continuously monitor and
                 assess our business activities, relationships, and practices to
@@ -173,7 +173,7 @@ const ConflictOfInterestPolicyPage = () => {
                 Order Execution and Best Execution
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Citadel Markets Pro is committed to providing best execution on
+                Citadels Market is committed to providing best execution on
                 all client orders. We do not engage in practices that would
                 place our interests ahead of our clients, including:
               </p>
@@ -212,7 +212,7 @@ const ConflictOfInterestPolicyPage = () => {
                 Employee Trading and Personal Account Dealing
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                All Citadel Markets Pro employees are subject to strict personal
+                All Citadels Market employees are subject to strict personal
                 trading policies designed to prevent conflicts of interest and
                 protect client interests. Our employees must:
               </p>
@@ -246,7 +246,7 @@ const ConflictOfInterestPolicyPage = () => {
                 Inducements and Remuneration
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Citadel Markets Pro maintains strict policies regarding
+                Citadels Market maintains strict policies regarding
                 inducements, gifts, and entertainment to ensure that such
                 arrangements do not create conflicts of interest or compromise
                 our duty to act in clients&apos; best interests.
@@ -296,7 +296,7 @@ const ConflictOfInterestPolicyPage = () => {
                 Monitoring and Review
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Citadel Markets Pro maintains a robust monitoring and review
+                Citadels Market maintains a robust monitoring and review
                 framework to ensure ongoing compliance with this Conflict of
                 Interest Policy. Our compliance team conducts regular audits,
                 reviews employee trading activities, assesses business
@@ -366,7 +366,7 @@ const ConflictOfInterestPolicyPage = () => {
                 Reporting Concerns and Complaints
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                If you believe that Citadel Markets Pro has not adequately
+                If you believe that Citadels Market has not adequately
                 managed a conflict of interest, or if you have concerns about
                 potential conflicts, we encourage you to contact us immediately.
                 You can raise concerns through:

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import ScrollReveal from "@/components/site/ScrollReveal";
 import Navbar from "@/components/site/SampleNavbar";
@@ -34,7 +34,7 @@ const CopyTradingPage = () => {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
                 Copy Trading is an innovative feature that allows you to
                 automatically mirror the trading strategies of experienced and
-                successful traders on the Citadel Markets Pro platform. When you
+                successful traders on the Citadels Market platform. When you
                 copy a trader, every position they open or close is replicated
                 in your account in real-time, proportional to your allocated
                 investment amount.
@@ -387,7 +387,7 @@ const CopyTradingPage = () => {
                   <span className="font-semibold text-gray-900 dark:text-white">
                     1.
                   </span>{" "}
-                  Create a Citadel Markets Pro account or log in to your
+                  Create a Citadels Market account or log in to your
                   existing account.
                 </p>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -459,7 +459,7 @@ const CopyTradingPage = () => {
                   tolerance.
                 </li>
                 <li className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Citadel Markets Pro does not guarantee the performance of any
+                  Citadels Market does not guarantee the performance of any
                   trader on the platform and is not responsible for trading
                   decisions made by copied traders.
                 </li>

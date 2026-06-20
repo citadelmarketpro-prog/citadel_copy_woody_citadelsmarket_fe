@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
@@ -9,15 +9,17 @@ const darkGradient =
 
 const valueCards = [
   {
-    bg: "/sample-landing/social-bg.jpg",
-    overlay: "bg-emerald-900/80",
+    bg: "",
+    bgColor: "#0c5c45",
+    overlay: "",
     head: "Corporate Governance",
     headColor: "text-white",
-    body: "The Board of Directors and management of Citadel Pros Market have long recognised the importance of corporate governance practices that ensure effective oversight and strong accountability. Our goal is to generate superior financial returns for our investors by building stronger and more valuable businesses.",
+    body: "The Board of Directors and management of Citadels Market have long recognised the importance of corporate governance practices that ensure effective oversight and strong accountability. Our goal is to generate superior financial returns for our investors by building stronger and more valuable businesses.",
     textColor: "text-white/90",
   },
   {
     bg: "/sample-landing/chat-bg.jpg",
+    bgColor: "",
     overlay: "",
     head: "Global Impact",
     headColor: "text-gray-900",
@@ -25,15 +27,17 @@ const valueCards = [
     textColor: "text-gray-700",
   },
   {
-    bg: "/sample-landing/social-bg.jpg",
-    overlay: "bg-emerald-900/80",
+    bg: "",
+    bgColor: "#0c5c45",
+    overlay: "",
     head: "ESG Commitment",
     headColor: "text-white",
-    body: "At Citadel Pros Market, we aim to accelerate the evolution of ESG on behalf of clients, investors, communities and all stakeholders — to make a positive impact on people and the planet. With our scale at the heart of the financial system, we are uniquely positioned to drive transparency, insight, and impact.",
+    body: "At Citadels Market, we aim to accelerate the evolution of ESG on behalf of clients, investors, communities and all stakeholders — to make a positive impact on people and the planet. With our scale at the heart of the financial system, we are uniquely positioned to drive transparency, insight, and impact.",
     textColor: "text-white/90",
   },
   {
     bg: "/sample-landing/chat-bg.jpg",
+    bgColor: "",
     overlay: "",
     head: "Investment Philosophy",
     headColor: "text-gray-900",
@@ -69,7 +73,7 @@ export default function AboutPage() {
           <FadeUp>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">About Us</h1>
             <p className="text-gray-300 text-base max-w-xl leading-relaxed">
-              Citadel Pros Market has been sharing financial freedom with traders since 2014 — continuously
+              Citadels Market has been sharing financial freedom with traders since 2014 — continuously
               improving our platform so traders can enjoy and make use of that freedom wherever they are.
             </p>
           </FadeUp>
@@ -83,16 +87,16 @@ export default function AboutPage() {
 
             <FadeLeft className="flex-1 flex flex-col justify-center">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-5">
-                Time to take action with the international Citadel Pros Market broker
+                Time to take action with the international Citadels Market broker
               </h2>
               <p className="text-gray-600 leading-relaxed mb-4">
                 Trading will bring you profit with proper support, constant education, and a reasonable approach.
-                Citadel Pros Market is a broker platform that has created all the conditions to help you improve
+                Citadels Market is a broker platform that has created all the conditions to help you improve
                 your trading life in every possible way.
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
                 From educational broker&apos;s tools, demo accounts, and 24/7 support to your financial success,
-                Citadel Pros Market works tirelessly to remain at the forefront of online trading. Join now and
+                Citadels Market works tirelessly to remain at the forefront of online trading. Join now and
                 take full advantage of this online trading leader to make your way into the world of professional
                 trading.
               </p>
@@ -114,7 +118,7 @@ export default function AboutPage() {
               <div className="w-full min-h-[320px] h-full rounded-2xl overflow-hidden">
                 <Image
                   src="/sample-landing/pexels-vlada-karpovich-7433853.jpg"
-                  alt="Citadel Pros Market trading team"
+                  alt="Citadels Market trading team"
                   width={800}
                   height={600}
                   className="w-full h-full object-cover"
@@ -137,15 +141,11 @@ export default function AboutPage() {
               <ZoomIn key={card.head} delay={0.08 * i}>
                 <div
                   className="relative rounded-2xl overflow-hidden min-h-64 flex flex-col"
-                  style={{
-                    backgroundImage: `url('${card.bg}')`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
+                  style={card.bg
+                    ? { backgroundImage: `url('${card.bg}')`, backgroundSize: "cover", backgroundPosition: "center" }
+                    : { backgroundColor: card.bgColor }
+                  }
                 >
-                  {card.overlay && (
-                    <div className={`absolute inset-0 ${card.overlay}`} />
-                  )}
                   <div className="relative z-10 p-8 flex flex-col gap-3">
                     <h3 className={`font-extrabold text-sm uppercase tracking-widest ${card.headColor}`}>
                       {card.head}
@@ -167,7 +167,7 @@ export default function AboutPage() {
             <ZoomIn className="flex-1 flex justify-center items-center bg-white/5 border border-white/10 rounded-2xl p-12">
               <Image
                 src="/images/logo_light.png"
-                alt="Citadel Pros Market"
+                alt="Citadels Market"
                 width={280}
                 height={100}
                 className="w-auto h-20 object-contain"
@@ -185,7 +185,7 @@ export default function AboutPage() {
                 outperform in good markets and protect our clients&apos; capital in difficult markets.
               </p>
               <p className="text-gray-400 leading-relaxed mb-6">
-                At Citadel Pros Market, we advance sustainable economic growth and financial opportunity. Drawing
+                At Citadels Market, we advance sustainable economic growth and financial opportunity. Drawing
                 on years of experience working with the world&apos;s leading businesses, entrepreneurs, and
                 institutions, we mobilise our people, culture, technologies, and ideas to advance the success of
                 our clients. Our purpose comes to life through four core values:{" "}
@@ -198,7 +198,7 @@ export default function AboutPage() {
                 href="/register"
                 className="inline-block px-8 py-3 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-500 transition-colors no-underline w-fit"
               >
-                Join Citadel Pros Market
+                Join Citadels Market
               </Link>
             </FadeRight>
 

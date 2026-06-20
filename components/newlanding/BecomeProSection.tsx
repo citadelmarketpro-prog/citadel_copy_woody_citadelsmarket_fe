@@ -1,11 +1,11 @@
-import { FadeUp, FadeLeft } from "./motion";
+﻿import { FadeUp, FadeLeft } from "./motion";
 
 const darkGradient =
   "linear-gradient(transparent 0%,#000 95%),radial-gradient(194.14% 91.43% at 2.43% 88.15%,rgba(10,10,10,.8) 0%,rgba(10,10,10,0) 100%),conic-gradient(from 5deg at 92.78% 73.8%,rgba(65,64,62,.4) 0deg,rgba(37,37,35,.4) 360deg),conic-gradient(from -49deg at 85.69% 75.64%,rgba(98,97,97,.3) 0deg,rgba(37,37,37,.3) 360deg),#0a0a0a";
 
 export default function BecomeProSection() {
   return (
-    <section className="py-14 sm:py-20" style={{ background: darkGradient }}>
+    <section className="py-14 sm:py-20 overflow-hidden" style={{ background: darkGradient }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeUp>
           <h2 className="text-2xl font-bold text-white mb-6">Become a Pro Trader</h2>
@@ -21,7 +21,7 @@ export default function BecomeProSection() {
           <p className="text-gray-400 leading-relaxed">
             The main criteria for a successful internet trading platform are international reputation, unwavering
             reliability, constant support at all stages, and unique useful trading features. These qualities are
-            combined in the award-winning Citadel Pros Market broker and electronic trading platform.
+            combined in the award-winning Citadels Market broker and electronic trading platform.
           </p>
         </FadeLeft>
       </div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import Navbar from "@/components/site/SampleNavbar";
 import Link from "next/link";
@@ -30,7 +30,7 @@ const CookiesPolicyPage = () => {
               Introduction
             </h2>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-              When you use our Website, Citadel Markets Pro will use cookies to
+              When you use our Website, Citadels Market will use cookies to
               distinguish you from other users of our Website. This helps us
               provide you with a more relevant and effective experience,
               including presenting the Website according to your needs and

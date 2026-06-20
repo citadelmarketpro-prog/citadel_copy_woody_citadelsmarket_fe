@@ -1,4 +1,4 @@
-import { Clock, CheckCircle2 } from "lucide-react";
+﻿import { Clock, CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
 import { FadeUp, ZoomIn } from "@/components/newlanding/motion";
@@ -89,10 +89,10 @@ export default function SystemStatusPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
-              Citadel Pros Market System Status
+              Citadels Market System Status
             </h2>
             <p className="text-gray-500 text-base mb-10 max-w-2xl">
-              Live status of all Citadel Pros Market services and infrastructure components.
+              Live status of all Citadels Market services and infrastructure components.
             </p>
           </FadeUp>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

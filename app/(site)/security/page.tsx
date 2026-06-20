@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 import {
   Vault,
@@ -54,7 +54,7 @@ const features = [
 ];
 
 const dos = [
-  "Use a strong, unique password for your Citadel Pros Market account.",
+  "Use a strong, unique password for your Citadels Market account.",
   "Enable Two-Factor Authentication (2FA) in your account settings.",
   "Verify the website URL is correct before logging in.",
   "Contact our official support if you receive suspicious communications.",
@@ -64,7 +64,7 @@ const dos = [
 
 const donts = [
   "Never share your password, OTP, or 2FA code with anyone — including support staff.",
-  "Do not click links in unsolicited emails claiming to be from Citadel Pros Market.",
+  "Do not click links in unsolicited emails claiming to be from Citadels Market.",
   "Never install software or apps recommended by unsolicited callers.",
   "Do not use public Wi-Fi networks to access your trading account.",
   "Never send funds to an account you cannot independently verify.",
@@ -108,7 +108,7 @@ export default function SecurityPage() {
               How we keep your funds safe
             </h2>
             <p className="text-gray-500 max-w-2xl mb-12 leading-relaxed">
-              Citadel Pros Market is built on a foundation of financial integrity. Every structural
+              Citadels Market is built on a foundation of financial integrity. Every structural
               safeguard below is in place specifically to protect your capital.
             </p>
           </FadeUp>
@@ -178,7 +178,7 @@ export default function SecurityPage() {
               Built-in protection features
             </h2>
             <p className="text-gray-500 max-w-2xl mb-12 leading-relaxed">
-              Every Citadel Pros Market account comes equipped with multiple layers of active security
+              Every Citadels Market account comes equipped with multiple layers of active security
               tools designed to prevent unauthorised access.
             </p>
           </FadeUp>
@@ -280,12 +280,12 @@ export default function SecurityPage() {
                 Suspicious communications
               </h2>
               <p className="text-gray-600 leading-relaxed mb-5">
-                Citadel Pros Market will <strong>never</strong> contact you unsolicited to request your
+                Citadels Market will <strong>never</strong> contact you unsolicited to request your
                 password, OTP, or payment details. We will never ask you to install remote-access
                 software or transfer funds to a &quot;safe account.&quot;
               </p>
               <p className="text-gray-600 leading-relaxed mb-5">
-                If you receive a phone call, email, or message claiming to be from Citadel Pros Market
+                If you receive a phone call, email, or message claiming to be from Citadels Market
                 and it feels suspicious — do not engage. Hang up or close the message immediately and
                 contact us through our official support channels to verify.
               </p>
@@ -312,7 +312,7 @@ export default function SecurityPage() {
               Trade with complete peace of mind
             </h2>
             <p className="text-gray-400 leading-relaxed max-w-xl mx-auto mb-8">
-              Citadel Pros Market combines institutional-grade security with a seamless trading experience.
+              Citadels Market combines institutional-grade security with a seamless trading experience.
               Your funds are protected. Your data is private. Your account is yours alone.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

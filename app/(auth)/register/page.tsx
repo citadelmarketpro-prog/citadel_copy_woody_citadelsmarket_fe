@@ -269,28 +269,22 @@ function RegisterPageContent() {
           className="w-full max-w-sm space-y-6 flex flex-col"
         >
           {/* Logo */}
-          <Link
-            href="/"
-            className="hidden dark:flex text-2xl md:text-4xl mb-10 font-extrabold self-center tracking-tight items-center gap-1 text-emerald-600"
-          >
+          <Link href="/" className="hidden dark:flex self-center">
             <Image
               alt="logo"
               src={"/images/logo_dark.png"}
-              className="h-30 md:h-40 w-auto"
-              width={1000}
-              height={1000}
+              className="h-20 w-auto"
+              width={400}
+              height={120}
             />
           </Link>
-          <Link
-            href="/"
-            className="flex dark:hidden text-2xl md:text-4xl mb-10 font-extrabold self-center tracking-tight items-center gap-1"
-          >
+          <Link href="/" className="flex dark:hidden self-center">
             <Image
               alt="logo"
               src={"/images/logo_light.png"}
-              className="h-30 md:h-40 w-auto"
-              width={1000}
-              height={1000}
+              className="h-20 w-auto"
+              width={400}
+              height={120}
             />
           </Link>
 
@@ -598,7 +592,7 @@ function RegisterPageContent() {
                 <Checkbox id="terms" className="mr-1" />
                 By signing up you agree to{" "}
                 <Link
-                  href="/privacy-policy"
+                  href="/terms-and-condition"
                   className="text-emerald-500 hover:underline"
                 >
                   Terms and Condition

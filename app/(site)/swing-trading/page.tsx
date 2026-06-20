@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { TrendingUp, Shuffle } from "lucide-react";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
@@ -41,7 +41,7 @@ export default function SwingTradingPage() {
           <FadeUp>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">Swing Trading</h1>
             <p className="text-gray-300 text-base max-w-xl leading-relaxed">
-              Citadel Pros Market has been sharing financial freedom with traders since 2014 — continuously
+              Citadels Market has been sharing financial freedom with traders since 2014 — continuously
               improving the platform so traders can enjoy the freedom to trade whenever and wherever they like.
             </p>
           </FadeUp>

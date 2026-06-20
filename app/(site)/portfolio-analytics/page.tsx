@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import ScrollReveal from "@/components/site/ScrollReveal";
 import Navbar from "@/components/site/SampleNavbar";
@@ -34,7 +34,7 @@ const PortfolioAnalyticsPage = () => {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
                 Portfolio Analytics is a powerful suite of tools designed to
                 give you complete visibility into your trading performance on
-                Citadel Markets Pro. Our advanced analytics platform transforms
+                Citadels Market. Our advanced analytics platform transforms
                 your trading data into actionable insights, helping you
                 understand what works, identify areas for improvement, and make
                 informed decisions to optimize your trading strategy.
@@ -444,7 +444,7 @@ const PortfolioAnalyticsPage = () => {
                   <span className="font-semibold text-gray-900 dark:text-white">
                     1.
                   </span>{" "}
-                  Log in to your Citadel Markets Pro account and navigate to the
+                  Log in to your Citadels Market account and navigate to the
                   Analytics section in your dashboard.
                 </p>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">

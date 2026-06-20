@@ -11,7 +11,7 @@ const bullets = [
 
 export default function PayLessSection() {
   return (
-    <section className="py-14 sm:py-20 bg-[#0a0a0a]">
+    <section className="py-14 sm:py-20 bg-[#0a0a0a] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#141414] rounded-xl overflow-hidden">
           <div className="flex flex-col lg:flex-row items-end gap-8 px-6 sm:px-12 pt-16">

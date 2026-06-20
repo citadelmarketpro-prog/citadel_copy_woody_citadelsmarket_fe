@@ -2,7 +2,7 @@ import { FadeUp, FadeLeft, FadeRight } from "./motion";
 
 export default function TradingFingertipsSection() {
   return (
-    <section className="py-14 sm:py-20 bg-[#0a0a0a]">
+    <section className="py-14 sm:py-20 bg-[#0a0a0a] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeUp>
           <h2 className="text-2xl font-bold text-white mb-2">Trading at your fingertips</h2>

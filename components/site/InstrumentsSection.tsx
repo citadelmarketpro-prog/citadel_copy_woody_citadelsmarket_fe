@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useState } from "react";
 import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
@@ -124,7 +124,7 @@ const InstrumentsSection = () => {
             </h2>
             <p className="dark:text-gray-300 text-gray-600 text-lg max-w-3xl leading-relaxed mb-8">
               Copy the exact instruments top traders use — not just vague
-              signals. Citadel Markets Pro supports a broad set of tradable assets and
+              signals. Citadels Market supports a broad set of tradable assets and
               contract types so you can mirror strategies precisely and control
               your exposure.
             </p>

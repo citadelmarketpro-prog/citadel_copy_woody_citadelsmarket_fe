@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import ScrollReveal from "@/components/site/ScrollReveal";
 import Navbar from "@/components/site/SampleNavbar";
@@ -29,16 +29,16 @@ const RiskDisclaimerPage = () => {
           <ScrollReveal direction="up" delay={0.2}>
             <section>
               <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                About Citadel Markets Pro
+                About Citadels Market
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Citadel Markets Pro is a Global financial service provider.
-                Citadel Markets Pro is a registered trademark of the group, that
+                Citadels Market is a Global financial service provider.
+                Citadels Market is a registered trademark of the group, that
                 operates amongst various entities.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                The service provided by Citadel Markets Pro is operated by the
-                Citadel Markets Pro Group of Companies and is regulated by SEC,
+                The service provided by Citadels Market is operated by the
+                Citadels Market Group of Companies and is regulated by SEC,
                 CRD 298461. CN Global is regulated by FCA in the United Kingdom,
                 Reference Number 573263. CN is regulated by CIRO, reference
                 number 9290. The Company may extend its services to various
@@ -118,7 +118,7 @@ const RiskDisclaimerPage = () => {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 We strongly recommend consulting with a licensed financial
                 professional regarding the risks associated with options trading
-                before participating. Citadel Markets Pro does not provide
+                before participating. Citadels Market does not provide
                 personalized investment advice and makes no assurances regarding
                 profitability or suitability of the strategies displayed.
               </p>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
 import { FadeUp } from "@/components/newlanding/motion";
@@ -45,7 +45,7 @@ export default function RegulationsPage() {
               Our global regulatory licences
             </h2>
             <p className="text-gray-500 text-center mb-10 max-w-xl mx-auto">
-              Citadel Pros Market operates under the supervision of multiple tier-1 regulatory authorities
+              Citadels Market operates under the supervision of multiple tier-1 regulatory authorities
               across the globe, ensuring the highest standards of compliance and client protection.
             </p>
           </FadeUp>
@@ -63,7 +63,7 @@ export default function RegulationsPage() {
             </h2>
             <p className="text-gray-400 leading-relaxed max-w-2xl mx-auto mb-8">
               Every regulatory licence we hold is a commitment to transparency, fairness, and the protection
-              of your capital. Citadel Pros Market is built on a foundation of compliance so you can focus
+              of your capital. Citadels Market is built on a foundation of compliance so you can focus
               on what matters — trading.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

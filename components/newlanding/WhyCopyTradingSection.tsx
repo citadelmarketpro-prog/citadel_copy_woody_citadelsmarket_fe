@@ -65,7 +65,7 @@ export default function WhyCopyTradingSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeUp>
           <h2 className="text-4xl sm:text-5xl font-bold text-center text-white mb-16">
-            <span className="text-emerald-400">Why</span> mirror trading?
+            <span style={{ color: "#0f8a62" }}>Why</span> mirror trading?
           </h2>
         </FadeUp>
 

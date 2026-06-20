@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import {
   Activity,
@@ -20,7 +20,7 @@ const VerifiedCompanySection = () => {
         </ScrollReveal>
         <ScrollReveal direction="up" delay={0.2}>
           <p className="text-gray-700 dark:text-gray-300 text-lg max-w-4xl mx-auto mb-10 leading-relaxed">
-            At Citadel Markets Pro, transparency and trust are at the heart of our
+            At Citadels Market, transparency and trust are at the heart of our
             services. We are a legally registered company, giving our clients
             the confidence that they are working with a verified and compliant
             business.

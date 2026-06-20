@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import ScrollReveal from "@/components/site/ScrollReveal";
 import Navbar from "@/components/site/SampleNavbar";
@@ -31,7 +31,7 @@ const EULAPage = () => {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 This End-User License Agreement (&quot;EULA&quot;) is a legal
                 agreement between you (either an individual or a single entity)
-                and Citadel Markets Pro Group of Companies (&quot;Citadel
+                and Citadels Market Group of Companies (&quot;Citadel
                 Markets Pro,&quot; &quot;we,&quot; &quot;us,&quot; or
                 &quot;our&quot;) for the use of our software applications,
                 including but not limited to our web-based trading platform,
@@ -54,7 +54,7 @@ const EULAPage = () => {
                 License Grant
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-                Subject to your compliance with this EULA, Citadel Markets Pro
+                Subject to your compliance with this EULA, Citadels Market
                 grants you a limited, non-exclusive, non-transferable, revocable
                 license to:
               </p>
@@ -85,7 +85,7 @@ const EULAPage = () => {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-6">
                 This license does not constitute a sale of the Software or any
                 portion thereof. All rights not expressly granted to you are
-                reserved by Citadel Markets Pro.
+                reserved by Citadels Market.
               </p>
             </section>
           </ScrollReveal>
@@ -149,16 +149,16 @@ const EULAPage = () => {
                 The Software and all intellectual property rights therein,
                 including but not limited to copyrights, trademarks, trade
                 secrets, patents, and proprietary information, are and shall
-                remain the exclusive property of Citadel Markets Pro and its
+                remain the exclusive property of Citadels Market and its
                 licensors.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 This EULA does not grant you any rights to use Citadel Markets
                 Pro&apos;s trademarks, logos, domain names, or other distinctive
                 brand features except as expressly permitted in writing by
-                Citadel Markets Pro. You acknowledge that any feedback,
+                Citadels Market. You acknowledge that any feedback,
                 suggestions, or ideas you provide regarding the Software may be
-                used by Citadel Markets Pro without any obligation or
+                used by Citadels Market without any obligation or
                 compensation to you.
               </p>
             </section>
@@ -171,13 +171,13 @@ const EULAPage = () => {
                 Software Updates and Modifications
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Citadel Markets Pro may, from time to time, develop updates,
+                Citadels Market may, from time to time, develop updates,
                 upgrades, patches, bug fixes, and other modifications to improve
                 the Software. These updates may be automatically downloaded and
                 installed without prior notice to you.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                You acknowledge that Citadel Markets Pro may require you to
+                You acknowledge that Citadels Market may require you to
                 install updates as a condition of continued access to the
                 Software. We reserve the right to modify, suspend, or
                 discontinue any feature or functionality of the Software at any
@@ -244,7 +244,7 @@ const EULAPage = () => {
                 conditions imposed by the respective third-party providers.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                Citadel Markets Pro does not warrant or assume responsibility
+                Citadels Market does not warrant or assume responsibility
                 for the functionality, security, or availability of third-party
                 software or services. Any issues or disputes arising from
                 third-party components should be addressed directly with the
@@ -263,12 +263,12 @@ const EULAPage = () => {
                 THE SOFTWARE IS PROVIDED &quot;AS IS&quot; AND &quot;AS
                 AVAILABLE&quot; WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS
                 OR IMPLIED. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW,
-                CITADEL MARKETS PRO DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT
+                Citadels Market DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT
                 LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
                 PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Citadel Markets Pro does not warrant that the Software will be
+                Citadels Market does not warrant that the Software will be
                 uninterrupted, error-free, secure, or free from viruses or other
                 harmful components. You acknowledge that your use of the
                 Software is at your sole risk, and you assume all responsibility
@@ -292,7 +292,7 @@ const EULAPage = () => {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT
-                SHALL CITADEL MARKETS PRO, ITS AFFILIATES, OFFICERS, DIRECTORS,
+                SHALL Citadels Market, ITS AFFILIATES, OFFICERS, DIRECTORS,
                 EMPLOYEES, AGENTS, OR LICENSORS BE LIABLE FOR ANY INDIRECT,
                 INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY
                 DAMAGES, INCLUDING BUT NOT LIMITED TO DAMAGES FOR LOSS OF
@@ -300,9 +300,9 @@ const EULAPage = () => {
                 OF OR RELATING TO YOUR USE OR INABILITY TO USE THE SOFTWARE.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                IN NO EVENT SHALL CITADEL MARKETS PRO&apos;S TOTAL LIABILITY TO
+                IN NO EVENT SHALL Citadels Market&apos;S TOTAL LIABILITY TO
                 YOU FOR ALL DAMAGES EXCEED THE AMOUNT OF FIFTY DOLLARS ($50.00)
-                OR THE AMOUNT YOU PAID TO CITADEL MARKETS PRO FOR ACCESS TO THE
+                OR THE AMOUNT YOU PAID TO Citadels Market FOR ACCESS TO THE
                 SOFTWARE IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM,
                 WHICHEVER IS GREATER.
               </p>
@@ -337,7 +337,7 @@ const EULAPage = () => {
                 This EULA is effective until terminated. Your rights under this
                 EULA will terminate automatically without notice from Citadel
                 Markets Pro if you fail to comply with any term of this EULA.
-                Citadel Markets Pro may also terminate this EULA at any time
+                Citadels Market may also terminate this EULA at any time
                 with or without cause.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">

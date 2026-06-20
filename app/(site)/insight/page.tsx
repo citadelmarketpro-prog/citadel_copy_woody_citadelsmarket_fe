@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import {
   Smartphone,
   KeyRound,
@@ -59,7 +59,7 @@ export default function InsightPage() {
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">Insight</h1>
             <p className="text-gray-300 text-base max-w-xl leading-relaxed">
               Account security is as important as your trading strategy. Here is what you need to
-              know to keep your Citadel Pros Market account safe.
+              know to keep your Citadels Market account safe.
             </p>
           </FadeUp>
         </div>
@@ -84,7 +84,7 @@ export default function InsightPage() {
                 a time-sensitive code generated on your phone.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                At Citadel Pros Market, we strongly recommend enabling 2FA on your account. It is
+                At Citadels Market, we strongly recommend enabling 2FA on your account. It is
                 one of the most effective steps you can take to protect your portfolio and personal
                 information from unauthorised access.
               </p>
@@ -150,7 +150,7 @@ export default function InsightPage() {
               </h2>
               <div className="space-y-5 text-gray-600 leading-relaxed">
                 <p>
-                  To get started with 2FA on your Citadel Pros Market account, you will need a
+                  To get started with 2FA on your Citadels Market account, you will need a
                   mobile authenticator app. The most widely used and trusted apps include Google
                   Authenticator and Microsoft Authenticator, both of which are available for free on
                   iOS and Android.

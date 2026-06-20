@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import {
   UserPlus,
@@ -111,7 +111,7 @@ const ReadyToStartSection = () => {
               Your funds are held in top-tier institutions
             </h3>
             <p className="text-gray-600 dark:text-gray-400 text-center text-lg mb-12 max-w-3xl mx-auto">
-              The Citadel Markets Pro works with globally renowned banking
+              The Citadels Market works with globally renowned banking
               partners including:
             </p>
 
@@ -143,7 +143,7 @@ const ReadyToStartSection = () => {
             </h3>
             <p className="text-gray-600 dark:text-gray-400 text-center text-lg mb-12">
               Discover why millions of investors from over 100 countries joined
-              Citadel Markets Pro
+              Citadels Market
             </p>
 
             {/* Trust Features Grid */}

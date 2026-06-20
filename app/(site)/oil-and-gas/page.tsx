@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import {
   TrendingUp,
   Shuffle,
@@ -174,7 +174,7 @@ export default function OilAndGasPage() {
                     sizing and diversification remain essential.
                   </p>
                   <p>
-                    At Citadel Pros Market, energy sector stocks form part of a broader universe of
+                    At Citadels Market, energy sector stocks form part of a broader universe of
                     publicly listed equities available through our platform. Whether you are looking to
                     add oil and gas exposure to a diversified portfolio or to copy experienced traders
                     who specialise in the energy sector, our platform provides the tools to do so

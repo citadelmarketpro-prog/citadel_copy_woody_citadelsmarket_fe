@@ -149,28 +149,22 @@ export default function Verify2FAPage() {
           className="w-full max-w-md space-y-6"
         >
           {/* Logo */}
-          <Link
-            href="/"
-            className="hidden dark:flex text-2xl md:text-4xl mb-10 font-extrabold self-center tracking-tight items-center gap-1 justify-center"
-          >
+          <Link href="/" className="hidden dark:flex justify-center">
             <Image
               alt="logo"
               src="/images/logo_dark.png"
-              className="h-30 md:h-40 w-auto"
-              width={1000}
-              height={1000}
+              className="h-20 w-auto"
+              width={400}
+              height={120}
             />
           </Link>
-          <Link
-            href="/"
-            className="flex dark:hidden text-2xl md:text-4xl mb-10 font-extrabold self-center tracking-tight items-center gap-1 justify-center"
-          >
+          <Link href="/" className="flex dark:hidden justify-center">
             <Image
               alt="logo"
               src="/images/logo_light.png"
-              className="h-30 md:h-40 w-auto"
-              width={1000}
-              height={1000}
+              className="h-20 w-auto"
+              width={400}
+              height={120}
             />
           </Link>
 

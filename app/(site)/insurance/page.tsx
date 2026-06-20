@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { Landmark, TrendingUp, BadgeCheck, ShieldCheck } from "lucide-react";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
@@ -143,7 +143,7 @@ export default function InsurancePage() {
               Regulated, secure, and transparent
             </h2>
             <p className="text-gray-400 leading-relaxed max-w-2xl mx-auto mb-8">
-              Citadel Pros Market operates under strict regulatory oversight and maintains the highest standards
+              Citadels Market operates under strict regulatory oversight and maintains the highest standards
               of financial security. Our commitment to compliance ensures that every transaction you make is
               protected by industry-leading safeguards.
             </p>

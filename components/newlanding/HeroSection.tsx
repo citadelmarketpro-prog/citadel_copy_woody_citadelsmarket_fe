@@ -4,17 +4,19 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeLeft, FadeRight } from "./motion";
+import { useTranslations } from "next-intl";
 
 const darkGradient =
   "linear-gradient(transparent 0%,#000 95%),radial-gradient(194.14% 91.43% at 2.43% 88.15%,rgba(10,10,10,.8) 0%,rgba(10,10,10,0) 100%),conic-gradient(from 5deg at 92.78% 73.8%,rgba(65,64,62,.4) 0deg,rgba(37,37,35,.4) 360deg),conic-gradient(from -49deg at 85.69% 75.64%,rgba(98,97,97,.3) 0deg,rgba(37,37,37,.3) 360deg),#0a0a0a";
 
-const integrationGroups = [
-  ["Interactive Brokers", "tastytrade", "Tradier"],
-  ["eOption", "Magnifi", "Olive Invest"],
-  ["JP Morgan", "HSBC", "Citibank"],
+const integrations = [
+  "Interactive Brokers", "tastytrade", "Tradier",
+  "eOption", "Magnifi", "Olive Invest",
+  "JP Morgan", "HSBC", "Citibank",
 ];
 
 export default function HeroSection() {
+  const t = useTranslations("hero");
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -22,10 +24,10 @@ export default function HeroSection() {
     const interval = setInterval(() => {
       setAnimating(true);
       setTimeout(() => {
-        setActiveIndex((prev) => (prev + 1) % integrationGroups.length);
+        setActiveIndex((prev) => (prev + 1) % integrations.length);
         setAnimating(false);
       }, 400);
-    }, 3000);
+    }, 2500);
     return () => clearInterval(interval);
   }, []);
 
@@ -41,23 +43,16 @@ export default function HeroSection() {
           <div className="mb-6">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 px-4 py-2 text-xs font-medium">
               <span className="flex h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-gray-400 whitespace-nowrap">Integrates with</span>
+              <span className="text-gray-400 whitespace-nowrap">{t("integratesWith")}</span>
               <span
-                className="flex items-center gap-1.5 transition-all duration-400"
+                className="inline-block w-[160px]"
                 style={{
                   opacity: animating ? 0 : 1,
                   transform: animating ? "translateY(6px)" : "translateY(0)",
                   transition: "opacity 0.4s, transform 0.4s",
                 }}
               >
-                {integrationGroups[activeIndex].map((platform, i) => (
-                  <span key={platform} className="flex items-center gap-1.5">
-                    <span className="font-semibold text-white whitespace-nowrap">{platform}</span>
-                    {i < integrationGroups[activeIndex].length - 1 && (
-                      <span className="text-gray-600">/</span>
-                    )}
-                  </span>
-                ))}
+                <span className="font-semibold text-white whitespace-nowrap">{integrations[activeIndex]}</span>
               </span>
             </div>
           </div>
@@ -71,24 +66,23 @@ export default function HeroSection() {
               backgroundClip: "text",
             }}
           >
-            Purpose-Driven Copytrading, Built on Innovation and Transparency
+            {t("title")}
           </h1>
           <p className="text-gray-300 text-base leading-relaxed mb-8">
-            Trade smarter, not harder, by automatically mirroring the strategies of top-performing investors, giving
-            you a smarter way to grow your portfolio with confidence, transparency, and control.
+            {t("subtitle")}
           </p>
           <div className="flex gap-3 flex-wrap">
             <Link
               href="/register"
               className="px-6 py-3 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-500 transition-colors no-underline"
             >
-              Register
+              {t("register")}
             </Link>
             <Link
               href="/login"
               className="px-6 py-3 bg-white text-emerald-600 font-semibold rounded-lg border-2 border-emerald-600 hover:bg-emerald-50 transition-colors no-underline"
             >
-              Login
+              {t("login")}
             </Link>
           </div>
         </FadeLeft>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { CheckCircle2, Gift } from "lucide-react";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
@@ -23,7 +23,7 @@ const steps = [
   {
     number: "1",
     title: "Access",
-    body: "Log in to your Citadel Pros Market account and go to the 'Refer a Friend' tab in the menu to access your unique referral link.",
+    body: "Log in to your Citadels Market account and go to the 'Refer a Friend' tab in the menu to access your unique referral link.",
   },
   {
     number: "2",

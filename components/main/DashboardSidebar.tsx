@@ -215,7 +215,7 @@ const DashboardSidebar = () => {
             <Image
               alt="logo"
               src={"/images/logo_dark.png"}
-              className="h-15 md:h-20 w-auto"
+              className="h-10 w-auto"
               width={1000}
               height={1000}
             />
@@ -227,7 +227,7 @@ const DashboardSidebar = () => {
             <Image
               alt="logo"
               src={"/images/logo_light.png"}
-              className="h-15 md:h-20 w-auto"
+              className="h-10 w-auto"
               width={1000}
               height={1000}
             />

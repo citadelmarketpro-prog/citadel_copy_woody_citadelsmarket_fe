@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import ScrollReveal from "@/components/site/ScrollReveal";
 import Navbar from "@/components/site/SampleNavbar";
@@ -33,7 +33,7 @@ const DeclarationOfConsentPage = () => {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 By creating an account, accessing our platform, or using any of
-                Citadel Markets Pro services, you explicitly consent to the
+                Citadels Market services, you explicitly consent to the
                 collection, processing, storage, and use of your personal
                 information as outlined in our Privacy Policy and Terms of
                 Service.
@@ -94,7 +94,7 @@ const DeclarationOfConsentPage = () => {
                 Consent to Data Processing
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                You expressly consent to Citadel Markets Pro processing your
+                You expressly consent to Citadels Market processing your
                 personal data for the purposes of providing our services,
                 including but not limited to account management, transaction
                 processing, identity verification, fraud prevention, and
@@ -135,7 +135,7 @@ const DeclarationOfConsentPage = () => {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 By providing your contact information, you consent to receive
-                communications from Citadel Markets Pro through various
+                communications from Citadels Market through various
                 channels, including email, SMS, phone calls, and in-platform
                 notifications.
               </p>
@@ -222,7 +222,7 @@ const DeclarationOfConsentPage = () => {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 In compliance with anti-money laundering (AML) and know your
                 customer (KYC) regulations, you consent to providing identity
-                verification documents and authorize Citadel Markets Pro to
+                verification documents and authorize Citadels Market to
                 verify your identity through third-party verification services.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -243,7 +243,7 @@ const DeclarationOfConsentPage = () => {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 You consent to the recording and monitoring of your
-                communications with Citadel Markets Pro, including telephone
+                communications with Citadels Market, including telephone
                 conversations, video calls, live chat sessions, and electronic
                 communications. These recordings may be used for quality
                 assurance, training, dispute resolution, and regulatory

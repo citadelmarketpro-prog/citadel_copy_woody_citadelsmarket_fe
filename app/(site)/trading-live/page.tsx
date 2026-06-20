@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import {
   Crosshair,
   Activity,
@@ -71,7 +71,7 @@ export default function LiveTradingPage() {
               Live Trading Interface
             </h1>
             <p className="text-gray-300 text-base max-w-xl leading-relaxed">
-              The Citadel Pros Market trading platform is a software system offered to investors and
+              The Citadels Market trading platform is a software system offered to investors and
               traders — enabling you to place stock trades and monitor your account in real time,
               whenever and wherever you like.
             </p>

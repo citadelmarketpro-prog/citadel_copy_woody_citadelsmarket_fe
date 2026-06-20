@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { FadeUp, ZoomIn } from "./motion";
 
 const stocks = [
@@ -19,7 +19,7 @@ const stocks = [
   },
   {
     title: "Oil and Gas",
-    desc: "Trade oil and gas commodities with Citadel Pros Market — access global energy markets with competitive spreads and powerful trading tools.",
+    desc: "Trade oil and gas commodities with Citadels Market — access global energy markets with competitive spreads and powerful trading tools.",
     href: "#",
   },
 ];
