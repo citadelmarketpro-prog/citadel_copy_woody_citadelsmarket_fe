@@ -3,15 +3,16 @@ import { Globe2, Users, ArrowLeftRight, Wallet, RefreshCw } from "lucide-react";
 import { ZoomIn } from "./motion";
 import { getTranslations } from "next-intl/server";
 
-const stats = [
-  { icon: <Users className="w-7 h-7 text-emerald-400" />, head: "1M+", descKey: "traderAccounts", bg: "bg-[#111]" },
-  { icon: <ArrowLeftRight className="w-7 h-7 text-emerald-400" />, head: "30M+", descKey: "monthlyTransactions", bg: "bg-[#0a0a0a]" },
-  { icon: <Wallet className="w-7 h-7 text-emerald-400" />, head: "$16M+", descKey: "avgMonthlyPayouts", bg: "bg-[#0a0a0a]" },
-  { icon: <RefreshCw className="w-7 h-7 text-emerald-400" />, head: "$211M", descKey: "monthlyTradeTurnover", bg: "bg-[#111]" },
-];
-
 export default async function StatsSection() {
   const t = await getTranslations("stats");
+
+  const stats = [
+    { icon: <Users className="w-7 h-7 text-emerald-400" />, head: "1M+", desc: t("traderAccounts"), bg: "bg-[#111]" },
+    { icon: <ArrowLeftRight className="w-7 h-7 text-emerald-400" />, head: "30M+", desc: t("monthlyTransactions"), bg: "bg-[#0a0a0a]" },
+    { icon: <Wallet className="w-7 h-7 text-emerald-400" />, head: "$16M+", desc: t("avgMonthlyPayouts"), bg: "bg-[#0a0a0a]" },
+    { icon: <RefreshCw className="w-7 h-7 text-emerald-400" />, head: "$211M", desc: t("monthlyTradeTurnover"), bg: "bg-[#111]" },
+  ];
+
   return (
     <section className="py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -45,7 +46,7 @@ export default async function StatsSection() {
                 {s.icon}
                 <div>
                   <div className="text-3xl font-extrabold text-white">{s.head}</div>
-                  <p className="text-gray-400 text-sm mt-1">{t(s.descKey as any)}</p>
+                  <p className="text-gray-400 text-sm mt-1">{s.desc}</p>
                 </div>
               </div>
             </ZoomIn>

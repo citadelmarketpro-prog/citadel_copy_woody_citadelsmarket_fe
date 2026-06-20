@@ -1,25 +1,25 @@
-import Image from "next/image";
 import { FadeUp, ZoomIn } from "./motion";
 import { getTranslations } from "next-intl/server";
 
-const featureKeys = [
-  { headKey: "f1Head", bodyKey: "f1Body" },
-  { headKey: "f2Head", bodyKey: "f2Body" },
-  { headKey: "f3Head", bodyKey: "f3Body" },
-  { headKey: "f4Head", bodyKey: "f4Body" },
-];
-
 export default async function FeaturesSection() {
   const t = await getTranslations("features");
+
+  const features = [
+    { head: t("f1Head"), body: t("f1Body") },
+    { head: t("f2Head"), body: t("f2Body") },
+    { head: t("f3Head"), body: t("f3Body") },
+    { head: t("f4Head"), body: t("f4Body") },
+  ];
+
   return (
     <section className="py-14 sm:py-20 bg-emerald-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
-          {featureKeys.map((f, i) => (
-            <ZoomIn key={f.headKey} delay={0.08 * i}>
+          {features.map((f, i) => (
+            <ZoomIn key={i} delay={0.08 * i}>
               <div>
-                <h3 className="text-gray-900 font-extrabold text-lg mt-0 mb-2">{t(f.headKey as any)}</h3>
-                <p className="text-gray-700 text-sm leading-relaxed">{t(f.bodyKey as any)}</p>
+                <h3 className="text-gray-900 font-extrabold text-lg mt-0 mb-2">{f.head}</h3>
+                <p className="text-gray-700 text-sm leading-relaxed">{f.body}</p>
               </div>
             </ZoomIn>
           ))}
