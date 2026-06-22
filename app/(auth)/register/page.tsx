@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo, useRef, Suspense } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
@@ -74,11 +74,18 @@ interface CountryOption {
 // Validation Schema
 // ----------------------
 const registerSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.email("Enter a valid email address"),
-  phone: z.string().min(4, "Phone number is required"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  firstName: z.string({ required_error: "First name is required" }).min(1, "First name is required"),
+  lastName: z.string({ required_error: "Last name is required" }).min(1, "Last name is required"),
+  email: z.string({ required_error: "Email is required" }).email("Enter a valid email address"),
+  phone: z
+    .string({ required_error: "Phone number is required" })
+    .min(4, "Enter a valid phone number"),
+  password: z
+    .string({ required_error: "Password is required" })
+    .min(6, "Password must be at least 6 characters"),
+  agreeToTerms: z.any().refine((val) => val === true, {
+    message: "You must agree to the Terms and Conditions to continue",
+  }),
   referralCode: z.string().optional(),
 });
 
@@ -110,11 +117,19 @@ function RegisterPageContent() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
     watch,
     setValue,
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      password: "",
+    },
   });
 
   const watchedValues = watch();
@@ -480,12 +495,30 @@ function RegisterPageContent() {
               {!loading ? <span>Create Account</span> : <PulseLoader color="#fff" size={15} />}
             </Button>
 
-            <div className="text-left text-sm">
-              <Checkbox id="terms" className="mr-1" />
-              By signing up you agree to{" "}
-              <Link href="/terms-and-condition" className="text-emerald-500 hover:underline">Terms and Condition</Link>{" "}
-              &{" "}
-              <Link href="/privacy-policy" className="text-emerald-500 hover:underline">Privacy Policy</Link>
+            <div className="space-y-1">
+              <div className="flex items-start gap-2 text-sm">
+                <Controller
+                  name="agreeToTerms"
+                  control={control}
+                  render={({ field }) => (
+                    <Checkbox
+                      id="terms"
+                      checked={field.value === true}
+                      onCheckedChange={(checked) => field.onChange(checked === true)}
+                      className={`mt-0.5 flex-shrink-0 ${errors.agreeToTerms ? "border-red-500" : ""}`}
+                    />
+                  )}
+                />
+                <label htmlFor="terms" className="cursor-pointer leading-snug">
+                  By signing up you agree to{" "}
+                  <Link href="/terms-and-condition" className="text-emerald-500 hover:underline">Terms and Condition</Link>{" "}
+                  &{" "}
+                  <Link href="/privacy-policy" className="text-emerald-500 hover:underline">Privacy Policy</Link>
+                </label>
+              </div>
+              {errors.agreeToTerms && (
+                <p className="text-red-500 text-xs pl-6">{errors.agreeToTerms.message}</p>
+              )}
             </div>
 
             {message && (
