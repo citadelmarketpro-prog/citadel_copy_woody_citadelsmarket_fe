@@ -1,5 +1,6 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { CheckCircle2, Gift } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
 import { FadeLeft, FadeRight, FadeUp, ZoomIn } from "@/components/newlanding/motion";
@@ -7,37 +8,18 @@ import { FadeLeft, FadeRight, FadeUp, ZoomIn } from "@/components/newlanding/mot
 const darkGradient =
   "linear-gradient(transparent 0%,#000 95%),radial-gradient(194.14% 91.43% at 2.43% 88.15%,rgba(10,10,10,.8) 0%,rgba(10,10,10,0) 100%),conic-gradient(from 5deg at 92.78% 73.8%,rgba(65,64,62,.4) 0deg,rgba(37,37,35,.4) 360deg),conic-gradient(from -49deg at 85.69% 75.64%,rgba(98,97,97,.3) 0deg,rgba(37,37,37,.3) 360deg),#0a0a0a";
 
-const yourRequirements = [
-  "A live trading account",
-  "Deposit a minimum of $5,000 or the equivalent in your currency",
-  "Place trades of at least $50,000 notional value",
-];
+export default async function ReferralPage() {
+  const t = await getTranslations("referFriendPage");
 
-const friendRequirements = [
-  "Create a live trading account",
-  "Deposit a minimum of $5,000 or the equivalent in your currency",
-  "Place trades of at least $50,000 notional value within 30 days of application",
-];
+  const yourRequirements = [t("yr1"), t("yr2"), t("yr3")];
+  const friendRequirements = [t("fr1"), t("fr2"), t("fr3")];
 
-const steps = [
-  {
-    number: "1",
-    title: "Access",
-    body: "Log in to your Citadels Market account and go to the 'Refer a Friend' tab in the menu to access your unique referral link.",
-  },
-  {
-    number: "2",
-    title: "Send",
-    body: "Copy and send your unique referral link to friends, or use the social sharing options to post it directly on your pages.",
-  },
-  {
-    number: "3",
-    title: "Start Trading",
-    body: "Once your friend begins trading, monitor your referrals and payout status under 'Referral Activity' in your account dashboard.",
-  },
-];
+  const steps = [
+    { number: "1", title: t("step1Title"), body: t("step1Body") },
+    { number: "2", title: t("step2Title"), body: t("step2Body") },
+    { number: "3", title: t("step3Title"), body: t("step3Body") },
+  ];
 
-export default function ReferralPage() {
   return (
     <div className="font-sans bg-white">
       <Navbar />
@@ -58,11 +40,10 @@ export default function ReferralPage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
           <FadeUp>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">
-              Refer a Friend, Earn Rewards
+              {t("heroTitle")}
             </h1>
             <p className="text-gray-300 text-base max-w-xl leading-relaxed">
-              Introduce your friends to the world of stock trading and earn together. Every eligible
-              trader you refer who opens a live account and trades earns you both $50.
+              {t("heroSub")}
             </p>
           </FadeUp>
         </div>
@@ -78,11 +59,10 @@ export default function ReferralPage() {
               </div>
               <div>
                 <p className="text-xl font-bold text-gray-900">
-                  Earn <span className="text-emerald-600">$50</span> for you and your friend
+                  {t("rewardTitle")}
                 </p>
                 <p className="text-gray-600 text-sm mt-1 max-w-xl">
-                  Both you and your referred friend receive $50 once the eligibility criteria are
-                  met. There is no cap on how many friends you can refer.
+                  {t("rewardSub")}
                 </p>
               </div>
             </div>
@@ -95,17 +75,17 @@ export default function ReferralPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10">
-              Eligibility Requirements
+              {t("eligibilityHead")}
             </h2>
           </FadeUp>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* You — the referrer */}
             <FadeLeft>
               <div className="rounded-2xl border border-gray-100 bg-gray-50 p-8 h-full">
-                <h3 className="text-lg font-bold text-gray-900 mb-6">You (the referrer)</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-6">{t("referrerHead")}</h3>
                 <ul className="space-y-4">
-                  {yourRequirements.map((req) => (
-                    <li key={req} className="flex items-start gap-3">
+                  {yourRequirements.map((req, i) => (
+                    <li key={i} className="flex items-start gap-3">
                       <CheckCircle2
                         size={20}
                         className="text-emerald-600 flex-shrink-0 mt-0.5"
@@ -121,10 +101,10 @@ export default function ReferralPage() {
             {/* Friend — the referee */}
             <FadeRight delay={0.1}>
               <div className="rounded-2xl border border-gray-100 bg-gray-50 p-8 h-full">
-                <h3 className="text-lg font-bold text-gray-900 mb-6">Your friend (the referee)</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-6">{t("refereeHead")}</h3>
                 <ul className="space-y-4">
-                  {friendRequirements.map((req) => (
-                    <li key={req} className="flex items-start gap-3">
+                  {friendRequirements.map((req, i) => (
+                    <li key={i} className="flex items-start gap-3">
                       <CheckCircle2
                         size={20}
                         className="text-emerald-600 flex-shrink-0 mt-0.5"
@@ -145,12 +125,12 @@ export default function ReferralPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10 text-center">
-              How It Works
+              {t("howHead")}
             </h2>
           </FadeUp>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-14">
             {steps.map((step, i) => (
-              <ZoomIn key={step.title} delay={0.08 * i}>
+              <ZoomIn key={i} delay={0.08 * i}>
                 <div className="flex flex-col gap-4">
                   <div className="w-12 h-12 rounded-full bg-emerald-600 flex items-center justify-center flex-shrink-0">
                     <span className="text-white font-bold text-lg">{step.number}</span>
@@ -167,7 +147,7 @@ export default function ReferralPage() {
                 href="/register"
                 className="inline-block px-10 py-4 bg-emerald-600 text-white font-semibold text-base rounded-lg hover:bg-emerald-500 transition-colors no-underline"
               >
-                Get Started
+                {t("ctaBtn")}
               </Link>
             </div>
           </FadeUp>

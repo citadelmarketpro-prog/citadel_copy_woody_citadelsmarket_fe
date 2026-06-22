@@ -1,56 +1,58 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import LangSwitcher from "./LangSwitcher";
 
-const navItems = [
-  {
-    label: "Company",
-    dropdown: {
-      heading: "About",
-      items: [
-        { label: "About Us", sub: "Discover our story", href: "/about" },
-        { label: "Insurance", sub: "Protect your investments", href: "/insurance" },
-        { label: "Regulations", sub: "Compliance and security", href: "/regulations" },
-        { label: "Lead Traders", sub: "Meet our top-performing traders", href: "/lead-traders" },
-        { label: "Security", sub: "Your assets are protected", href: "/security" },
-      ],
-    },
-  },
-  {
-    label: "Mirror trading",
-    dropdown: {
-      heading: "Trades",
-      items: [
-        { label: "Options copy trading", sub: "Copy top traders' options strategies", href: "/option-copy-trading" },
-        { label: "Advanced trading account above PDT", sub: "Trade with higher limits and features", href: "/advance-trading" },
-        { label: "Live trading interface", sub: "Real-time trading experience", href: "/trading-live" },
-      ],
-    },
-  },
-  {
-    label: "Stocks",
-    dropdown: {
-      heading: "Stocks",
-      items: [
-        { label: "Swing trading", sub: "Short-term stock trading strategies", href: "/swing-trading" },
-        { label: "Futures", sub: "Trade futures contracts", href: "/futures" },
-        { label: "Options", sub: "Leverage options for flexibility", href: "/option-trading" },
-        { label: "Oil and gas", sub: "Invest in energy sector assets", href: "/oil-and-gas" },
-      ],
-    },
-  },
-  { label: "Software", href: "/software" },
-  { label: "Insight", href: "/insight" },
-];
-
 export default function Navbar() {
+  const t = useTranslations("nav");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
+
+  const navItems = [
+    {
+      label: t("company"),
+      dropdown: {
+        heading: t("about"),
+        items: [
+          { label: t("aboutUs"), sub: t("aboutUsSub"), href: "/about" },
+          { label: t("insurance"), sub: t("insuranceSub"), href: "/insurance" },
+          { label: t("regulations"), sub: t("regulationsSub"), href: "/regulations" },
+          { label: t("leadTraders"), sub: t("leadTradersSub"), href: "/lead-traders" },
+          { label: t("security"), sub: t("securitySub"), href: "/security" },
+        ],
+      },
+    },
+    {
+      label: t("mirrorTrading"),
+      dropdown: {
+        heading: t("trades"),
+        items: [
+          { label: t("optionCopyTrading"), sub: t("optionCopyTradingSub"), href: "/option-copy-trading" },
+          { label: t("advanceTrading"), sub: t("advanceTradingSub"), href: "/advance-trading" },
+          { label: t("liveTrading"), sub: t("liveTradingSub"), href: "/trading-live" },
+        ],
+      },
+    },
+    {
+      label: t("stocks"),
+      dropdown: {
+        heading: t("stocks"),
+        items: [
+          { label: t("swingTrading"), sub: t("swingTradingSub"), href: "/swing-trading" },
+          { label: t("futures"), sub: t("futuresSub"), href: "/futures" },
+          { label: t("options"), sub: t("optionsSub"), href: "/option-trading" },
+          { label: t("oilAndGas"), sub: t("oilAndGasSub"), href: "/oil-and-gas" },
+        ],
+      },
+    },
+    { label: t("software"), href: "/software" },
+    { label: t("insight"), href: "/insight" },
+  ];
 
   useEffect(() => {
     if (mobileOpen) document.body.style.overflow = "hidden";
@@ -92,7 +94,7 @@ export default function Navbar() {
                     </h4>
                     <ul className="grid grid-cols-3 gap-3 list-none p-0 m-0">
                       {item.dropdown.items.map((di) => (
-                        <li key={di.label}>
+                        <li key={di.href}>
                           <Link
                             href={di.href}
                             className="block p-3 rounded-lg bg-emerald-50 hover:bg-emerald-100 transition-colors no-underline"
@@ -124,7 +126,7 @@ export default function Navbar() {
             href="/register"
             className="inline-flex items-center px-3 py-1.5 sm:px-5 sm:py-2 bg-white text-emerald-700 text-xs sm:text-sm font-semibold rounded-lg hover:bg-emerald-50 transition-colors"
           >
-            Get Started
+            {t("getStarted")}
           </Link>
           <button
             className="md:hidden p-2 text-white/80"
@@ -155,7 +157,7 @@ export default function Navbar() {
                   <div className="pl-3 space-y-1 mb-2">
                     {item.dropdown.items.map((di) => (
                       <Link
-                        key={di.label}
+                        key={di.href}
                         href={di.href}
                         className="block py-2 px-3 rounded-lg bg-white/10 text-sm text-white/80 no-underline"
                         onClick={() => setMobileOpen(false)}
@@ -183,14 +185,14 @@ export default function Navbar() {
             className="block mt-3 text-center py-2.5 bg-white text-emerald-700 text-sm font-semibold rounded-lg no-underline"
             onClick={() => setMobileOpen(false)}
           >
-            Get Started
+            {t("getStarted")}
           </Link>
           <Link
             href="/login"
             className="block mt-2 text-center py-2.5 border border-white/30 text-white text-sm font-semibold rounded-lg no-underline"
             onClick={() => setMobileOpen(false)}
           >
-            Login
+            {t("login")}
           </Link>
         </div>
       )}

@@ -1,5 +1,6 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
 import { FadeLeft, FadeRight, FadeUp, ZoomIn } from "@/components/newlanding/motion";
@@ -7,55 +8,50 @@ import { FadeLeft, FadeRight, FadeUp, ZoomIn } from "@/components/newlanding/mot
 const darkGradient =
   "linear-gradient(transparent 0%,#000 95%),radial-gradient(194.14% 91.43% at 2.43% 88.15%,rgba(10,10,10,.8) 0%,rgba(10,10,10,0) 100%),conic-gradient(from 5deg at 92.78% 73.8%,rgba(65,64,62,.4) 0deg,rgba(37,37,35,.4) 360deg),conic-gradient(from -49deg at 85.69% 75.64%,rgba(98,97,97,.3) 0deg,rgba(37,37,37,.3) 360deg),#0a0a0a";
 
-const valueCards = [
-  {
-    bg: "",
-    bgColor: "#0c5c45",
-    overlay: "",
-    head: "Corporate Governance",
-    headColor: "text-white",
-    body: "The Board of Directors and management of Citadels Market have long recognised the importance of corporate governance practices that ensure effective oversight and strong accountability. Our goal is to generate superior financial returns for our investors by building stronger and more valuable businesses.",
-    textColor: "text-white/90",
-  },
-  {
-    bg: "/sample-landing/chat-bg.jpg",
-    bgColor: "",
-    overlay: "",
-    head: "Global Impact",
-    headColor: "text-gray-900",
-    body: "As a major global financial institution, we consider the effects our business has on the environment and people around the world. We strive to uncover new ways of ensuring sustainable economic growth that protects healthy markets and delivers value to our clients, communities, businesses, and governments everywhere.",
-    textColor: "text-gray-700",
-  },
-  {
-    bg: "",
-    bgColor: "#0c5c45",
-    overlay: "",
-    head: "ESG Commitment",
-    headColor: "text-white",
-    body: "At Citadels Market, we aim to accelerate the evolution of ESG on behalf of clients, investors, communities and all stakeholders — to make a positive impact on people and the planet. With our scale at the heart of the financial system, we are uniquely positioned to drive transparency, insight, and impact.",
-    textColor: "text-white/90",
-  },
-  {
-    bg: "/sample-landing/chat-bg.jpg",
-    bgColor: "",
-    overlay: "",
-    head: "Investment Philosophy",
-    headColor: "text-gray-900",
-    body: "We know that the best way to achieve our objective is to be disciplined in our approach. We begin by investing in portfolios that meet well-defined criteria in industries where we have relevant knowledge, then leverage our accumulated experience and work closely with managers to energise our businesses.",
-    textColor: "text-gray-700",
-  },
-];
+export default async function AboutPage() {
+  const t = await getTranslations("aboutPage");
 
-export default function AboutPage() {
+  const valueCards = [
+    {
+      bg: "",
+      bgColor: "#0c5c45",
+      head: t("v1Head"),
+      headColor: "text-white",
+      body: t("v1Body"),
+      textColor: "text-white/90",
+    },
+    {
+      bg: "/sample-landing/chat-bg.jpg",
+      bgColor: "",
+      head: t("v2Head"),
+      headColor: "text-gray-900",
+      body: t("v2Body"),
+      textColor: "text-gray-700",
+    },
+    {
+      bg: "",
+      bgColor: "#0c5c45",
+      head: t("v3Head"),
+      headColor: "text-white",
+      body: t("v3Body"),
+      textColor: "text-white/90",
+    },
+    {
+      bg: "/sample-landing/chat-bg.jpg",
+      bgColor: "",
+      head: t("v4Head"),
+      headColor: "text-gray-900",
+      body: t("v4Body"),
+      textColor: "text-gray-700",
+    },
+  ];
+
   return (
     <div className="font-sans bg-white">
       <Navbar />
 
-      {/* ── Hero ─────────────────────────────────────────────────────────
-          bg-[#0a0a0a] provides a solid base so the fixed body::before
-          gradient never bleeds through on scroll.                        */}
+      {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative h-72 sm:h-80 flex items-end overflow-hidden bg-[#0a0a0a]">
-        {/* hero-bg accent image */}
         <div
           className="absolute inset-0"
           style={{
@@ -66,15 +62,13 @@ export default function AboutPage() {
             opacity: 0.5,
           }}
         />
-        {/* dark gradient overlay */}
         <div className="absolute inset-0" style={{ background: darkGradient }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
           <FadeUp>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">About Us</h1>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">{t("heroTitle")}</h1>
             <p className="text-gray-300 text-base max-w-xl leading-relaxed">
-              Citadels Market has been sharing financial freedom with traders since 2014 — continuously
-              improving our platform so traders can enjoy and make use of that freedom wherever they are.
+              {t("heroSub")}
             </p>
           </FadeUp>
         </div>
@@ -87,30 +81,22 @@ export default function AboutPage() {
 
             <FadeLeft className="flex-1 flex flex-col justify-center">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-5">
-                Time to take action with the international Citadels Market broker
+                {t("s2Head")}
               </h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                Trading will bring you profit with proper support, constant education, and a reasonable approach.
-                Citadels Market is a broker platform that has created all the conditions to help you improve
-                your trading life in every possible way.
+                {t("s2P1")}
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
-                From educational broker&apos;s tools, demo accounts, and 24/7 support to your financial success,
-                Citadels Market works tirelessly to remain at the forefront of online trading. Join now and
-                take full advantage of this online trading leader to make your way into the world of professional
-                trading.
+                {t("s2P2")}
               </p>
               <p className="text-gray-600 leading-relaxed mb-6">
-                Our people are our greatest asset. It is only with the determination and dedication of our team
-                that we can serve our clients, generate long-term value for our shareholders, and contribute to
-                the broader public. At every step of our employees&apos; careers we invest in them, ensuring their
-                interests remain aligned with those of our clients and shareholders.
+                {t("s2P3")}
               </p>
               <Link
                 href="/register"
                 className="inline-block px-8 py-3 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-500 transition-colors no-underline w-fit"
               >
-                Open free account
+                {t("s2Cta")}
               </Link>
             </FadeLeft>
 
@@ -134,11 +120,11 @@ export default function AboutPage() {
       <section className="py-14 sm:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">Our Values</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">{t("valuesHead")}</h2>
           </FadeUp>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {valueCards.map((card, i) => (
-              <ZoomIn key={card.head} delay={0.08 * i}>
+              <ZoomIn key={i} delay={0.08 * i}>
                 <div
                   className="relative rounded-2xl overflow-hidden min-h-64 flex flex-col"
                   style={card.bg
@@ -176,29 +162,19 @@ export default function AboutPage() {
 
             <FadeRight delay={0.15} className="flex-[2]">
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-5">
-                Risk Management at the Center
+                {t("riskHead")}
               </h2>
               <p className="text-gray-400 leading-relaxed mb-4">
-                We seek to manage risk in order to capitalise on opportunities and improve our performance.
-                Disciplined risk estimation and management are deeply integrated components of the investment
-                process across each of our strategies. We believe a well-constructed portfolio upfront will
-                outperform in good markets and protect our clients&apos; capital in difficult markets.
+                {t("riskP1")}
               </p>
               <p className="text-gray-400 leading-relaxed mb-6">
-                At Citadels Market, we advance sustainable economic growth and financial opportunity. Drawing
-                on years of experience working with the world&apos;s leading businesses, entrepreneurs, and
-                institutions, we mobilise our people, culture, technologies, and ideas to advance the success of
-                our clients. Our purpose comes to life through four core values:{" "}
-                <strong className="text-white">Client Service</strong>,{" "}
-                <strong className="text-white">Excellence</strong>,{" "}
-                <strong className="text-white">Integrity</strong>, and{" "}
-                <strong className="text-white">Partnership</strong>.
+                {t("riskP2")}
               </p>
               <Link
                 href="/register"
                 className="inline-block px-8 py-3 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-500 transition-colors no-underline w-fit"
               >
-                Join Citadels Market
+                {t("riskCta")}
               </Link>
             </FadeRight>
 

@@ -2,11 +2,13 @@
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
 import { FadeUp } from "@/components/newlanding/motion";
+import { getTranslations } from "next-intl/server";
 
 const darkGradient =
   "linear-gradient(transparent 0%,#000 95%),radial-gradient(194.14% 91.43% at 2.43% 88.15%,rgba(10,10,10,.8) 0%,rgba(10,10,10,0) 100%),conic-gradient(from 5deg at 92.78% 73.8%,rgba(65,64,62,.4) 0deg,rgba(37,37,35,.4) 360deg),conic-gradient(from -49deg at 85.69% 75.64%,rgba(98,97,97,.3) 0deg,rgba(37,37,37,.3) 360deg),#0a0a0a";
 
-export default function AmlPolicyPage() {
+export default async function AmlPolicyPage() {
+  const t = await getTranslations("amlPage");
   return (
     <div className="font-sans bg-white">
       <Navbar />
@@ -26,10 +28,9 @@ export default function AmlPolicyPage() {
         <div className="absolute inset-0" style={{ background: darkGradient }} />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
           <FadeUp>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">AML Policy</h1>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">{t("heroTitle")}</h1>
             <p className="text-gray-300 text-base max-w-xl leading-relaxed">
-              Citadels Market is committed to the prevention of money laundering and terrorist
-              financing in full compliance with applicable laws and regulations.
+              {t("heroSub")}
             </p>
           </FadeUp>
         </div>
@@ -240,25 +241,23 @@ export default function AmlPolicyPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeUp>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-5">
-              Trade with confidence under global oversight
+              {t("ctaHead")}
             </h2>
             <p className="text-gray-400 leading-relaxed max-w-xl mx-auto mb-8">
-              Our compliance framework is built to protect both our clients and the integrity of
-              the financial system. If you have questions about our AML practices, our compliance
-              team is here to help.
+              {t("ctaSub")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
                 className="inline-block px-8 py-3 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-500 transition-colors no-underline"
               >
-                Contact Compliance Team
+                {t("ctaContact")}
               </Link>
               <Link
                 href="/regulations"
                 className="inline-block px-8 py-3 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors no-underline"
               >
-                View Regulations
+                {t("ctaRegulations")}
               </Link>
             </div>
           </FadeUp>

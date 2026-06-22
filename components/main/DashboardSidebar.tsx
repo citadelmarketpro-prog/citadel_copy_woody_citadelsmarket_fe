@@ -363,7 +363,7 @@ const DashboardSidebar = () => {
                     onClick={() => setIsOpen(false)}
                     className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                       isActive
-                        ? "bg-green-500 text-white"
+                        ? "bg-emerald-600 text-white"
                         : "text-slate-300 dark:text-slate-600 hover:bg-slate-700/30 dark:hover:bg-slate-100"
                     }`}
                   >

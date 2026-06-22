@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { FadeUp, ZoomIn } from "./motion";
+import StockMarketWidget from "./StockMarketWidget";
 
 export default async function StocksSection() {
   const t = await getTranslations("stocksSection");
@@ -18,7 +19,7 @@ export default async function StocksSection() {
         <FadeUp>
           <h2 className="text-2xl font-bold text-white mb-8">{t("title")}</h2>
         </FadeUp>
-        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl list-none p-0 m-0">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl list-none p-0 m-0 mb-10">
           {stocks.map((item, i) => (
             <ZoomIn key={i} delay={0.08 * i}>
               <li>
@@ -33,6 +34,12 @@ export default async function StocksSection() {
             </ZoomIn>
           ))}
         </ul>
+
+        <FadeUp>
+          <div className="rounded-2xl overflow-hidden border border-[#333]">
+            <StockMarketWidget />
+          </div>
+        </FadeUp>
       </div>
     </section>
   );

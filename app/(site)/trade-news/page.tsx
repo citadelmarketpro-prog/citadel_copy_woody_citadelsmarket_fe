@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
 import { FadeUp } from "@/components/newlanding/motion";
@@ -44,6 +45,7 @@ function TradingViewNewsWidget() {
 }
 
 export default function NewsPage() {
+  const t = useTranslations("tradeNewsPage");
   return (
     <div className="font-sans bg-white">
       <Navbar />
@@ -63,10 +65,9 @@ export default function NewsPage() {
         <div className="absolute inset-0" style={{ background: darkGradient }} />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
           <FadeUp>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">News</h1>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">{t("heroTitle")}</h1>
             <p className="text-gray-300 text-base max-w-xl leading-relaxed">
-              Latest market news and analysis, sourced in real time — focused on stocks and
-              equity markets.
+              {t("heroSub")}
             </p>
           </FadeUp>
         </div>
@@ -77,7 +78,7 @@ export default function NewsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10">
-              Latest Market News
+              {t("latestHead")}
             </h2>
           </FadeUp>
           <TradingViewNewsWidget />

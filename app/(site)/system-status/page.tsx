@@ -1,4 +1,5 @@
 ﻿import { Clock, CheckCircle2 } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
 import { FadeUp, ZoomIn } from "@/components/newlanding/motion";
@@ -25,7 +26,8 @@ const services = [
   { name: "Client Portal" },
 ];
 
-export default function SystemStatusPage() {
+export default async function SystemStatusPage() {
+  const t = await getTranslations("systemStatusPage");
   return (
     <div className="font-sans bg-white">
       <Navbar />
@@ -46,11 +48,10 @@ export default function SystemStatusPage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
           <FadeUp>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">
-              System Status
+              {t("heroTitle")}
             </h1>
             <p className="text-gray-300 text-base max-w-xl leading-relaxed">
-              Find out if there are any planned or unplanned outages to our systems. If you need
-              any assistance, please contact us.
+              {t("heroSub")}
             </p>
           </FadeUp>
         </div>
@@ -61,11 +62,10 @@ export default function SystemStatusPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
-              Weekly Server Maintenance
+              {t("maintenanceHead")}
             </h2>
             <p className="text-gray-500 text-base mb-10 max-w-2xl">
-              Scheduled maintenance is performed weekly during the window below. Services may be
-              briefly unavailable during this period.
+              {t("maintenanceSub")}
             </p>
           </FadeUp>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -89,10 +89,10 @@ export default function SystemStatusPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
-              Citadels Market System Status
+              {t("statusHead")}
             </h2>
             <p className="text-gray-500 text-base mb-10 max-w-2xl">
-              Live status of all Citadels Market services and infrastructure components.
+              {t("statusSub")}
             </p>
           </FadeUp>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -102,7 +102,7 @@ export default function SystemStatusPage() {
                   <h3 className="font-semibold text-gray-900 text-sm">{service.name}</h3>
                   <span className="flex items-center gap-1.5 text-emerald-600 text-sm font-medium flex-shrink-0">
                     <CheckCircle2 size={16} strokeWidth={2} />
-                    Operational
+                    {t("operational")}
                   </span>
                 </div>
               </ZoomIn>

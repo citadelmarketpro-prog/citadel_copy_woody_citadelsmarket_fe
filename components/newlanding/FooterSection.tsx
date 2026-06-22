@@ -7,7 +7,7 @@ const footerCols = [
     head: "Trades",
     links: [
       { label: "Swing Trading", href: "/swing-trading" },
-      { label: "FX & Futures", href: "/futures" },
+      { label: "Futures", href: "/futures" },
       { label: "Buy Options", href: "/option-trading" },
       { label: "Oil & Gas", href: "/oil-and-gas" },
     ],
@@ -16,7 +16,7 @@ const footerCols = [
     head: "Tools",
     links: [
       { label: "Option Copy Trading", href: "/option-trading" },
-      { label: "FX & Advance Trading", href: "/advance-trading" },
+      { label: "Advance Trading", href: "/advance-trading" },
       { label: "Buy Live Trading", href: "/live-trading" },
       { label: "Copy Trading", href: "/option-copy-trading" },
     ],

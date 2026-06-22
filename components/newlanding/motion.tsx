@@ -21,7 +21,7 @@ export function FadeUp({ children, delay = 0, className = "" }: { children: Reac
 export function FadeLeft({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: -48 }}
+      initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
       viewport={vp}
@@ -35,7 +35,7 @@ export function FadeLeft({ children, delay = 0, className = "" }: { children: Re
 export function FadeRight({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 48 }}
+      initial={{ opacity: 0, x: 20 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
       viewport={vp}

@@ -1,4 +1,5 @@
 ﻿import { Mail, Phone, MapPin } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
 import { FadeLeft, FadeRight, FadeUp, ZoomIn } from "@/components/newlanding/motion";
@@ -27,7 +28,8 @@ const offices = [
   },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const t = await getTranslations("contactPage");
   return (
     <div className="font-sans bg-white">
       <Navbar />
@@ -47,10 +49,9 @@ export default function ContactPage() {
         <div className="absolute inset-0" style={{ background: darkGradient }} />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
           <FadeUp>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">Contact Us</h1>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">{t("heroTitle")}</h1>
             <p className="text-gray-300 text-base max-w-xl leading-relaxed">
-              Have questions or need assistance? Our team is here to help. Reach out to us through
-              email or phone, and we will respond as soon as possible.
+              {t("heroSub")}
             </p>
           </FadeUp>
         </div>
@@ -61,7 +62,7 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-12 items-start">
             <FadeLeft className="lg:w-80 flex-shrink-0 flex flex-col gap-5">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Get in Touch</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">{t("getInTouch")}</h2>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0">
                   <Mail size={20} className="text-emerald-600" strokeWidth={1.75} />
@@ -106,7 +107,7 @@ export default function ContactPage() {
       <section className="py-16 sm:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10">Our Offices</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10">{t("ourOffices")}</h2>
           </FadeUp>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {offices.map((office, i) => (

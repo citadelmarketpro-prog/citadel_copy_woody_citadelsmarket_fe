@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
 import { FadeUp, ZoomIn } from "@/components/newlanding/motion";
@@ -97,7 +98,9 @@ function WinRateBar({ rate }: { rate: number }) {
   );
 }
 
-export default function LeadTradersPage() {
+export default async function LeadTradersPage() {
+  const t = await getTranslations("leadTradersPage");
+
   return (
     <div className="font-sans bg-white">
       <Navbar />
@@ -118,10 +121,9 @@ export default function LeadTradersPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
           <FadeUp>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">Lead Traders</h1>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">{t("heroTitle")}</h1>
             <p className="text-gray-300 text-base max-w-xl leading-relaxed">
-              Meet our top-performing lead traders — seasoned professionals with proven track records,
-              diverse strategies, and a commitment to disciplined risk management.
+              {t("heroSub")}
             </p>
           </FadeUp>
         </div>
@@ -132,10 +134,10 @@ export default function LeadTradersPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
-              Explore our lead traders
+              {t("exploreHead")}
             </h2>
             <p className="text-gray-500 mb-10 max-w-xl">
-              Find the right fit for your trading goals and start mirroring their strategies today.
+              {t("exploreSub")}
             </p>
           </FadeUp>
 
@@ -158,7 +160,7 @@ export default function LeadTradersPage() {
                       <h3 className="font-bold text-gray-900 text-sm leading-tight truncate">
                         {trader.name}
                       </h3>
-                      <p className="text-xs text-gray-500 mt-0.5">Win Rate</p>
+                      <p className="text-xs text-gray-500 mt-0.5">{t("winRate")}</p>
                       <WinRateBar rate={trader.winRate} />
                     </div>
                   </div>
@@ -169,25 +171,25 @@ export default function LeadTradersPage() {
 
                     <div className="space-y-2 text-sm">
                       <p className="text-gray-700">
-                        <span className="font-semibold">Experience:</span>{" "}
+                        <span className="font-semibold">{t("experience")}:</span>{" "}
                         <span className="text-gray-500">{trader.experience}</span>
                       </p>
                       <p className="text-gray-700">
-                        <span className="font-semibold">Philosophy:</span>{" "}
+                        <span className="font-semibold">{t("philosophy")}:</span>{" "}
                         <span className="text-gray-500 italic">{trader.philosophy}</span>
                       </p>
                       {trader.clients && (
                         <p className="text-gray-700">
-                          <span className="font-semibold">Client Base:</span>{" "}
+                          <span className="font-semibold">{t("clientBase")}:</span>{" "}
                           <span className="text-gray-500">{trader.clients}</span>
                         </p>
                       )}
                       <p className="text-gray-700">
-                        <span className="font-semibold">Commission:</span>{" "}
+                        <span className="font-semibold">{t("commission")}:</span>{" "}
                         <span className="text-emerald-600 font-medium">{trader.commission}</span>
                       </p>
                       <p className="text-gray-700">
-                        <span className="font-semibold">Risk Management:</span>{" "}
+                        <span className="font-semibold">{t("riskManagement")}:</span>{" "}
                         <span className="text-gray-500">{trader.risk}</span>
                       </p>
                     </div>
@@ -199,7 +201,7 @@ export default function LeadTradersPage() {
                       href="/register"
                       className="block text-center w-full py-2.5 bg-emerald-600 text-white text-sm font-semibold rounded-lg hover:bg-emerald-500 transition-colors no-underline"
                     >
-                      Copy this trader
+                      {t("copyBtn")}
                     </Link>
                   </div>
                 </div>
@@ -214,24 +216,23 @@ export default function LeadTradersPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeUp>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-              Ready to mirror a top trader?
+              {t("ctaHead")}
             </h2>
             <p className="text-gray-400 leading-relaxed max-w-xl mx-auto mb-8">
-              Open a free account and start copying the strategies of our best-performing lead traders
-              with full transparency, controlled risk, and no hidden fees.
+              {t("ctaSub")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/register"
                 className="inline-block px-8 py-3 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-500 transition-colors no-underline"
               >
-                Open free account
+                {t("ctaOpen")}
               </Link>
               <Link
                 href="/about"
                 className="inline-block px-8 py-3 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors no-underline"
               >
-                Learn about us
+                {t("ctaLearn")}
               </Link>
             </div>
           </FadeUp>

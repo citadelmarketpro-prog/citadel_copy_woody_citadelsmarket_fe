@@ -1,142 +1,228 @@
 "use client";
 
-import React from "react";
-import { Info } from "lucide-react";
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+import { TrendingUp, TrendingDown } from "lucide-react";
+import { BACKEND_URL } from "@/lib/constants";
 
-interface AssetOverviewProps {
-  totalDeposits: number;
-  totalWithdrawals: number;
-  totalProfits: number;
+type Period = "1d" | "1w" | "1m" | "3m" | "1y" | "all";
+
+interface RawTrade {
+  opened_at: string;
+  user_profit_loss: string;
 }
 
-export default function AssetOverviewSection({
-  totalDeposits,
-  totalWithdrawals,
-  totalProfits,
-}: AssetOverviewProps) {
-  // Calculate total for percentage
-  const total = totalDeposits + totalWithdrawals + totalProfits;
+interface DataPoint {
+  date: string;
+  cumulative_pnl: number;
+}
 
-  // Prepare chart data
-  const chartData = [
-    { name: "Deposits", value: totalDeposits || 0.01 }, // Add small value if 0 to show ring
-    { name: "Withdrawals", value: totalWithdrawals || 0.01 },
-    { name: "Profits", value: totalProfits || 0.01 },
-  ];
+const PERIODS: { label: string; value: Period }[] = [
+  { label: "1D", value: "1d" },
+  { label: "1W", value: "1w" },
+  { label: "1M", value: "1m" },
+  { label: "3M", value: "3m" },
+  { label: "1Y", value: "1y" },
+  { label: "ALL", value: "all" },
+];
 
-  // Colors matching the image
-  const COLORS = ["#F59E0B", "#F97316", "#06B6D4"]; // Yellow/Gold, Orange, Cyan/Blue
+const PERIOD_MS: Record<Exclude<Period, "all">, number> = {
+  "1d": 1 * 24 * 60 * 60 * 1000,
+  "1w": 7 * 24 * 60 * 60 * 1000,
+  "1m": 30 * 24 * 60 * 60 * 1000,
+  "3m": 90 * 24 * 60 * 60 * 1000,
+  "1y": 365 * 24 * 60 * 60 * 1000,
+};
+
+function buildChartData(trades: RawTrade[], period: Period): DataPoint[] {
+  const now = Date.now();
+  const cutoff = period !== "all" ? now - PERIOD_MS[period] : 0;
+
+  const daily: Record<string, number> = {};
+  for (const t of trades) {
+    const ts = new Date(t.opened_at).getTime();
+    if (ts < cutoff) continue;
+    const date = t.opened_at.slice(0, 10); // "YYYY-MM-DD"
+    daily[date] = (daily[date] ?? 0) + parseFloat(t.user_profit_loss || "0");
+  }
+
+  let cumulative = 0;
+  return Object.keys(daily)
+    .sort()
+    .map((date) => {
+      cumulative += daily[date];
+      return { date, cumulative_pnl: parseFloat(cumulative.toFixed(2)) };
+    });
+}
+
+function CustomTooltip({
+  active,
+  payload,
+  label,
+}: {
+  active?: boolean;
+  payload?: { value: number }[];
+  label?: string;
+}) {
+  if (!active || !payload?.length) return null;
+  const val = payload[0].value;
+  const isPos = val >= 0;
+  return (
+    <div className="bg-slate-900/95 border border-slate-700 rounded-lg px-3 py-2 shadow-xl">
+      <p className="text-[10px] text-slate-400 mb-1">{label}</p>
+      <p className={`text-sm font-bold font-mono ${isPos ? "text-emerald-400" : "text-red-400"}`}>
+        {isPos ? "+" : ""}$
+        {val.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+      </p>
+    </div>
+  );
+}
+
+function CustomActiveDot({ cx, cy, payload }: { cx?: number; cy?: number; payload?: DataPoint }) {
+  const isPos = (payload?.cumulative_pnl ?? 0) >= 0;
+  const color = isPos ? "#4ade80" : "#f87171";
+  return (
+    <g>
+      <circle cx={cx} cy={cy} r={9} fill={color} fillOpacity={0.15} />
+      <circle cx={cx} cy={cy} r={4} fill={color} stroke="#fff" strokeWidth={1.5} />
+    </g>
+  );
+}
+
+export default function AssetOverviewSection() {
+  const [period, setPeriod] = useState<Period>("all");
+  const [allTrades, setAllTrades] = useState<RawTrade[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
+
+  const fetchTrades = useCallback(async () => {
+    setLoading(true);
+    setFetchError(false);
+    try {
+      const token = localStorage.getItem("authToken");
+      const res = await fetch(`${BACKEND_URL}/copy-trade-history/?limit=1000`, {
+        headers: { Authorization: `Token ${token}` },
+      });
+      if (!res.ok) { setFetchError(true); return; }
+      const json = await res.json();
+      if (json.success) {
+        setAllTrades(json.history ?? []);
+      } else {
+        setFetchError(true);
+      }
+    } catch {
+      setFetchError(true);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => { fetchTrades(); }, [fetchTrades]);
+
+  const data = useMemo(() => buildChartData(allTrades, period), [allTrades, period]);
+
+  const totalPnl = data.length > 0 ? data[data.length - 1].cumulative_pnl : 0;
+  const isPositive = totalPnl >= 0;
+  const lineColor = isPositive ? "#4ade80" : "#f87171";
+  const gradientId = isPositive ? "assetGrowthGreen" : "assetGrowthRed";
+
+  const formatDate = (dateStr: string) => {
+    const d = new Date(dateStr + "T00:00:00");
+    if (period === "1y" || period === "all") {
+      return d.toLocaleDateString("en-US", { month: "short", year: "2-digit" });
+    }
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  };
 
   return (
     <section className="bg-slate-800/60 dark:bg-white border border-slate-700/40 dark:border-slate-200 rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-xl backdrop-blur-sm">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-4 sm:mb-6">
+      <div className="flex items-center justify-between mb-4 sm:mb-5">
         <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-slate-100 dark:text-slate-900">
-          Asset overview
+          Asset Growth
         </h2>
-        <button className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-700/50 dark:bg-slate-200 hover:bg-slate-700 dark:hover:bg-slate-300 transition-colors flex items-center justify-center flex-shrink-0">
-          <Info className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400 dark:text-slate-600" />
-        </button>
+        <div className={`flex items-center gap-1.5 ${isPositive ? "text-emerald-400" : "text-red-400"}`}>
+          {isPositive ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
+          <span className="text-sm font-bold font-mono">
+            {isPositive ? "+" : "-"}$
+            {Math.abs(totalPnl).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+          </span>
+        </div>
       </div>
 
-      {/* Donut Chart - FULLY RESPONSIVE */}
-      <div className="flex justify-center mb-6 sm:mb-8">
-        <div className="relative w-48 h-48 xs:w-56 xs:h-56 sm:w-64 sm:h-64 md:w-72 md:h-72">
+      <div className="h-48 sm:h-56 md:h-64 w-full">
+        {loading ? (
+          <div className="h-full flex items-center justify-center">
+            <div className="w-6 h-6 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin" />
+          </div>
+        ) : fetchError ? (
+          <div className="h-full flex flex-col items-center justify-center gap-2">
+            <TrendingUp className="w-8 h-8 text-slate-600 dark:text-slate-400" />
+            <p className="text-slate-500 dark:text-slate-400 text-sm text-center">Could not load chart data.</p>
+            <button onClick={fetchTrades} className="text-xs text-emerald-400 hover:text-emerald-300 underline">
+              Retry
+            </button>
+          </div>
+        ) : data.length === 0 ? (
+          <div className="h-full flex flex-col items-center justify-center gap-2">
+            <TrendingUp className="w-8 h-8 text-slate-600 dark:text-slate-400" />
+            <p className="text-slate-500 dark:text-slate-400 text-sm">No trade data for this period</p>
+          </div>
+        ) : (
           <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={chartData}
-                cx="50%"
-                cy="50%"
-                innerRadius="60%"
-                outerRadius="85%"
-                paddingAngle={2}
-                dataKey="value"
-                strokeWidth={0}
-              >
-                {chartData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}
-              </Pie>
-            </PieChart>
+            <AreaChart data={data} margin={{ top: 10, right: 4, left: 0, bottom: 0 }}>
+              <defs>
+                <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor={lineColor} stopOpacity={0.25} />
+                  <stop offset="95%" stopColor={lineColor} stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.07)" vertical={false} />
+              <XAxis
+                dataKey="date"
+                tickFormatter={formatDate}
+                tick={{ fill: "#64748b", fontSize: 10 }}
+                axisLine={false}
+                tickLine={false}
+                interval="preserveStartEnd"
+              />
+              <YAxis hide />
+              <Tooltip content={<CustomTooltip />} />
+              <Area
+                type="monotone"
+                dataKey="cumulative_pnl"
+                stroke={lineColor}
+                strokeWidth={2.5}
+                fill={`url(#${gradientId})`}
+                activeDot={<CustomActiveDot />}
+                dot={false}
+              />
+            </AreaChart>
           </ResponsiveContainer>
-
-          {/* Center text - RESPONSIVE SIZING */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="text-center px-2">
-              <p className="text-[10px] xs:text-xs sm:text-sm text-slate-400 dark:text-slate-600 mb-0.5 sm:mb-1">
-                Total
-              </p>
-              <p className="text-base xs:text-lg sm:text-xl md:text-2xl font-bold text-slate-100 dark:text-slate-900 break-all">
-                $
-                {total.toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
-              </p>
-            </div>
-          </div>
-        </div>
+        )}
       </div>
 
-      {/* Legend/Stats - RESPONSIVE SPACING AND TEXT */}
-      <div className="space-y-3 sm:space-y-4">
-        {/* Total Deposit */}
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-            <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#F59E0B] flex-shrink-0" />
-            <span className="text-xs sm:text-sm md:text-base text-slate-300 dark:text-slate-700 truncate">
-              Total Deposit
-            </span>
-          </div>
-          <span className="text-xs sm:text-sm md:text-base font-medium text-slate-200 dark:text-slate-800 whitespace-nowrap">
-            {totalDeposits.toLocaleString(undefined, {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}{" "}
-            USD
-          </span>
-        </div>
-
-        {/* Total Withdrawals */}
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-            <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#F97316] flex-shrink-0" />
-            <span className="text-xs sm:text-sm md:text-base text-slate-300 dark:text-slate-700 truncate">
-              Total Withdrawals
-            </span>
-          </div>
-          <span className="text-xs sm:text-sm md:text-base font-medium text-slate-200 dark:text-slate-800 whitespace-nowrap">
-            ≈{" "}
-            {totalWithdrawals.toLocaleString(undefined, {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}{" "}
-            USD
-          </span>
-        </div>
-
-        {/* Total Profits */}
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-            <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#06B6D4] flex-shrink-0" />
-            <span className="text-xs sm:text-sm md:text-base text-slate-300 dark:text-slate-700 truncate">
-              Total profits
-            </span>
-          </div>
-          <span className="text-xs sm:text-sm md:text-base font-medium text-slate-200 dark:text-slate-800 whitespace-nowrap">
-            ≈{" "}
-            {totalProfits.toLocaleString(undefined, {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}{" "}
-            USD
-          </span>
-        </div>
+      <div className="flex items-center justify-center gap-1 mt-4 sm:mt-5">
+        {PERIODS.map(({ label, value }) => (
+          <button
+            key={value}
+            onClick={() => setPeriod(value)}
+            className={`px-2.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold transition-all ${
+              period === value
+                ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40"
+                : "text-slate-500 dark:text-slate-400 hover:text-slate-300 dark:hover:text-slate-600 border border-transparent hover:border-slate-600 dark:hover:border-slate-300"
+            }`}
+          >
+            {label}
+          </button>
+        ))}
       </div>
     </section>
   );

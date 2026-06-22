@@ -6,7 +6,7 @@ import DashboardNavbar from "@/components/main/DashboardNavbar";
 import GuidedTour from "./_components/GuidedTour";
 import { BACKEND_URL } from "@/lib/constants";
 import { PulseLoader } from "react-spinners";
-import { Info, TrendingUp } from "lucide-react";
+import { Info, TrendingUp, TrendingDown } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -36,6 +36,7 @@ interface DashboardData {
   currency: string;
   balance: number;
   profit: number;
+  target: number;
   current_loyalty_status: string;
   next_loyalty_status: string;
   next_amount_to_upgrade: number;
@@ -248,7 +249,7 @@ export default function Dashboard() {
             <Link
               href={"/connect-wallet"}
               id="connectWalletToggle"
-              className="relative text-sm md:text-base inline-block px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-medium shadow-lg hover:shadow-xl transition-all whitespace-nowrap"
+              className="relative text-sm md:text-base inline-block px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-medium shadow-lg hover:shadow-xl transition-all whitespace-nowrap rounded-xl"
             >
               Wallet Connect
             </Link>
@@ -271,71 +272,107 @@ export default function Dashboard() {
               Your main balance and profit account at a glance
             </p>
 
-            {/* Main card — Bybit-style */}
+            {/* Main card */}
             <div className="mt-5 sm:mt-6 bg-[url('/images/asset-bg.png')] bg-[#040a17cc] bg-blend-color-burn bg-cover bg-center rounded-xl overflow-hidden">
-              {/* Top row: icon + currency */}
-              <div className="flex items-center justify-between px-5 sm:px-6 pt-5 sm:pt-6 pb-3">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-200 border border-slate-300 grid place-items-center flex-shrink-0">
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-slate-900" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.72-2.81-.01-2.2-1.9-2.96-3.65-3.38z" />
-                    </svg>
+              <div className="p-5 sm:p-6">
+                {/* Top row: icon + label + currency badge */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-200 border border-slate-300 grid place-items-center flex-shrink-0">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-slate-900" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.72-2.81-.01-2.2-1.9-2.96-3.65-3.38z" />
+                      </svg>
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-widest">
+                      Trading Balance
+                    </span>
                   </div>
-                  <span className="text-xs font-medium text-slate-400 uppercase tracking-widest">
-                    Main Balance
+                  <span className="text-xs sm:text-sm font-semibold text-slate-400 bg-slate-700/50 dark:bg-slate-600/30 px-2.5 py-1 rounded-md">
+                    {dashboardData.currency}
                   </span>
                 </div>
-                <span className="text-xs sm:text-sm font-semibold text-slate-400 bg-slate-700/50 dark:bg-slate-600/30 px-2.5 py-1 rounded-md">
-                  {dashboardData.currency}
-                </span>
-              </div>
 
-              {/* Main balance value */}
-              <div className="px-5 sm:px-6 pb-10">
-                <div className="text-3xl sm:text-5xl font-light text-white tracking-tight">
+                {/* Large balance number */}
+                <p className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
                   $
                   {dashboardData.balance.toLocaleString(undefined, {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}
-                </div>
-                {/* <p className="mt-1.5 text-xs text-slate-500">
-                  Reg. Date:{" "}
-                  <span className="text-slate-300 font-medium">
-                    {formatDate(dashboardData.date_joined)}
-                  </span>
-                </p> */}
-              </div>
+                </p>
 
-              {/* Divider */}
-              {/* <div className="mx-5 sm:mx-6 border-t border-slate-700/50" /> */}
-
-              {/* Profit row */}
-              {/* <div className="flex items-center justify-between px-5 sm:px-6 py-4 sm:py-5">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-emerald-500/15 border border-emerald-500/30 grid place-items-center flex-shrink-0">
-                    <TrendingUp className="w-4 h-4 text-emerald-400" />
-                  </div>
-                  <div>
-                    <p className="text-[11px] text-slate-400 uppercase tracking-widest font-medium">
-                      Profit Account
-                    </p>
-                    <p className="text-xl sm:text-2xl font-semibold text-emerald-400 leading-tight">
-                      $
+                {/* Profit / loss indicator row */}
+                <div className="flex items-center gap-2 mt-3">
+                  <div className={`flex items-center gap-1 ${dashboardData.profit >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+                    {dashboardData.profit >= 0
+                      ? <TrendingUp className="w-3.5 h-3.5 shrink-0" />
+                      : <TrendingDown className="w-3.5 h-3.5 shrink-0" />
+                    }
+                    <span className="text-sm font-bold font-mono">
+                      {dashboardData.profit >= 0 ? "+" : ""}
                       {dashboardData.profit.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </span>
+                  </div>
+                  {dashboardData.total_deposits > 0 && (
+                    <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full border ${
+                      dashboardData.profit >= 0
+                        ? "bg-emerald-500/30 border-emerald-400/50 text-emerald-300"
+                        : "bg-red-500/30 border-red-400/50 text-red-300"
+                    }`}>
+                      {dashboardData.profit >= 0 ? "+" : ""}
+                      {((dashboardData.profit / dashboardData.total_deposits) * 100).toFixed(2)}%
+                    </span>
+                  )}
+                </div>
+
+                {/* Bottom stats strip */}
+                <div className="mt-6 space-y-1.5">
+                  {/* Profit | Deposited */}
+                  <div className="grid grid-cols-2 rounded-xl overflow-hidden bg-black/30 backdrop-blur-md border border-white/10">
+                    <div className="px-4 py-3">
+                      <p className="text-[9px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                        Profit
+                      </p>
+                      <p className="text-sm font-semibold text-white font-mono">
+                        $
+                        {dashboardData.profit.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
+                      </p>
+                    </div>
+                    <div className="px-4 py-3 border-l border-white/10">
+                      <p className="text-[9px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                        Deposited
+                      </p>
+                      <p className="text-sm font-semibold text-white font-mono">
+                        $
+                        {dashboardData.total_deposits.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Total Balance */}
+                  <div className="rounded-xl bg-black/30 backdrop-blur-md border border-white/10 px-4 py-3 flex items-center justify-between">
+                    <p className="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">
+                      Total Balance
+                    </p>
+                    <p className="text-sm font-semibold text-white font-mono">
+                      $
+                      {(dashboardData.balance + dashboardData.profit).toLocaleString(undefined, {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
                       })}
                     </p>
                   </div>
                 </div>
-                <button
-                  onClick={() => router.push("/transfer")}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-400 text-xs font-semibold transition-colors"
-                >
-                  Transfer
-                </button>
-              </div> */}
+              </div>
             </div>
 
             <div className="mt-4">
@@ -345,11 +382,42 @@ export default function Dashboard() {
                 onOrdersClick={() => router.push("/orders")}
                 onHistoryClick={() => router.push("/history")}
               />
-              <AssetOverviewSection
-                totalDeposits={dashboardData.total_deposits}
-                totalWithdrawals={dashboardData.total_withdrawals}
-                totalProfits={dashboardData.profit}
-              />
+
+              {/* Deposit target progress bar */}
+              {(() => {
+                const target = dashboardData.target ?? 50000;
+                const pct = target > 0
+                  ? Math.min((dashboardData.total_deposits / target) * 100, 100)
+                  : 0;
+                return (
+                  <div className="mx-2 sm:mx-4 mb-4 px-4 py-3.5 rounded-xl bg-slate-800/60 dark:bg-white border border-slate-700/40 dark:border-slate-200 backdrop-blur-sm">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-[11px] font-semibold text-slate-400 dark:text-slate-600 uppercase tracking-wider">
+                        Portfolio Growth
+                      </span>
+                      <span className="text-[11px] font-bold text-emerald-400 dark:text-emerald-600">
+                        ${target.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} target
+                      </span>
+                    </div>
+                    <div className="h-2 rounded-full bg-slate-700/50 dark:bg-slate-200 overflow-hidden">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-400 transition-all duration-1000 ease-out"
+                        style={{ width: `${pct}%` }}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between mt-1.5">
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
+                        ${dashboardData.total_deposits.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} deposited
+                      </span>
+                      <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-600 font-mono">
+                        {pct.toFixed(1)}%
+                      </span>
+                    </div>
+                  </div>
+                );
+              })()}
+
+              <AssetOverviewSection />
             </div>
           </section>
 

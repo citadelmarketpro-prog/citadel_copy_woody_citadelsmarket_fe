@@ -458,7 +458,7 @@ export default function ReferralPage() {
                   </h3>
                   <p className="text-sm sm:text-base text-slate-300 dark:text-slate-700">
                     Deposit and get 10% bonus on your first deposit! (min
-                    $100.00)
+                    $10,000.00)
                   </p>
 
                   <button

@@ -1,18 +1,13 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, Suspense } from "react";
-import { useForm, Controller } from "react-hook-form";
+import React, { useState, useEffect, useMemo, useRef, Suspense } from "react";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Select, {
-  FormatOptionLabelMeta,
-  GroupBase,
-  PropsValue,
-} from "react-select";
 import countryList from "react-select-country-list";
-import { Eye, EyeOff, Sun, Moon, Gift } from "lucide-react";
+import { Eye, EyeOff, Sun, Moon, Gift, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import Link from "next/link";
@@ -20,6 +15,51 @@ import { PulseLoader } from "react-spinners";
 import { BACKEND_URL } from "@/lib/constants";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
+
+// ----------------------
+// Dial code map (ISO2 → calling code)
+// ----------------------
+const DIAL_CODES: Record<string, string> = {
+  AF: "+93",  AL: "+355", DZ: "+213", AD: "+376", AO: "+244",
+  AG: "+1",   AR: "+54",  AM: "+374", AU: "+61",  AT: "+43",
+  AZ: "+994", BS: "+1",   BH: "+973", BD: "+880", BB: "+1",
+  BY: "+375", BE: "+32",  BZ: "+501", BJ: "+229", BT: "+975",
+  BO: "+591", BA: "+387", BW: "+267", BR: "+55",  BN: "+673",
+  BG: "+359", BF: "+226", BI: "+257", CV: "+238", KH: "+855",
+  CM: "+237", CA: "+1",   CF: "+236", TD: "+235", CL: "+56",
+  CN: "+86",  CO: "+57",  KM: "+269", CG: "+242", CD: "+243",
+  CR: "+506", HR: "+385", CU: "+53",  CY: "+357", CZ: "+420",
+  DK: "+45",  DJ: "+253", DM: "+1",   DO: "+1",   EC: "+593",
+  EG: "+20",  SV: "+503", GQ: "+240", ER: "+291", EE: "+372",
+  SZ: "+268", ET: "+251", FJ: "+679", FI: "+358", FR: "+33",
+  GA: "+241", GM: "+220", GE: "+995", DE: "+49",  GH: "+233",
+  GR: "+30",  GD: "+1",   GT: "+502", GN: "+224", GW: "+245",
+  GY: "+592", HT: "+509", HN: "+504", HU: "+36",  IS: "+354",
+  IN: "+91",  ID: "+62",  IR: "+98",  IQ: "+964", IE: "+353",
+  IL: "+972", IT: "+39",  JM: "+1",   JP: "+81",  JO: "+962",
+  KZ: "+7",   KE: "+254", KI: "+686", KP: "+850", KR: "+82",
+  KW: "+965", KG: "+996", LA: "+856", LV: "+371", LB: "+961",
+  LS: "+266", LR: "+231", LY: "+218", LI: "+423", LT: "+370",
+  LU: "+352", MG: "+261", MW: "+265", MY: "+60",  MV: "+960",
+  ML: "+223", MT: "+356", MH: "+692", MR: "+222", MU: "+230",
+  MX: "+52",  FM: "+691", MD: "+373", MC: "+377", MN: "+976",
+  ME: "+382", MA: "+212", MZ: "+258", MM: "+95",  NA: "+264",
+  NR: "+674", NP: "+977", NL: "+31",  NZ: "+64",  NI: "+505",
+  NE: "+227", NG: "+234", NO: "+47",  OM: "+968", PK: "+92",
+  PW: "+680", PA: "+507", PG: "+675", PY: "+595", PE: "+51",
+  PH: "+63",  PL: "+48",  PT: "+351", QA: "+974", RO: "+40",
+  RU: "+7",   RW: "+250", KN: "+1",   LC: "+1",   VC: "+1",
+  WS: "+685", SM: "+378", ST: "+239", SA: "+966", SN: "+221",
+  RS: "+381", SC: "+248", SL: "+232", SG: "+65",  SK: "+421",
+  SI: "+386", SB: "+677", SO: "+252", ZA: "+27",  SS: "+211",
+  ES: "+34",  LK: "+94",  SD: "+249", SR: "+597", SE: "+46",
+  CH: "+41",  SY: "+963", TW: "+886", TJ: "+992", TZ: "+255",
+  TH: "+66",  TL: "+670", TG: "+228", TO: "+676", TT: "+1",
+  TN: "+216", TR: "+90",  TM: "+993", TV: "+688", UG: "+256",
+  UA: "+380", AE: "+971", GB: "+44",  US: "+1",   UY: "+598",
+  UZ: "+998", VU: "+678", VE: "+58",  VN: "+84",  YE: "+967",
+  ZM: "+260", ZW: "+263",
+};
 
 // ----------------------
 // Types
@@ -37,16 +77,8 @@ const registerSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
   email: z.email("Enter a valid email address"),
+  phone: z.string().min(4, "Phone number is required"),
   password: z.string().min(6, "Password must be at least 6 characters"),
-  country: z
-    .object({
-      value: z.string(),
-      label: z.string(),
-      flag: z.string(),
-    })
-    .refine((val) => Boolean(val?.value && val?.label), {
-      message: "Country is required",
-    }),
   referralCode: z.string().optional(),
 });
 
@@ -63,15 +95,21 @@ function RegisterPageContent() {
   const [referralCode, setReferralCode] = useState<string>("");
   const [referralValid, setReferralValid] = useState<boolean | null>(null);
   const [referrerName, setReferrerName] = useState<string>("");
-  const { theme, setTheme } = useTheme();
 
+  // Phone state
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneIso, setPhoneIso] = useState("US");
+  const [showPhoneDropdown, setShowPhoneDropdown] = useState(false);
+  const [phoneSearch, setPhoneSearch] = useState("");
+  const phoneDropdownRef = useRef<HTMLDivElement>(null);
+
+  const { theme, setTheme } = useTheme();
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const {
     register,
     handleSubmit,
-    control,
     formState: { errors },
     watch,
     setValue,
@@ -92,24 +130,39 @@ function RegisterPageContent() {
       }));
   }, []);
 
-  // ✅ Handle referral code from URL and store in localStorage
+  // Close phone dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (phoneDropdownRef.current && !phoneDropdownRef.current.contains(e.target as Node)) {
+        setShowPhoneDropdown(false);
+        setPhoneSearch("");
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Filtered countries for phone dropdown search
+  const filteredPhoneCountries = useMemo(() => {
+    const q = phoneSearch.toLowerCase();
+    return countryOptions.filter(
+      (c) =>
+        c.label.toLowerCase().includes(q) ||
+        (DIAL_CODES[c.value.toUpperCase()] || "").includes(q)
+    );
+  }, [countryOptions, phoneSearch]);
+
+  // Handle referral code from URL
   useEffect(() => {
     if (typeof window === "undefined") return;
-
     const refParam = searchParams.get("ref");
-
     if (refParam) {
       const upperRef = refParam.trim().toUpperCase();
       setReferralCode(upperRef);
       setValue("referralCode", upperRef);
-
-      // Store in localStorage for persistence
       localStorage.setItem("referral_code", upperRef);
-
-      // Validate referral code
       validateReferralCode(upperRef);
     } else {
-      // Check localStorage for existing referral code
       const storedRef = localStorage.getItem("referral_code");
       if (storedRef) {
         setReferralCode(storedRef);
@@ -119,19 +172,11 @@ function RegisterPageContent() {
     }
   }, [searchParams, setValue]);
 
-  // Validate referral code
   const validateReferralCode = async (code: string) => {
-    if (!code) {
-      setReferralValid(null);
-      return;
-    }
-
+    if (!code) { setReferralValid(null); return; }
     try {
-      const response = await fetch(
-        `${BACKEND_URL}/referral/validate/?code=${code}`
-      );
+      const response = await fetch(`${BACKEND_URL}/referral/validate/?code=${code}`);
       const data = await response.json();
-
       if (data.success && data.valid) {
         setReferralValid(true);
         setReferrerName(data.referrer.name);
@@ -139,58 +184,50 @@ function RegisterPageContent() {
         setReferralValid(false);
         setReferrerName("");
       }
-    } catch (error) {
-      console.error("Error validating referral code:", error);
+    } catch {
       setReferralValid(false);
     }
   };
 
+  // Auto-detect country via IP
   useEffect(() => {
     if (typeof window === "undefined") return;
-
     async function fetchCountry() {
       try {
         const res = await fetch("https://ipapi.co/json/");
         const data = await res.json();
-
-        const countryName = data.country_name;
-        const countryCallingCode = data.country_calling_code; // e.g., "+234"
-
-        // Store calling code in localStorage for KYC page
-        if (countryCallingCode) {
-          localStorage.setItem("country_calling_code", countryCallingCode);
+        if (data.country_calling_code) {
+          localStorage.setItem("country_calling_code", data.country_calling_code);
         }
-
-        const found = countryOptions.find(
-          (c) => c.label.toLowerCase() === countryName?.toLowerCase()
-        );
-        if (found) {
-          setValue("country", found);
+        if (data.country_code) {
+          setPhoneIso(data.country_code.toUpperCase());
         }
-      } catch (err) {
-        console.warn("Could not auto-detect country:", err);
+      } catch {
+        // silent
       }
     }
     fetchCountry();
-  }, [countryOptions, setValue]);
-
+  }, []);
 
   const onSubmit = async (data: RegisterFormData) => {
     setLoading(true);
     setMessage(null);
-
     try {
-      const countryCallingCode =
-        localStorage.getItem("country_calling_code") || "";
+      const dialCode = DIAL_CODES[phoneIso] || localStorage.getItem("country_calling_code") || "";
+      const fullPhone = `${dialCode}${phoneNumber}`;
+      const countryLabel = countryOptions.find(
+        (c) => c.value.toUpperCase() === phoneIso
+      )?.label || "";
 
       const payload = {
         first_name: data.firstName,
         last_name: data.lastName,
         email: data.email,
         password: data.password,
-        country: data.country.label,
+        country: countryLabel,
         referral_code: referralCode || undefined,
-        country_calling_code: countryCallingCode,
+        country_calling_code: dialCode,
+        phone: fullPhone,
       };
 
       const res = await fetch(`${BACKEND_URL}/register/`, {
@@ -203,42 +240,25 @@ function RegisterPageContent() {
 
       if (!res.ok) {
         let errorMessage = "Registration failed. Please try again.";
-
         if (result?.error) {
-          if (Array.isArray(result.error)) {
-            errorMessage = result.error.join(" ");
-          } else if (typeof result.error === "string") {
-            errorMessage = result.error;
-          }
+          errorMessage = Array.isArray(result.error)
+            ? result.error.join(" ")
+            : result.error;
         }
-
         throw new Error(errorMessage);
       }
 
-      // ✅ Registration successful - NO email verification needed
       setMessage("✅ Registration successful! Redirecting...");
-
-      // Save token and user data
       if (typeof window !== "undefined") {
         localStorage.setItem("authToken", result.token);
         if (result.user?.country_calling_code) {
-          localStorage.setItem(
-            "country_calling_code",
-            result.user.country_calling_code
-          );
+          localStorage.setItem("country_calling_code", result.user.country_calling_code);
         }
         localStorage.removeItem("referral_code");
       }
-
-      // ✅ Redirect directly to onboarding (skip email verification entirely)
       setTimeout(() => router.push("/onboarding"), 1500);
     } catch (error: unknown) {
-      let errorMessage = "Something went wrong. Please try again.";
-      if (error instanceof Error) {
-        errorMessage = error.message;
-      }
-
-      setMessage(`❌ ${errorMessage}`);
+      setMessage(`❌ ${error instanceof Error ? error.message : "Something went wrong."}`);
     } finally {
       setLoading(false);
     }
@@ -246,17 +266,7 @@ function RegisterPageContent() {
 
   useEffect(() => setMounted(true), []);
 
-  const formatOptionLabel = (
-    option: CountryOption,
-    meta?: FormatOptionLabelMeta<CountryOption>
-  ) => {
-    return (
-      <div className="flex items-center gap-2">
-        <span className={`fi fi-${option.flag}`}></span>
-        <span>{option.label}</span>
-      </div>
-    );
-  };
+  const currentDialCode = DIAL_CODES[phoneIso] || "+?";
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row gap-10 bg-[#090909] dark:bg-white text-white dark:text-black transition-colors duration-300">
@@ -270,22 +280,10 @@ function RegisterPageContent() {
         >
           {/* Logo */}
           <Link href="/" className="hidden dark:flex self-center">
-            <Image
-              alt="logo"
-              src={"/images/logo_dark.png"}
-              className="h-20 w-auto"
-              width={400}
-              height={120}
-            />
+            <Image alt="logo" src="/images/logo_dark.png" className="h-20 w-auto" width={400} height={120} />
           </Link>
           <Link href="/" className="flex dark:hidden self-center">
-            <Image
-              alt="logo"
-              src={"/images/logo_light.png"}
-              className="h-20 w-auto"
-              width={400}
-              height={120}
-            />
+            <Image alt="logo" src="/images/logo_light.png" className="h-20 w-auto" width={400} height={120} />
           </Link>
 
           {/* Theme toggle */}
@@ -294,19 +292,13 @@ function RegisterPageContent() {
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               className="p-2 ml-auto rounded-md border fixed top-5 right-1 border-gray-700 dark:border-gray-300 hover:bg-gray-800 dark:hover:bg-gray-100 transition-all"
             >
-              {theme === "light" ? (
-                <Moon className="w-4 h-4 text-emerald-500" />
-              ) : (
-                <Sun className="w-4 h-4 text-emerald-400" />
-              )}
+              {theme === "light" ? <Moon className="w-4 h-4 text-emerald-500" /> : <Sun className="w-4 h-4 text-emerald-400" />}
             </button>
           )}
 
           {/* Referral Banner */}
           {referralCode && referralValid && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
               className="bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/30 rounded-lg p-4"
             >
               <div className="flex items-center gap-3">
@@ -314,41 +306,26 @@ function RegisterPageContent() {
                   <Gift className="w-5 h-5 text-emerald-600" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-700">
-                    🎉 Referred by {referrerName}!
-                  </p>
-                  <p className="text-xs text-emerald-700 dark:text-emerald-600">
-                    You&apos;ll get special bonuses when you join
-                  </p>
+                  <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-700">🎉 Referred by {referrerName}!</p>
+                  <p className="text-xs text-emerald-700 dark:text-emerald-600">You&apos;ll get special bonuses when you join</p>
                 </div>
               </div>
             </motion.div>
           )}
 
           {referralCode && referralValid === false && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
               className="bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/30 rounded-lg p-4"
             >
-              <p className="text-sm text-red-700 dark:text-red-600">
-                ❌ Invalid referral code
-              </p>
+              <p className="text-sm text-red-700 dark:text-red-600">❌ Invalid referral code</p>
             </motion.div>
           )}
 
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-2">
-              Let&apos;s Get Started In Less Than A Minute.
-            </h1>
+            <h1 className="text-2xl md:text-3xl font-bold">Let&apos;s Get Started In Less Than A Minute.</h1>
             <p className="text-left text-sm mt-4">
               Already have an account?{" "}
-              <Link
-                href="/login"
-                className="uppercase text-emerald-500 hover:underline"
-              >
-                Log In
-              </Link>
+              <Link href="/login" className="uppercase text-emerald-500 hover:underline">Log In</Link>
             </p>
           </div>
 
@@ -358,181 +335,121 @@ function RegisterPageContent() {
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="relative flex-1">
                 <input
-                  id="firstName"
-                  type="text"
-                  {...register("firstName")}
-                  className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-transparent focus:outline-none transition-all ${
-                    errors.firstName
-                      ? "border-red-500"
-                      : "border-gray-700 dark:border-gray-400"
-                  }`}
+                  id="firstName" type="text" {...register("firstName")}
+                  className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-transparent focus:outline-none transition-all ${errors.firstName ? "border-red-500" : "border-gray-700 dark:border-gray-400"}`}
                   placeholder=" "
                 />
-                <label
-                  htmlFor="firstName"
-                  className={`absolute left-3 text-gray-400 dark:text-gray-500 transition-all pointer-events-none ${
-                    watchedValues.firstName
-                      ? "text-xs top-1"
-                      : "peer-focus:text-xs peer-focus:top-1 top-3"
-                  }`}
-                >
-                  First Name
-                </label>
-                {errors.firstName && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.firstName.message as string}
-                  </p>
-                )}
+                <label htmlFor="firstName"
+                  className={`absolute left-3 text-gray-400 dark:text-gray-500 transition-all pointer-events-none ${watchedValues.firstName ? "text-xs top-1" : "peer-focus:text-xs peer-focus:top-1 top-3"}`}
+                >First Name</label>
+                {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName.message as string}</p>}
               </div>
-
               <div className="relative flex-1">
                 <input
-                  id="lastName"
-                  type="text"
-                  {...register("lastName")}
-                  className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-transparent focus:outline-none transition-all ${
-                    errors.lastName
-                      ? "border-red-500"
-                      : "border-gray-700 dark:border-gray-400"
-                  }`}
+                  id="lastName" type="text" {...register("lastName")}
+                  className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-transparent focus:outline-none transition-all ${errors.lastName ? "border-red-500" : "border-gray-700 dark:border-gray-400"}`}
                   placeholder=" "
                 />
-                <label
-                  htmlFor="lastName"
-                  className={`absolute left-3 text-gray-400 dark:text-gray-500 transition-all pointer-events-none ${
-                    watchedValues.lastName
-                      ? "text-xs top-1"
-                      : "peer-focus:text-xs peer-focus:top-1 top-3"
-                  }`}
-                >
-                  Last Name
-                </label>
-                {errors.lastName && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.lastName.message as string}
-                  </p>
-                )}
+                <label htmlFor="lastName"
+                  className={`absolute left-3 text-gray-400 dark:text-gray-500 transition-all pointer-events-none ${watchedValues.lastName ? "text-xs top-1" : "peer-focus:text-xs peer-focus:top-1 top-3"}`}
+                >Last Name</label>
+                {errors.lastName && <p className="text-red-500 text-sm mt-1">{errors.lastName.message as string}</p>}
               </div>
             </div>
 
             {/* Email */}
             <div className="relative">
               <input
-                id="email"
-                type="email"
-                {...register("email")}
-                className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-transparent focus:outline-none transition-all ${
-                  errors.email
-                    ? "border-red-500"
-                    : "border-gray-700 dark:border-gray-400"
-                }`}
+                id="email" type="email" {...register("email")}
+                className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-transparent focus:outline-none transition-all ${errors.email ? "border-red-500" : "border-gray-700 dark:border-gray-400"}`}
                 placeholder=" "
               />
-              <label
-                htmlFor="email"
-                className={`absolute left-3 text-gray-400 dark:text-gray-500 transition-all pointer-events-none ${
-                  watchedValues.email
-                    ? "text-xs top-1"
-                    : "peer-focus:text-xs peer-focus:top-1 top-3"
-                }`}
-              >
-                Email
-              </label>
-              {errors.email && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.email.message as string}
-                </p>
-              )}
+              <label htmlFor="email"
+                className={`absolute left-3 text-gray-400 dark:text-gray-500 transition-all pointer-events-none ${watchedValues.email ? "text-xs top-1" : "peer-focus:text-xs peer-focus:top-1 top-3"}`}
+              >Email</label>
+              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message as string}</p>}
             </div>
 
-            {/* Country Dropdown */}
-            <div className="relative">
-              {mounted && (
-                <Controller
-                  name="country"
-                  control={control}
-                  render={({ field }) => {
-                    const value = field.value as CountryOption | undefined;
+            {/* ── Phone Number ──────────────────────────────────────────── */}
+            <div className="relative" ref={phoneDropdownRef}>
+              <div className={`flex border rounded-md overflow-visible transition-colors focus-within:border-emerald-500 ${errors.phone ? "border-red-500" : "border-gray-700 dark:border-gray-400"}`}>
+                {/* Flag + dial code selector */}
+                <button
+                  type="button"
+                  onClick={() => { setShowPhoneDropdown((v) => !v); setPhoneSearch(""); }}
+                  className="flex items-center gap-1.5 px-3 py-3 border-r border-gray-700 dark:border-gray-400 hover:bg-white/5 dark:hover:bg-gray-100 transition-colors flex-shrink-0"
+                >
+                  <span className={`fi fi-${phoneIso.toLowerCase()} text-base`} />
+                  <span className="text-sm text-gray-300 dark:text-gray-600 font-mono">{currentDialCode}</span>
+                  <ChevronDown className={`w-3 h-3 text-gray-400 transition-transform ${showPhoneDropdown ? "rotate-180" : ""}`} />
+                </button>
 
-                    return (
-                      <Select<CountryOption, false, GroupBase<CountryOption>>
-                        instanceId="country-select"
-                        value={value ?? null}
-                        options={countryOptions}
-                        placeholder="Select Country"
-                        formatOptionLabel={formatOptionLabel}
-                        onChange={(selected: PropsValue<CountryOption>) => {
-                          const sel = Array.isArray(selected)
-                            ? (selected[0] as CountryOption)
-                            : (selected as CountryOption);
-                          field.onChange(sel);
-                        }}
-                        styles={{
-                          control: (base) => ({
-                            ...base,
-                            backgroundColor: "transparent",
-                            borderColor: errors.country ? "red" : "#9ca3af",
-                            borderRadius: "0.375rem",
-                            boxShadow: "none",
-                            paddingTop: 8,
-                            paddingBottom: 8,
-                            color: theme === "dark" ? "#000" : "#fff",
-                          }),
-                          singleValue: (base) => ({
-                            ...base,
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "8px",
-                            color: theme === "dark" ? "#000" : "#fff",
-                          }),
-                          menu: (base) => ({
-                            ...base,
-                            zIndex: 50,
-                            backgroundColor:
-                              theme === "dark" ? "#fff" : "#1f2937",
-                            color: theme === "dark" ? "#000" : "#fff",
-                          }),
-                          option: (base, { isFocused, isSelected }) => ({
-                            ...base,
-                            backgroundColor: isSelected
-                              ? theme === "dark"
-                                ? "#d1fae5"
-                                : "#10b981"
-                              : isFocused
-                              ? theme === "dark"
-                                ? "#f3f4f6"
-                                : "#374151"
-                              : "transparent",
-                            color:
-                              isSelected || isFocused
-                                ? theme === "dark"
-                                  ? "#000"
-                                  : "#fff"
-                                : theme === "dark"
-                                ? "#000"
-                                : "#d1d5db",
-                            cursor: "pointer",
-                          }),
-                          placeholder: (base) => ({
-                            ...base,
-                            color: theme === "dark" ? "#6b7280" : "#9ca3af",
-                          }),
-                          input: (base) => ({
-                            ...base,
-                            color: theme === "dark" ? "#000" : "#fff",
-                          }),
-                        }}
-                      />
-                    );
+                {/* Phone number input */}
+                <input
+                  type="tel"
+                  value={phoneNumber}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/[^\d\s\-()]/g, "");
+                    setPhoneNumber(val);
+                    setValue("phone", val, { shouldValidate: true });
                   }}
+                  placeholder="Phone number"
+                  className="flex-1 px-3 py-3 bg-transparent text-sm focus:outline-none placeholder-gray-500 dark:placeholder-gray-400 text-white dark:text-black"
                 />
-              )}
-              {errors.country && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.country.message as string}
-                </p>
+              </div>
+
+              {/* Country dial code dropdown */}
+              {showPhoneDropdown && (
+                <div className="absolute top-full left-0 mt-1 w-full z-50 rounded-md shadow-xl overflow-hidden border border-gray-700 dark:border-gray-200 bg-[#1a1a1a] dark:bg-white">
+                  {/* Search */}
+                  <div className="p-2 border-b border-gray-700 dark:border-gray-200">
+                    <input
+                      type="text"
+                      value={phoneSearch}
+                      onChange={(e) => setPhoneSearch(e.target.value)}
+                      placeholder="Search country or code…"
+                      className="w-full px-3 py-1.5 rounded-md bg-white/10 dark:bg-gray-100 text-sm text-white dark:text-black placeholder-gray-500 focus:outline-none"
+                      autoFocus
+                    />
+                  </div>
+
+                  {/* Country list */}
+                  <div className="max-h-52 overflow-y-auto">
+                    {filteredPhoneCountries.slice(0, 100).map((c) => {
+                      const code = DIAL_CODES[c.value.toUpperCase()];
+                      if (!code) return null;
+                      const isActive = c.value.toUpperCase() === phoneIso;
+                      return (
+                        <button
+                          key={c.value}
+                          type="button"
+                          onClick={() => {
+                            setPhoneIso(c.value.toUpperCase());
+                            setShowPhoneDropdown(false);
+                            setPhoneSearch("");
+                          }}
+                          className={`w-full flex items-center gap-3 px-3 py-2 text-sm text-left transition-colors ${
+                            isActive
+                              ? "bg-emerald-600 text-white"
+                              : "hover:bg-white/10 dark:hover:bg-gray-100 text-gray-200 dark:text-gray-800"
+                          }`}
+                        >
+                          <span className={`fi fi-${c.flag} text-base flex-shrink-0`} />
+                          <span className="flex-1 truncate">{c.label}</span>
+                          <span className={`font-mono text-xs flex-shrink-0 ${isActive ? "text-white" : "text-gray-400 dark:text-gray-500"}`}>{code}</span>
+                        </button>
+                      );
+                    })}
+                    {filteredPhoneCountries.length === 0 && (
+                      <p className="px-4 py-3 text-sm text-gray-500">No results</p>
+                    )}
+                  </div>
+                </div>
               )}
             </div>
+            {errors.phone && (
+              <p className="text-red-500 text-sm -mt-4">{errors.phone.message}</p>
+            )}
 
             {/* Password */}
             <div className="relative">
@@ -540,23 +457,12 @@ function RegisterPageContent() {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 {...register("password")}
-                className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-transparent focus:outline-none transition-all ${
-                  errors.password
-                    ? "border-red-500"
-                    : "border-gray-700 dark:border-gray-400"
-                }`}
+                className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-transparent focus:outline-none transition-all ${errors.password ? "border-red-500" : "border-gray-700 dark:border-gray-400"}`}
                 placeholder=" "
               />
-              <label
-                htmlFor="password"
-                className={`absolute left-3 text-gray-400 dark:text-gray-500 transition-all pointer-events-none ${
-                  watchedValues.password
-                    ? "text-xs top-1"
-                    : "peer-focus:text-xs peer-focus:top-1 top-3"
-                }`}
-              >
-                Password
-              </label>
+              <label htmlFor="password"
+                className={`absolute left-3 text-gray-400 dark:text-gray-500 transition-all pointer-events-none ${watchedValues.password ? "text-xs top-1" : "peer-focus:text-xs peer-focus:top-1 top-3"}`}
+              >Password</label>
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
@@ -564,55 +470,26 @@ function RegisterPageContent() {
               >
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
-              {errors.password && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.password.message as string}
-                </p>
-              )}
+              {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message as string}</p>}
             </div>
 
-            {/* Hidden referral code field */}
             <input type="hidden" {...register("referralCode")} />
 
             {/* Submit */}
-            <Button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-emerald-700 hover:bg-emerald-600 text-white py-6 rounded-md"
-            >
-              {!loading ? (
-                <span>Create Account</span>
-              ) : (
-                <PulseLoader color="#fff" size={15} />
-              )}
+            <Button type="submit" disabled={loading} className="w-full bg-emerald-700 hover:bg-emerald-600 text-white py-6 rounded-md">
+              {!loading ? <span>Create Account</span> : <PulseLoader color="#fff" size={15} />}
             </Button>
 
             <div className="text-left text-sm">
-              <div>
-                <Checkbox id="terms" className="mr-1" />
-                By signing up you agree to{" "}
-                <Link
-                  href="/terms-and-condition"
-                  className="text-emerald-500 hover:underline"
-                >
-                  Terms and Condition
-                </Link>{" "}
-                &{" "}
-                <Link
-                  href="/privacy-policy"
-                  className="text-emerald-500 hover:underline"
-                >
-                  Privacy Policy
-                </Link>
-              </div>
+              <Checkbox id="terms" className="mr-1" />
+              By signing up you agree to{" "}
+              <Link href="/terms-and-condition" className="text-emerald-500 hover:underline">Terms and Condition</Link>{" "}
+              &{" "}
+              <Link href="/privacy-policy" className="text-emerald-500 hover:underline">Privacy Policy</Link>
             </div>
 
             {message && (
-              <p
-                className={`text-center text-sm ${
-                  message.startsWith("✅") ? "text-green-500" : "text-red-500"
-                }`}
-              >
+              <p className={`text-center text-sm ${message.startsWith("✅") ? "text-green-500" : "text-red-500"}`}>
                 {message}
               </p>
             )}
@@ -628,17 +505,9 @@ function RegisterPageContent() {
           transition={{ duration: 0.8 }}
           className="relative w-full max-w-md flex flex-col items-center text-center text-white space-y-6"
         >
-          <h2 className="text-2xl font-semibold">
-            Join millions of traders worldwide
-          </h2>
+          <h2 className="text-2xl font-semibold">Join millions of traders worldwide</h2>
           <div className="relative w-full aspect-square overflow-hidden">
-            <Image
-              src="/images/trusted.webp"
-              alt="Trading Community"
-              width={825}
-              height={770}
-              className="object-cover"
-            />
+            <Image src="/images/trusted.webp" alt="Trading Community" width={825} height={770} className="object-cover" />
           </div>
         </motion.div>
       </div>
@@ -646,18 +515,9 @@ function RegisterPageContent() {
   );
 }
 
-// ----------------------
-// Export with Suspense Wrapper
-// ----------------------
 export default function RegisterPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen flex items-center justify-center">
-          Loading...
-        </div>
-      }
-    >
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
       <RegisterPageContent />
     </Suspense>
   );

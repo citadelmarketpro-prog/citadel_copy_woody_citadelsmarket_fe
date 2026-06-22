@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import { getTranslations } from "next-intl/server";
 import Navbar from "@/components/newlanding/Navbar";
 import SiteFooter from "@/components/newlanding/SiteFooter";
 import {
@@ -56,7 +56,8 @@ const platforms = [
   },
 ];
 
-export default function SoftwarePage() {
+export default async function SoftwarePage() {
+  const t = await getTranslations("softwarePage");
   return (
     <div className="font-sans bg-white">
       <Navbar />
@@ -76,10 +77,9 @@ export default function SoftwarePage() {
         <div className="absolute inset-0" style={{ background: darkGradient }} />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
           <FadeUp>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">Software</h1>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3">{t("heroTitle")}</h1>
             <p className="text-gray-300 text-base max-w-xl leading-relaxed">
-              Some of the leading trading platforms and tools used by our traders and partners to
-              execute, manage, and optimise stock positions.
+              {t("heroSub")}
             </p>
           </FadeUp>
         </div>
@@ -90,11 +90,10 @@ export default function SoftwarePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
-              Trading Software
+              {t("s2Head")}
             </h2>
             <p className="text-gray-500 text-base mb-12 max-w-2xl">
-              Some of the software used for trading includes but is not limited to the following
-              platforms — each offering distinct strengths for equity investors and active traders.
+              {t("s2Sub")}
             </p>
           </FadeUp>
 

@@ -388,28 +388,34 @@ const KYCVerificationPage = () => {
         if (!token) return;
 
         const res = await fetch(`${BACKEND_URL}/profile/`, {
-          headers: {
-            Authorization: `Token ${token}`,
-          },
+          headers: { Authorization: `Token ${token}` },
         });
 
         if (res.ok) {
           const data = await res.json();
+          const user = data.user || data;
+
           const code =
-            data.user?.country_calling_code ||
+            user.country_calling_code ||
             localStorage.getItem("country_calling_code") ||
             "";
           setCountryCallingCode(code);
 
-          if (code && !step1Form.getValues("phone")) {
-            step1Form.setValue("phone", code);
+          // Pre-fill phone: prefer the saved full phone, fall back to just the calling code
+          if (!step1Form.getValues("phone")) {
+            const savedPhone = user.phone || "";
+            step1Form.setValue("phone", savedPhone || code);
+          }
+
+          // Pre-fill DOB if it was previously saved
+          if (user.dob && !step1Form.getValues("dob")) {
+            step1Form.setValue("dob", user.dob);
           }
         }
-      } catch (error) {
-        console.error("Error fetching profile:", error);
+      } catch {
         const code = localStorage.getItem("country_calling_code") || "";
         setCountryCallingCode(code);
-        if (code) {
+        if (code && !step1Form.getValues("phone")) {
           step1Form.setValue("phone", code);
         }
       }
@@ -564,6 +570,11 @@ const KYCVerificationPage = () => {
                       {step1Form.formState.errors.dob.message}
                     </p>
                   )}
+                  {step1Form.watch("dob") && (
+                    <p className="text-xs text-emerald-500 mt-1">
+                      ✓ Pre-filled from your account — edit if needed
+                    </p>
+                  )}
                 </div>
                 <div className="relative">
                   <label className="block text-sm font-medium mb-2">
@@ -584,9 +595,9 @@ const KYCVerificationPage = () => {
                       {step1Form.formState.errors.phone.message}
                     </p>
                   )}
-                  {countryCallingCode && (
-                    <p className="text-xs text-gray-500 mt-1">
-                      Country code {countryCallingCode} detected
+                  {step1Form.watch("phone") && step1Form.watch("phone").length > 4 && (
+                    <p className="text-xs text-emerald-500 mt-1">
+                      ✓ Pre-filled from your account — edit if needed
                     </p>
                   )}
                 </div>
