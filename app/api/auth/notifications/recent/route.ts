@@ -4,6 +4,8 @@ const BACKEND_URL =
   process.env.NEXT_PUBLIC_APP_BACKEND_URL ||
   "https://citadelproadmin.vercel.app/api";
 
+
+
 export async function GET(request: NextRequest) {
   const token = request.headers.get("authorization");
 
