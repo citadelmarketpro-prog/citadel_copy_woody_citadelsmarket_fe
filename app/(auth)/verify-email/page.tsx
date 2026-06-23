@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -19,8 +19,11 @@ import { toast } from "sonner";
 import { PulseLoader } from "react-spinners";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import AuthLangSwitcher from "@/components/auth/LangSwitcher";
 
 export default function VerifyEmailPage() {
+  const t = useTranslations("auth");
   const [code, setCode] = useState(["", "", "", ""]);
   const [loading, setLoading] = useState(false);
   const [resending, setResending] = useState(false);
@@ -111,7 +114,7 @@ export default function VerifyEmailPage() {
     const verificationCode = code.join("");
 
     if (verificationCode.length !== 4) {
-      toast.error("Please enter the complete 4-digit code");
+      toast.error(t("verifyEmail.pleaseEnterCode"));
       return;
     }
 
@@ -120,7 +123,7 @@ export default function VerifyEmailPage() {
     try {
       const token = localStorage.getItem("authToken");
       if (!token) {
-        toast.error("Please login again");
+        toast.error(t("common.backToLogin"));
         router.push("/login");
         return;
       }
@@ -150,7 +153,7 @@ export default function VerifyEmailPage() {
       }, 1000);
     } catch (error) {
       console.error(error);
-      toast.error("Network error. Please try again.");
+      toast.error(t("common.networkError"));
     } finally {
       setLoading(false);
     }
@@ -162,7 +165,7 @@ export default function VerifyEmailPage() {
     try {
       const token = localStorage.getItem("authToken");
       if (!token) {
-        toast.error("Please login again");
+        toast.error(t("common.backToLogin"));
         router.push("/login");
         return;
       }
@@ -188,7 +191,7 @@ export default function VerifyEmailPage() {
       document.getElementById("code-0")?.focus();
     } catch (error) {
       console.error(error);
-      toast.error("Network error. Please try again.");
+      toast.error(t("common.networkError"));
     } finally {
       setResending(false);
     }
@@ -201,7 +204,7 @@ export default function VerifyEmailPage() {
         <div className="text-center space-y-4">
           <PulseLoader color="#10b981" size={15} />
           <p className="text-gray-400 dark:text-gray-600">
-            Checking verification status...
+            {t("verifyEmail.checkingStatus")}
           </p>
         </div>
       </div>
@@ -257,9 +260,9 @@ export default function VerifyEmailPage() {
             <div className="w-20 h-20 bg-emerald-900/20 dark:bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Mail className="w-10 h-10 text-emerald-500 dark:text-emerald-600" />
             </div>
-            <h1 className="text-3xl font-bold">Verify Your Email</h1>
+            <h1 className="text-3xl font-bold">{t("verifyEmail.title")}</h1>
             <p className="text-gray-400 dark:text-gray-600">
-              We&apos;ve sent a 4-digit verification code to your email
+              {t("verifyEmail.subtitle")}
             </p>
           </div>
 
@@ -292,7 +295,7 @@ export default function VerifyEmailPage() {
               ) : (
                 <span className="flex items-center justify-center gap-2">
                   <CheckCircle className="w-5 h-5" />
-                  Verify Email
+                  {t("verifyEmail.verifyBtn")}
                 </span>
               )}
             </Button>
@@ -307,7 +310,7 @@ export default function VerifyEmailPage() {
                 <RefreshCw
                   className={`w-4 h-4 ${resending ? "animate-spin" : ""}`}
                 />
-                {resending ? "Sending..." : "Resend Code"}
+                {resending ? t("verifyEmail.sending") : t("verifyEmail.resendCode")}
               </button>
             </div>
 
@@ -317,13 +320,10 @@ export default function VerifyEmailPage() {
                 <AlertCircle className="w-5 h-5 text-blue-400 dark:text-blue-600 flex-shrink-0 mt-0.5" />
                 <div className="text-sm text-blue-200 dark:text-blue-800">
                   <p className="font-semibold mb-1">
-                    Didn&apos;t receive the code?
+                    {t("verifyEmail.didntReceiveCode")}
                   </p>
-                  <p>
-                    Check your spam folder or click &quot;Resend Code&quot; to get a new
-                    one.
-                  </p>
-                  <p className="mt-2">The code expires in 10 minutes.</p>
+                  <p>{t("verifyEmail.spamInfo")}</p>
+                  <p className="mt-2">{t("verifyEmail.codeExpires")}</p>
                 </div>
               </div>
             </div>
@@ -335,9 +335,11 @@ export default function VerifyEmailPage() {
                 className="text-gray-400 dark:text-gray-600 hover:text-emerald-500 flex items-center justify-center gap-2"
               >
                 <ArrowLeft className="w-4 h-4" />
-                Back to Login
+                {t("common.backToLogin")}
               </Link>
             </div>
+
+            <AuthLangSwitcher />
           </div>
         </motion.div>
       </div>
@@ -351,10 +353,11 @@ export default function VerifyEmailPage() {
           className="text-center space-y-6"
         >
           <CheckCircle className="w-32 h-32 text-white mx-auto" />
-          <h2 className="text-3xl font-bold text-white">One More Step!</h2>
+          <h2 className="text-3xl font-bold text-white">
+            {t("verifyEmail.rightPanelTitle")}
+          </h2>
           <p className="text-white/90 text-lg max-w-md">
-            Verify your email to unlock all features and start your trading
-            journey with Citadels Market.
+            {t("verifyEmail.rightPanelSubtitle")}
           </p>
         </motion.div>
       </div>

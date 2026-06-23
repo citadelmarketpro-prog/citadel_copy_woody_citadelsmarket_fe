@@ -12,16 +12,19 @@ import Link from "next/link";
 import { BACKEND_URL } from "@/lib/constants";
 import { toast } from "sonner";
 import { PulseLoader } from "react-spinners";
-
-const forgotPasswordSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
-});
-
-type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
+import { useTranslations } from "next-intl";
+import AuthLangSwitcher from "@/components/auth/LangSwitcher";
 
 export default function ForgotPasswordPage() {
+  const t = useTranslations("auth");
   const [loading, setLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+
+  const forgotPasswordSchema = z.object({
+    email: z.string().email(t("common.invalidEmail")),
+  });
+
+  type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
 
   const {
     register,
@@ -47,15 +50,15 @@ export default function ForgotPasswordPage() {
       const result = await response.json();
 
       if (!response.ok) {
-        toast.error(result?.error || "Failed to send reset email");
+        toast.error(result?.error || t("forgotPassword.failedToSend"));
         return;
       }
 
       setEmailSent(true);
-      toast.success("Password reset link sent! Check your email.");
+      toast.success(t("forgotPassword.resetLinkSentToast"));
     } catch (error) {
       console.error(error);
-      toast.error("Network error. Please try again.");
+      toast.error(t("common.networkError"));
     } finally {
       setLoading(false);
     }
@@ -74,32 +77,32 @@ export default function ForgotPasswordPage() {
           </div>
 
           <h1 className="text-2xl font-bold text-white dark:text-black">
-            Check Your Email
+            {t("forgotPassword.checkEmail")}
           </h1>
 
           <p className="text-gray-400 dark:text-gray-600">
-            We&apos;ve sent a password reset link to{" "}
-            <strong>{emailValue}</strong>. Please check your inbox and spam
-            folder.
+            {t("forgotPassword.resetLinkSentTo", { email: emailValue })}
           </p>
 
           <div className="pt-4">
             <Link href="/login">
               <Button className="w-full p-5 bg-emerald-700 hover:bg-emerald-600">
-                Back to Login
+                {t("common.backToLogin")}
               </Button>
             </Link>
           </div>
 
           <p className="text-sm text-gray-500 dark:text-gray-600">
-            Didn&apos;t receive the email?{" "}
+            {t("forgotPassword.didntReceive")}{" "}
             <button
               onClick={() => setEmailSent(false)}
               className="text-emerald-500 hover:underline"
             >
-              Try again
+              {t("forgotPassword.tryAgain")}
             </button>
           </p>
+
+          <AuthLangSwitcher />
         </motion.div>
       </div>
     );
@@ -139,16 +142,15 @@ export default function ForgotPasswordPage() {
             className="inline-flex items-center text-sm text-emerald-500 hover:underline"
           >
             <ArrowLeft className="w-4 h-4 mr-1" />
-            Back to Login
+            {t("common.backToLogin")}
           </Link>
 
           <h1 className="text-3xl font-bold text-white dark:text-black">
-            Forgot Password?
+            {t("forgotPassword.title")}
           </h1>
 
           <p className="text-gray-400 dark:text-gray-600">
-            Enter your email address and we&apos;ll send you a link to reset
-            your password.
+            {t("forgotPassword.subtitle")}
           </p>
         </div>
 
@@ -174,7 +176,7 @@ export default function ForgotPasswordPage() {
                   : "peer-focus:text-xs peer-focus:top-1 top-3"
               }`}
             >
-              Email Address
+              {t("common.emailAddress")}
             </label>
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">
@@ -189,19 +191,21 @@ export default function ForgotPasswordPage() {
             className="w-full py-6 bg-emerald-700 hover:bg-emerald-600 text-white rounded-md"
           >
             {!loading ? (
-              <span>Send Reset Link</span>
+              <span>{t("forgotPassword.sendResetLink")}</span>
             ) : (
               <PulseLoader color="#fff" size={15} />
             )}
           </Button>
 
           <p className="text-center text-sm text-gray-400 dark:text-gray-600">
-            Remember your password?{" "}
+            {t("common.rememberPassword")}{" "}
             <Link href="/login" className="text-emerald-500 hover:underline">
-              Sign in
+              {t("common.signIn")}
             </Link>
           </p>
         </form>
+
+        <AuthLangSwitcher />
       </motion.div>
     </div>
   );

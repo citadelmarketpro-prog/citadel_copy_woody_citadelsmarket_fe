@@ -19,8 +19,11 @@ import { toast } from "sonner";
 import { PulseLoader } from "react-spinners";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import AuthLangSwitcher from "@/components/auth/LangSwitcher";
 
 export default function Verify2FAPage() {
+  const t = useTranslations("auth");
   const [code, setCode] = useState(["", "", "", ""]);
   const [loading, setLoading] = useState(false);
   const [resending, setResending] = useState(false);
@@ -78,7 +81,7 @@ export default function Verify2FAPage() {
     const verificationCode = code.join("");
 
     if (verificationCode.length !== 4) {
-      toast.error("Please enter the complete 4-digit code");
+      toast.error(t("verify2fa.pleaseEnterCode"));
       return;
     }
 
@@ -107,7 +110,7 @@ export default function Verify2FAPage() {
       // Save token
       localStorage.setItem("authToken", result.token);
 
-      toast.success("✅ Login successful!");
+      toast.success(`✅ ${t("verify2fa.loginSuccess")}`);
 
       // Redirect to portfolio
       setTimeout(() => {
@@ -115,7 +118,7 @@ export default function Verify2FAPage() {
       }, 1000);
     } catch (error) {
       console.error(error);
-      toast.error("Network error. Please try again.");
+      toast.error(t("common.networkError"));
     } finally {
       setLoading(false);
     }
@@ -132,7 +135,7 @@ export default function Verify2FAPage() {
       }, 1500);
     } catch (error) {
       console.error(error);
-      toast.error("Network error. Please try again.");
+      toast.error(t("common.networkError"));
     } finally {
       setResending(false);
     }
@@ -187,9 +190,9 @@ export default function Verify2FAPage() {
             <div className="w-20 h-20 bg-emerald-900/20 dark:bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Shield className="w-10 h-10 text-emerald-500 dark:text-emerald-600" />
             </div>
-            <h1 className="text-3xl font-bold">Two-Factor Authentication</h1>
+            <h1 className="text-3xl font-bold">{t("verify2fa.title")}</h1>
             <p className="text-gray-400 dark:text-gray-600">
-              Enter the 4-digit code sent to {userEmail}
+              {t("verify2fa.subtitleSentTo", { email: userEmail })}
             </p>
           </div>
 
@@ -222,7 +225,7 @@ export default function Verify2FAPage() {
               ) : (
                 <span className="flex items-center justify-center gap-2">
                   <CheckCircle className="w-5 h-5" />
-                  Verify & Login
+                  {t("verify2fa.verifyBtn")}
                 </span>
               )}
             </Button>
@@ -237,7 +240,7 @@ export default function Verify2FAPage() {
                 <RefreshCw
                   className={`w-4 h-4 ${resending ? "animate-spin" : ""}`}
                 />
-                {resending ? "Processing..." : "Didn't receive code?"}
+                {resending ? t("verify2fa.processing") : t("verify2fa.didntReceiveCode")}
               </button>
             </div>
 
@@ -246,15 +249,9 @@ export default function Verify2FAPage() {
               <div className="flex gap-3">
                 <AlertCircle className="w-5 h-5 text-amber-400 dark:text-amber-600 flex-shrink-0 mt-0.5" />
                 <div className="text-sm text-amber-200 dark:text-amber-800">
-                  <p className="font-semibold mb-1">Security Notice</p>
-                  <p>
-                    Never share this code with anyone. The code expires in 10
-                    minutes.
-                  </p>
-                  <p className="mt-2">
-                    If you didn&apos;t request this login, your account may be
-                    compromised.
-                  </p>
+                  <p className="font-semibold mb-1">{t("verify2fa.securityNotice")}</p>
+                  <p>{t("verify2fa.securityNoticeText")}</p>
+                  <p className="mt-2">{t("verify2fa.securityNoticeWarning")}</p>
                 </div>
               </div>
             </div>
@@ -266,9 +263,11 @@ export default function Verify2FAPage() {
                 className="text-gray-400 dark:text-gray-600 hover:text-emerald-500 flex items-center justify-center gap-2"
               >
                 <ArrowLeft className="w-4 h-4" />
-                Back to Login
+                {t("common.backToLogin")}
               </Link>
             </div>
+
+            <AuthLangSwitcher />
           </div>
         </motion.div>
       </div>
@@ -282,10 +281,11 @@ export default function Verify2FAPage() {
           className="text-center space-y-6"
         >
           <Shield className="w-32 h-32 text-white mx-auto" />
-          <h2 className="text-3xl font-bold text-white">Enhanced Security</h2>
+          <h2 className="text-3xl font-bold text-white">
+            {t("verify2fa.rightPanelTitle")}
+          </h2>
           <p className="text-white/90 text-lg max-w-md">
-            Two-factor authentication keeps your account safe by requiring a
-            verification code in addition to your password.
+            {t("verify2fa.rightPanelSubtitle")}
           </p>
         </motion.div>
       </div>

@@ -1,9 +1,11 @@
 ﻿"use client";
 
 import { useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 
 
 const LiquidityProvidersSection = () => {
+  const t = useTranslations("liquidityProviders");
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
   const row3Ref = useRef<HTMLDivElement>(null);
@@ -223,11 +225,10 @@ const LiquidityProvidersSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-6 md:mb-8">
           <h2 className="text-3xl md:text-5xl lg:text-[52px] font-medium mb-4 bg-gradient-to-r from-[#a0762f] via-[#dec481] to-[#a0762f] bg-clip-text text-transparent inline-block">
-            LIQUIDITY PROVIDERS
+            {t("title")}
           </h2>
           <h5 className="text-white text-base md:text-lg lg:text-xl opacity-90">
-            Citadels Market currently has a variety of liquidity providers, including
-            but not limited to:
+            {t("subtitle")}
           </h5>
         </div>
 
@@ -273,23 +274,23 @@ const LiquidityProvidersSection = () => {
       <div className="container mx-auto px-4 mt-8 md:mt-12">
         <div className="text-center">
           <h2 className="text-2xl md:text-4xl font-bold text-white mb-3">
-            Instant account opening &amp; funding
+            {t("ctaTitle")}
           </h2>
           <h5 className="text-lg md:text-xl text-white/80 mb-8">
-            Trade within minutes!
+            {t("ctaSubtitle")}
           </h5>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
               href="/register"
               className="px-8 py-3 bg-emerald-700 hover:bg-emerald-600 text-white rounded-full font-semibold transition-all duration-300 hover:-translate-y-0.5 text-sm"
             >
-              Get Started
+              {t("getStarted")}
             </a>
             <a
               href="/login"
               className="px-8 py-3 border border-white/20 text-white rounded-full font-semibold hover:bg-white/10 hover:border-white/40 transition-all duration-300 text-sm"
             >
-              Trade Now
+              {t("tradeNow")}
             </a>
           </div>
         </div>

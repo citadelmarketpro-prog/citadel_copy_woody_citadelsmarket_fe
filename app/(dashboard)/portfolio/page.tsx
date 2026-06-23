@@ -6,7 +6,7 @@ import DashboardNavbar from "@/components/main/DashboardNavbar";
 import GuidedTour from "./_components/GuidedTour";
 import { BACKEND_URL } from "@/lib/constants";
 import { PulseLoader } from "react-spinners";
-import { Info, TrendingUp, TrendingDown } from "lucide-react";
+import { Info, TrendingUp, TrendingDown, ChevronDown } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -168,6 +168,46 @@ export default function Dashboard() {
 
   const [showLoyaltyModal, setShowLoyaltyModal] = useState(false);
 
+  // ── Currency toggle ──────────────────────────────────────────────────────
+  const CURRENCIES = ["USD", "EUR", "GBP", "JPY", "CHF", "CAD", "AUD"];
+  const CURRENCY_SYMBOLS: Record<string, string> = {
+    USD: "$", EUR: "€", GBP: "£", JPY: "¥", CHF: "Fr", CAD: "CA$", AUD: "A$",
+  };
+  // Approximate fallback rates so conversion works instantly before the API responds
+  const FALLBACK_RATES: Record<string, number> = {
+    EUR: 0.92, GBP: 0.79, JPY: 149.5, CHF: 0.90, CAD: 1.36, AUD: 1.54,
+  };
+  const [selectedCurrency, setSelectedCurrency] = useState("USD");
+  const [fxRates, setFxRates] = useState<Record<string, number>>(FALLBACK_RATES);
+  const [currencyDropdownOpen, setCurrencyDropdownOpen] = useState(false);
+
+  // Fetch live rates on mount and override the fallbacks when they arrive
+  useEffect(() => {
+    const targets = CURRENCIES.filter((c) => c !== "USD").join(",");
+    fetch(`https://api.frankfurter.app/latest?from=USD&to=${targets}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.rates && typeof data.rates === "object") {
+          setFxRates(data.rates);
+        }
+      })
+      .catch(() => {});
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const convertUSD = (usdAmount: number): string => {
+    const rate = selectedCurrency === "USD" ? 1 : (fxRates[selectedCurrency] ?? 1);
+    const converted = usdAmount * rate;
+    const isJPY = selectedCurrency === "JPY";
+    return converted.toLocaleString(undefined, {
+      minimumFractionDigits: isJPY ? 0 : 2,
+      maximumFractionDigits: isJPY ? 0 : 2,
+    });
+  };
+
+  const sym = CURRENCY_SYMBOLS[selectedCurrency] ?? "$";
+  // ─────────────────────────────────────────────────────────────────────────
+
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
       case "successful":
@@ -287,18 +327,52 @@ export default function Dashboard() {
                       Trading Balance
                     </span>
                   </div>
-                  <span className="text-xs sm:text-sm font-semibold text-slate-400 bg-slate-700/50 dark:bg-slate-600/30 px-2.5 py-1 rounded-md">
-                    {dashboardData.currency}
-                  </span>
+                  {/* Currency dropdown */}
+                  <div className="relative">
+                    <button
+                      onClick={() => setCurrencyDropdownOpen((o) => !o)}
+                      className="flex items-center gap-1 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white bg-slate-700/60 hover:bg-slate-600/80 border border-slate-600/60 hover:border-slate-500 px-2.5 py-1.5 rounded-lg transition-all cursor-pointer"
+                    >
+                      {selectedCurrency}
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform duration-200 ${currencyDropdownOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+
+                    {currencyDropdownOpen && (
+                      <>
+                        {/* Backdrop to close on outside click */}
+                        <div
+                          className="fixed inset-0 z-10"
+                          onClick={() => setCurrencyDropdownOpen(false)}
+                        />
+                        <div className="absolute right-0 top-full mt-1.5 z-20 bg-slate-800 border border-slate-600/60 rounded-lg shadow-xl overflow-hidden min-w-[90px]">
+                          {CURRENCIES.map((currency) => (
+                            <button
+                              key={currency}
+                              onClick={() => {
+                                setSelectedCurrency(currency);
+                                setCurrencyDropdownOpen(false);
+                              }}
+                              className={`w-full flex items-center justify-between px-3 py-2 text-xs font-semibold transition-colors ${
+                                selectedCurrency === currency
+                                  ? "bg-emerald-700/40 text-emerald-300"
+                                  : "text-slate-300 hover:bg-slate-700 hover:text-white"
+                              }`}
+                            >
+                              <span>{currency}</span>
+                              <span className="text-slate-400 text-[11px]">{CURRENCY_SYMBOLS[currency]}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
 
                 {/* Large balance number */}
                 <p className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-                  $
-                  {dashboardData.balance.toLocaleString(undefined, {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                  })}
+                  {sym}{convertUSD(dashboardData.balance)}
                 </p>
 
                 {/* Profit / loss indicator row */}
@@ -309,11 +383,8 @@ export default function Dashboard() {
                       : <TrendingDown className="w-3.5 h-3.5 shrink-0" />
                     }
                     <span className="text-sm font-bold font-mono">
-                      {dashboardData.profit >= 0 ? "+" : ""}
-                      {dashboardData.profit.toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })}
+                      {dashboardData.profit >= 0 ? "+" : "-"}
+                      {sym}{convertUSD(Math.abs(dashboardData.profit))}
                     </span>
                   </div>
                   {dashboardData.total_deposits > 0 && (
@@ -337,11 +408,7 @@ export default function Dashboard() {
                         Profit
                       </p>
                       <p className="text-sm font-semibold text-white font-mono">
-                        $
-                        {dashboardData.profit.toLocaleString(undefined, {
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
-                        })}
+                        {dashboardData.profit < 0 ? "-" : ""}{sym}{convertUSD(Math.abs(dashboardData.profit))}
                       </p>
                     </div>
                     <div className="px-4 py-3 border-l border-white/10">
@@ -349,11 +416,7 @@ export default function Dashboard() {
                         Deposited
                       </p>
                       <p className="text-sm font-semibold text-white font-mono">
-                        $
-                        {dashboardData.total_deposits.toLocaleString(undefined, {
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
-                        })}
+                        {sym}{convertUSD(dashboardData.balance)}
                       </p>
                     </div>
                   </div>
@@ -364,11 +427,7 @@ export default function Dashboard() {
                       Total Balance
                     </p>
                     <p className="text-sm font-semibold text-white font-mono">
-                      $
-                      {(dashboardData.balance + dashboardData.profit).toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })}
+                      {sym}{convertUSD(dashboardData.balance + dashboardData.profit)}
                     </p>
                   </div>
                 </div>

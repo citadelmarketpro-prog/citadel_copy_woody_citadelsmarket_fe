@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -14,23 +14,26 @@ import { BACKEND_URL } from "@/lib/constants";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { PulseLoader } from "react-spinners";
+import { useTranslations } from "next-intl";
+import AuthLangSwitcher from "@/components/auth/LangSwitcher";
 
 type FormValues = {
   email: string;
   password: string;
 };
 
-const loginSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
-});
-
 export default function LoginPage() {
+  const t = useTranslations("auth");
   const [showPassword, setShowPassword] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(false);
   const { theme, setTheme } = useTheme();
   const router = useRouter();
+
+  const loginSchema = z.object({
+    email: z.string().email(t("common.invalidEmail")),
+    password: z.string().min(6, t("common.passwordMin")),
+  });
 
   const {
     register,
@@ -59,28 +62,25 @@ export default function LoginPage() {
       const result = await response.json();
 
       if (!response.ok) {
-        const backendError =
-          result?.error || "Something went wrong. Please try again.";
+        const backendError = result?.error || t("common.somethingWrong");
         toast.error(backendError);
         return;
       }
 
-      // ✅ Check ONLY for 2FA (no email verification)
       if (result?.requires_2fa) {
-        toast.info("2FA code sent to your email");
+        toast.info(t("login.twoFaCodeSent"));
         setTimeout(() => {
           router.push(`/verify-2fa?email=${encodeURIComponent(data.email)}`);
         }, 1500);
         return;
       }
 
-      // ✅ Normal login - redirect to portfolio
       localStorage.setItem("authToken", result.token);
-      toast.success("✅ Login successful");
+      toast.success(`✅ ${t("login.loginSuccess")}`);
       router.push("/portfolio");
     } catch (error) {
       console.error(error);
-      toast.error("Network error. Please try again.");
+      toast.error(t("common.networkError"));
     } finally {
       setLoading(false);
     }
@@ -122,7 +122,7 @@ export default function LoginPage() {
               <Link href={"/"}>
                 <ArrowLeft />
               </Link>
-              Login
+              {t("login.title")}
             </h1>
 
             {/* Theme toggle */}
@@ -141,7 +141,7 @@ export default function LoginPage() {
           </div>
           <div className="">
             <p className="text-gray-400 dark:text-gray-800">
-              Welcome back. Please login to access your account.
+              {t("login.subtitle")}
             </p>
           </div>
 
@@ -167,7 +167,7 @@ export default function LoginPage() {
                     : "peer-focus:text-xs peer-focus:top-1 top-3"
                 }`}
               >
-                Email
+                {t("common.email")}
               </label>
               {errors.email && (
                 <p className="text-red-500 text-sm mt-1">
@@ -197,7 +197,7 @@ export default function LoginPage() {
                     : "peer-focus:text-xs peer-focus:top-1 top-3"
                 }`}
               >
-                Password
+                {t("common.password")}
               </label>
               <button
                 type="button"
@@ -218,7 +218,7 @@ export default function LoginPage() {
                 href="/forgot-password"
                 className="text-sm text-emerald-500 hover:underline"
               >
-                Forgot password?
+                {t("login.forgotPassword")}
               </Link>
             </div>
 
@@ -228,16 +228,16 @@ export default function LoginPage() {
               className="w-full py-6 bg-emerald-700 hover:bg-emerald-600 text-white rounded-md"
             >
               {!loading ? (
-                <span>Login</span>
+                <span>{t("login.title")}</span>
               ) : (
                 <PulseLoader color="#fff" size={15} />
               )}
             </Button>
 
             <p className="text-center text-sm">
-              Don&apos;t have an account?{" "}
+              {t("login.noAccount")}{" "}
               <a href="/register" className="text-emerald-500 hover:underline">
-                Create an account
+                {t("login.createAccount")}
               </a>
             </p>
           </form>
@@ -276,17 +276,19 @@ export default function LoginPage() {
                 className="text-emerald-500 hover:underline"
                 href={"/privacy-policy"}
               >
-                Privacy Policy
+                {t("common.privacyPolicy")}
               </Link>
               <Link
                 className="text-emerald-500 hover:underline"
                 href={"/terms-and-condition"}
               >
-                Terms of service
+                {t("common.termsOfService")}
               </Link>
             </div>
             {/* Google Translate will be here */}
           </div>
+
+          <AuthLangSwitcher />
         </motion.div>
       </div>
 
@@ -299,13 +301,13 @@ export default function LoginPage() {
           className="relative w-full max-w-md flex flex-col items-center text-center text-white space-y-6"
         >
           <h2 className="text-2xl font-semibold">
-            Trusted by millions of traders worldwide
+            {t("login.rightPanelTitle")}
           </h2>
 
           {/* Full image */}
           <div className="relative w-full aspect-square overflow-hidden">
             <Image
-              src="/images/trusted.webp" // rename your uploaded image to this or update path accordingly
+              src="/images/trusted.webp"
               alt="Trustpilot and Awards Section"
               width={825}
               height={770}

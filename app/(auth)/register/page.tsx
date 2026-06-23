@@ -15,6 +15,8 @@ import { PulseLoader } from "react-spinners";
 import { BACKEND_URL } from "@/lib/constants";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useTranslations } from "next-intl";
+import AuthLangSwitcher from "@/components/auth/LangSwitcher";
 
 // ----------------------
 // Dial code map (ISO2 → calling code)
@@ -71,30 +73,10 @@ interface CountryOption {
 }
 
 // ----------------------
-// Validation Schema
-// ----------------------
-const registerSchema = z.object({
-  firstName: z.string({ required_error: "First name is required" }).min(1, "First name is required"),
-  lastName: z.string({ required_error: "Last name is required" }).min(1, "Last name is required"),
-  email: z.string({ required_error: "Email is required" }).email("Enter a valid email address"),
-  phone: z
-    .string({ required_error: "Phone number is required" })
-    .min(4, "Enter a valid phone number"),
-  password: z
-    .string({ required_error: "Password is required" })
-    .min(6, "Password must be at least 6 characters"),
-  agreeToTerms: z.any().refine((val) => val === true, {
-    message: "You must agree to the Terms and Conditions to continue",
-  }),
-  referralCode: z.string().optional(),
-});
-
-type RegisterFormData = z.infer<typeof registerSchema>;
-
-// ----------------------
 // Main Component wrapped in Suspense
 // ----------------------
 function RegisterPageContent() {
+  const t = useTranslations("auth");
   const [showPassword, setShowPassword] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -113,6 +95,23 @@ function RegisterPageContent() {
   const { theme, setTheme } = useTheme();
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  // ----------------------
+  // Validation Schema (inside component to use t())
+  // ----------------------
+  const registerSchema = z.object({
+    firstName: z.string().min(1, t("register.firstNameRequired")),
+    lastName: z.string().min(1, t("register.lastNameRequired")),
+    email: z.string().min(1, t("register.emailRequired")).email(t("common.invalidEmail")),
+    phone: z.string().min(4, t("register.phoneInvalid")),
+    password: z.string().min(6, t("common.passwordMin")),
+    agreeToTerms: z.any().refine((val) => val === true, {
+      message: t("register.agreeRequired"),
+    }),
+    referralCode: z.string().optional(),
+  });
+
+  type RegisterFormData = z.infer<typeof registerSchema>;
 
   const {
     register,
@@ -254,7 +253,7 @@ function RegisterPageContent() {
       const result = await res.json();
 
       if (!res.ok) {
-        let errorMessage = "Registration failed. Please try again.";
+        let errorMessage = t("register.registrationFailed");
         if (result?.error) {
           errorMessage = Array.isArray(result.error)
             ? result.error.join(" ")
@@ -273,7 +272,7 @@ function RegisterPageContent() {
       }
       setTimeout(() => router.push("/onboarding"), 1500);
     } catch (error: unknown) {
-      setMessage(`❌ ${error instanceof Error ? error.message : "Something went wrong."}`);
+      setMessage(`❌ ${error instanceof Error ? error.message : t("common.somethingWrong")}`);
     } finally {
       setLoading(false);
     }
@@ -321,8 +320,12 @@ function RegisterPageContent() {
                   <Gift className="w-5 h-5 text-emerald-600" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-700">🎉 Referred by {referrerName}!</p>
-                  <p className="text-xs text-emerald-700 dark:text-emerald-600">You&apos;ll get special bonuses when you join</p>
+                  <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-700">
+                    🎉 {t("register.referredBy", { name: referrerName })}
+                  </p>
+                  <p className="text-xs text-emerald-700 dark:text-emerald-600">
+                    {t("register.referralBonus")}
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -332,15 +335,15 @@ function RegisterPageContent() {
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
               className="bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/30 rounded-lg p-4"
             >
-              <p className="text-sm text-red-700 dark:text-red-600">❌ Invalid referral code</p>
+              <p className="text-sm text-red-700 dark:text-red-600">❌ {t("register.invalidReferral")}</p>
             </motion.div>
           )}
 
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold">Let&apos;s Get Started In Less Than A Minute.</h1>
+            <h1 className="text-2xl md:text-3xl font-bold">{t("register.title")}</h1>
             <p className="text-left text-sm mt-4">
-              Already have an account?{" "}
-              <Link href="/login" className="uppercase text-emerald-500 hover:underline">Log In</Link>
+              {t("register.alreadyHaveAccount")}{" "}
+              <Link href="/login" className="uppercase text-emerald-500 hover:underline">{t("register.logIn")}</Link>
             </p>
           </div>
 
@@ -356,7 +359,7 @@ function RegisterPageContent() {
                 />
                 <label htmlFor="firstName"
                   className={`absolute left-3 text-gray-400 dark:text-gray-500 transition-all pointer-events-none ${watchedValues.firstName ? "text-xs top-1" : "peer-focus:text-xs peer-focus:top-1 top-3"}`}
-                >First Name</label>
+                >{t("register.firstName")}</label>
                 {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName.message as string}</p>}
               </div>
               <div className="relative flex-1">
@@ -367,7 +370,7 @@ function RegisterPageContent() {
                 />
                 <label htmlFor="lastName"
                   className={`absolute left-3 text-gray-400 dark:text-gray-500 transition-all pointer-events-none ${watchedValues.lastName ? "text-xs top-1" : "peer-focus:text-xs peer-focus:top-1 top-3"}`}
-                >Last Name</label>
+                >{t("register.lastName")}</label>
                 {errors.lastName && <p className="text-red-500 text-sm mt-1">{errors.lastName.message as string}</p>}
               </div>
             </div>
@@ -381,7 +384,7 @@ function RegisterPageContent() {
               />
               <label htmlFor="email"
                 className={`absolute left-3 text-gray-400 dark:text-gray-500 transition-all pointer-events-none ${watchedValues.email ? "text-xs top-1" : "peer-focus:text-xs peer-focus:top-1 top-3"}`}
-              >Email</label>
+              >{t("common.email")}</label>
               {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message as string}</p>}
             </div>
 
@@ -408,7 +411,7 @@ function RegisterPageContent() {
                     setPhoneNumber(val);
                     setValue("phone", val, { shouldValidate: true });
                   }}
-                  placeholder="Phone number"
+                  placeholder={t("register.phonePlaceholder")}
                   className="flex-1 px-3 py-3 bg-transparent text-sm focus:outline-none placeholder-gray-500 dark:placeholder-gray-400 text-white dark:text-black"
                 />
               </div>
@@ -422,7 +425,7 @@ function RegisterPageContent() {
                       type="text"
                       value={phoneSearch}
                       onChange={(e) => setPhoneSearch(e.target.value)}
-                      placeholder="Search country or code…"
+                      placeholder={t("register.searchCountry")}
                       className="w-full px-3 py-1.5 rounded-md bg-white/10 dark:bg-gray-100 text-sm text-white dark:text-black placeholder-gray-500 focus:outline-none"
                       autoFocus
                     />
@@ -456,7 +459,7 @@ function RegisterPageContent() {
                       );
                     })}
                     {filteredPhoneCountries.length === 0 && (
-                      <p className="px-4 py-3 text-sm text-gray-500">No results</p>
+                      <p className="px-4 py-3 text-sm text-gray-500">{t("register.noResults")}</p>
                     )}
                   </div>
                 </div>
@@ -477,7 +480,7 @@ function RegisterPageContent() {
               />
               <label htmlFor="password"
                 className={`absolute left-3 text-gray-400 dark:text-gray-500 transition-all pointer-events-none ${watchedValues.password ? "text-xs top-1" : "peer-focus:text-xs peer-focus:top-1 top-3"}`}
-              >Password</label>
+              >{t("common.password")}</label>
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
@@ -492,7 +495,7 @@ function RegisterPageContent() {
 
             {/* Submit */}
             <Button type="submit" disabled={loading} className="w-full bg-emerald-700 hover:bg-emerald-600 text-white py-6 rounded-md">
-              {!loading ? <span>Create Account</span> : <PulseLoader color="#fff" size={15} />}
+              {!loading ? <span>{t("register.createAccount")}</span> : <PulseLoader color="#fff" size={15} />}
             </Button>
 
             <div className="space-y-1">
@@ -510,14 +513,14 @@ function RegisterPageContent() {
                   )}
                 />
                 <label htmlFor="terms" className="cursor-pointer leading-snug">
-                  By signing up you agree to{" "}
-                  <Link href="/terms-and-condition" className="text-emerald-500 hover:underline">Terms and Condition</Link>{" "}
+                  {t("register.agreeText")}{" "}
+                  <Link href="/terms-and-condition" className="text-emerald-500 hover:underline">{t("register.termsLink")}</Link>{" "}
                   &{" "}
-                  <Link href="/privacy-policy" className="text-emerald-500 hover:underline">Privacy Policy</Link>
+                  <Link href="/privacy-policy" className="text-emerald-500 hover:underline">{t("register.privacyLink")}</Link>
                 </label>
               </div>
               {errors.agreeToTerms && (
-                <p className="text-red-500 text-xs pl-6">{errors.agreeToTerms.message}</p>
+                <p className="text-red-500 text-xs pl-6">{errors.agreeToTerms.message as string}</p>
               )}
             </div>
 
@@ -527,6 +530,8 @@ function RegisterPageContent() {
               </p>
             )}
           </form>
+
+          <AuthLangSwitcher />
         </motion.div>
       </div>
 
@@ -538,7 +543,7 @@ function RegisterPageContent() {
           transition={{ duration: 0.8 }}
           className="relative w-full max-w-md flex flex-col items-center text-center text-white space-y-6"
         >
-          <h2 className="text-2xl font-semibold">Join millions of traders worldwide</h2>
+          <h2 className="text-2xl font-semibold">{t("register.rightPanelTitle")}</h2>
           <div className="relative w-full aspect-square overflow-hidden">
             <Image src="/images/trusted.webp" alt="Trading Community" width={825} height={770} className="object-cover" />
           </div>
@@ -549,8 +554,9 @@ function RegisterPageContent() {
 }
 
 export default function RegisterPage() {
+  const t = useTranslations("auth");
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">{t("register.loading")}</div>}>
       <RegisterPageContent />
     </Suspense>
   );

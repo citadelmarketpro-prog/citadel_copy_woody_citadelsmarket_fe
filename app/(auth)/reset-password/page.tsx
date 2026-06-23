@@ -13,22 +13,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { BACKEND_URL } from "@/lib/constants";
 import { toast } from "sonner";
 import { PulseLoader } from "react-spinners";
-
-const resetPasswordSchema = z
-  .object({
-    new_password: z.string().min(6, "Password must be at least 6 characters"),
-    confirm_password: z
-      .string()
-      .min(6, "Password must be at least 6 characters"),
-  })
-  .refine((data) => data.new_password === data.confirm_password, {
-    message: "Passwords do not match",
-    path: ["confirm_password"],
-  });
-
-type ResetPasswordFormData = z.infer<typeof resetPasswordSchema>;
+import { useTranslations } from "next-intl";
+import AuthLangSwitcher from "@/components/auth/LangSwitcher";
 
 function ResetPasswordContent() {
+  const t = useTranslations("auth");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -42,6 +31,18 @@ function ResetPasswordContent() {
 
   const uid = searchParams.get("uid");
   const token = searchParams.get("token");
+
+  const resetPasswordSchema = z
+    .object({
+      new_password: z.string().min(6, t("common.passwordMin")),
+      confirm_password: z.string().min(6, t("common.passwordMin")),
+    })
+    .refine((data) => data.new_password === data.confirm_password, {
+      message: t("resetPassword.passwordsMismatch"),
+      path: ["confirm_password"],
+    });
+
+  type ResetPasswordFormData = z.infer<typeof resetPasswordSchema>;
 
   const {
     register,
@@ -59,7 +60,7 @@ function ResetPasswordContent() {
   useEffect(() => {
     const validateToken = async () => {
       if (!uid || !token) {
-        toast.error("Invalid reset link");
+        toast.error(t("resetPassword.invalidLink"));
         setValidating(false);
         return;
       }
@@ -80,12 +81,12 @@ function ResetPasswordContent() {
           setTokenValid(true);
           setUserEmail(result.user?.email || "");
         } else {
-          toast.error(result.error || "Invalid or expired reset link");
+          toast.error(result.error || t("resetPassword.invalidTitle"));
           setTokenValid(false);
         }
       } catch (error) {
         console.error(error);
-        toast.error("Failed to validate reset link");
+        toast.error(t("resetPassword.failedToValidate"));
         setTokenValid(false);
       } finally {
         setValidating(false);
@@ -97,7 +98,7 @@ function ResetPasswordContent() {
 
   const onSubmit = async (data: ResetPasswordFormData) => {
     if (!uid || !token) {
-      toast.error("Invalid reset link");
+      toast.error(t("resetPassword.invalidLink"));
       return;
     }
 
@@ -126,7 +127,7 @@ function ResetPasswordContent() {
       }
 
       setResetSuccess(true);
-      toast.success("Password reset successful!");
+      toast.success(t("resetPassword.resetSuccess"));
 
       // Redirect to login after 2 seconds
       setTimeout(() => {
@@ -134,7 +135,7 @@ function ResetPasswordContent() {
       }, 2000);
     } catch (error) {
       console.error(error);
-      toast.error("Network error. Please try again.");
+      toast.error(t("common.networkError"));
     } finally {
       setLoading(false);
     }
@@ -147,7 +148,7 @@ function ResetPasswordContent() {
         <div className="text-center">
           <PulseLoader color="#10b981" size={15} />
           <p className="text-gray-400 dark:text-gray-600 mt-4">
-            Validating reset link...
+            {t("resetPassword.validating")}
           </p>
         </div>
       </div>
@@ -168,27 +169,28 @@ function ResetPasswordContent() {
           </div>
 
           <h1 className="text-2xl font-bold text-white dark:text-black">
-            Invalid Reset Link
+            {t("resetPassword.invalidTitle")}
           </h1>
 
           <p className="text-gray-400 dark:text-gray-600">
-            This password reset link is invalid or has expired. Please request a
-            new one.
+            {t("resetPassword.invalidDesc")}
           </p>
 
           <div className="space-y-3">
             <Link href="/forgot-password">
               <Button className="w-full bg-emerald-700 hover:bg-emerald-600 mb-4">
-                Request New Reset Link
+                {t("resetPassword.requestNew")}
               </Button>
             </Link>
 
             <Link href="/login">
               <Button variant="outline" className="w-full">
-                Back to Login
+                {t("common.backToLogin")}
               </Button>
             </Link>
           </div>
+
+          <AuthLangSwitcher />
         </motion.div>
       </div>
     );
@@ -208,21 +210,22 @@ function ResetPasswordContent() {
           </div>
 
           <h1 className="text-2xl font-bold text-white dark:text-black">
-            Password Reset Successful!
+            {t("resetPassword.successTitle")}
           </h1>
 
           <p className="text-gray-400 dark:text-gray-600">
-            Your password has been reset successfully. You can now log in with
-            your new password.
+            {t("resetPassword.successDesc")}
           </p>
 
           <div className="pt-4">
             <Link href="/login">
               <Button className="w-full bg-emerald-700 hover:bg-emerald-600">
-                Continue to Login
+                {t("resetPassword.continueToLogin")}
               </Button>
             </Link>
           </div>
+
+          <AuthLangSwitcher />
         </motion.div>
       </div>
     );
@@ -259,12 +262,12 @@ function ResetPasswordContent() {
 
         <div className="space-y-2">
           <h1 className="text-3xl font-bold text-white dark:text-black">
-            Reset Your Password
+            {t("resetPassword.title")}
           </h1>
 
           {userEmail && (
             <p className="text-sm text-gray-400 dark:text-gray-600">
-              Resetting password for: <strong>{userEmail}</strong>
+              {t("resetPassword.resettingFor", { email: userEmail })}
             </p>
           )}
         </div>
@@ -291,7 +294,7 @@ function ResetPasswordContent() {
                   : "peer-focus:text-xs peer-focus:top-1 top-3"
               }`}
             >
-              New Password
+              {t("resetPassword.newPassword")}
             </label>
             <button
               type="button"
@@ -328,7 +331,7 @@ function ResetPasswordContent() {
                   : "peer-focus:text-xs peer-focus:top-1 top-3"
               }`}
             >
-              Confirm New Password
+              {t("resetPassword.confirmPassword")}
             </label>
             <button
               type="button"
@@ -350,19 +353,21 @@ function ResetPasswordContent() {
             className="w-full py-6 bg-emerald-700 hover:bg-emerald-600 text-white rounded-md"
           >
             {!loading ? (
-              <span>Reset Password</span>
+              <span>{t("resetPassword.resetBtn")}</span>
             ) : (
               <PulseLoader color="#fff" size={15} />
             )}
           </Button>
 
           <p className="text-center text-sm text-gray-400 dark:text-gray-600">
-            Remember your password?{" "}
+            {t("common.rememberPassword")}{" "}
             <Link href="/login" className="text-emerald-500 hover:underline">
-              Sign in
+              {t("common.signIn")}
             </Link>
           </p>
         </form>
+
+        <AuthLangSwitcher />
       </motion.div>
     </div>
   );
