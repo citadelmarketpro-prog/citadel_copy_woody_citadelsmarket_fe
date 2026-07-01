@@ -49,6 +49,7 @@ interface TraderDetail {
   performance_data: Array<{ month: string; value: number }>;
   monthly_performance: Array<{ month: string; percentage: number }>;
   frequently_traded: string[];
+  profit_share: number;
   is_active: boolean;
   created_at: string;
   updated_at: string;
@@ -679,6 +680,14 @@ export default function TraderProfilePage() {
                   </div>
                   <div className="text-slate-400 dark:text-slate-600 text-xs sm:text-sm">
                     Expert Rating ({trader.expert_rating}/5.00)
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl sm:text-2xl font-bold mb-1">
+                    {trader.profit_share ?? 50}%
+                  </div>
+                  <div className="text-slate-400 dark:text-slate-600 text-xs sm:text-sm">
+                    Profit Share
                   </div>
                 </div>
               </div>

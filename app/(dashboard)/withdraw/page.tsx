@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { ChevronDown, AlertCircle, Check, ArrowLeft, Info } from "lucide-react";
+import { ChevronDown, AlertCircle, Check, ArrowLeft, Info, X, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { BACKEND_URL } from "@/lib/constants";
 import DashboardNavbar from "@/components/main/DashboardNavbar";
@@ -52,6 +52,8 @@ export default function WithdrawPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [confirmCancelId, setConfirmCancelId] = useState<number | null>(null);
+  const [cancelling, setCancelling] = useState<number | null>(null);
 
   // Fetch user profile and payment methods on mount
   useEffect(() => {
@@ -243,6 +245,42 @@ export default function WithdrawPage() {
     router.back();
   };
 
+  const handleCancelWithdrawal = async (txId: number) => {
+    setCancelling(txId);
+    try {
+      const token = localStorage.getItem("authToken");
+      if (!token) return;
+      const res = await fetch(`${BACKEND_URL}/withdrawals/${txId}/cancel/`, {
+        method: "POST",
+        headers: { Authorization: `Token ${token}` },
+      });
+      const data = await res.json();
+      if (data.success) {
+        setTransactions((prev) =>
+          prev.map((tx) =>
+            tx.id === txId
+              ? { ...tx, status: "cancelled", status_display: "Cancelled" }
+              : tx
+          )
+        );
+        if (profile && data.new_balance) {
+          setProfile({
+            ...profile,
+            balance: data.new_balance,
+            formatted_balance: data.formatted_new_balance,
+          });
+        }
+      } else {
+        setError(data.error || "Failed to cancel withdrawal.");
+      }
+    } catch {
+      setError("An error occurred. Please try again.");
+    } finally {
+      setCancelling(null);
+      setConfirmCancelId(null);
+    }
+  };
+
   const getDisplayName = (methodType: string): string => {
     return methodType.replace("_ERC20", "").replace("_TRC20", "");
   };
@@ -254,6 +292,8 @@ export default function WithdrawPage() {
         return "bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400";
       case "failed":
         return "bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400";
+      case "cancelled":
+        return "bg-slate-700/60 dark:bg-slate-200 text-slate-400 dark:text-slate-500";
       default:
         return "bg-yellow-100 dark:bg-yellow-500/20 text-yellow-600 dark:text-yellow-400";
     }
@@ -532,38 +572,79 @@ export default function WithdrawPage() {
                       <th className="text-left py-4 px-4 text-sm font-semibold text-slate-400 dark:text-slate-600 uppercase tracking-wider">
                         Status
                       </th>
+                      <th className="text-left py-4 px-4 text-sm font-semibold text-slate-400 dark:text-slate-600 uppercase tracking-wider">
+                        Action
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     {transactions.map((transaction) => (
-                      <tr
-                        key={transaction.id}
-                        className="border-b border-slate-800 dark:border-slate-100 hover:bg-slate-800/50 dark:hover:bg-slate-50 transition-colors"
-                      >
-                        <td className="py-5 px-4 text-sm text-slate-300 dark:text-slate-700 font-medium">
-                          {transaction.reference}
-                        </td>
-                        <td className="py-5 px-4 text-sm text-slate-300 dark:text-slate-700">
-                          {formatDate(transaction.created_at)}
-                        </td>
-                        <td className="py-5 px-4">
-                          <span className="inline-block px-3 py-1 bg-slate-700/40 dark:bg-slate-200 text-slate-200 dark:text-slate-700 rounded-md text-sm font-medium">
-                            {transaction.currency}
-                          </span>
-                        </td>
-                        <td className="py-5 px-4 text-sm font-semibold text-red-400 dark:text-red-600">
-                          -${parseFloat(transaction.amount).toFixed(2)}
-                        </td>
-                        <td className="py-5 px-4">
-                          <span
-                            className={`inline-block px-3 py-1 rounded-md text-sm font-medium ${getStatusColor(
-                              transaction.status
-                            )}`}
-                          >
-                            {transaction.status_display}
-                          </span>
-                        </td>
-                      </tr>
+                      <React.Fragment key={transaction.id}>
+                        <tr className="border-b border-slate-800 dark:border-slate-100 hover:bg-slate-800/50 dark:hover:bg-slate-50 transition-colors">
+                          <td className="py-5 px-4 text-sm text-slate-300 dark:text-slate-700 font-medium">
+                            {transaction.reference}
+                          </td>
+                          <td className="py-5 px-4 text-sm text-slate-300 dark:text-slate-700">
+                            {formatDate(transaction.created_at)}
+                          </td>
+                          <td className="py-5 px-4">
+                            <span className="inline-block px-3 py-1 bg-slate-700/40 dark:bg-slate-200 text-slate-200 dark:text-slate-700 rounded-md text-sm font-medium">
+                              {transaction.currency}
+                            </span>
+                          </td>
+                          <td className="py-5 px-4 text-sm font-semibold text-red-400 dark:text-red-600">
+                            -${parseFloat(transaction.amount).toFixed(2)}
+                          </td>
+                          <td className="py-5 px-4">
+                            <span
+                              className={`inline-block px-3 py-1 rounded-md text-sm font-medium ${getStatusColor(
+                                transaction.status
+                              )}`}
+                            >
+                              {transaction.status_display}
+                            </span>
+                          </td>
+                          <td className="py-5 px-4">
+                            {transaction.status === "pending" && confirmCancelId !== transaction.id && (
+                              <button
+                                onClick={() => setConfirmCancelId(transaction.id)}
+                                className="px-3 py-1.5 text-xs font-medium rounded-md bg-red-900/30 dark:bg-red-50 text-red-400 dark:text-red-600 border border-red-800/50 dark:border-red-200 hover:bg-red-900/50 dark:hover:bg-red-100 transition-colors"
+                              >
+                                Cancel
+                              </button>
+                            )}
+                          </td>
+                        </tr>
+                        {confirmCancelId === transaction.id && (
+                          <tr className="border-b border-slate-800 dark:border-slate-100">
+                            <td colSpan={6} className="px-4 py-3">
+                              <div className="flex items-center justify-between bg-red-950/40 dark:bg-red-50 border border-red-800/60 dark:border-red-200 rounded-lg px-4 py-3">
+                                <p className="text-sm text-red-300 dark:text-red-700 font-medium">
+                                  Cancel ${parseFloat(transaction.amount).toFixed(2)} withdrawal? Amount will be refunded to your balance.
+                                </p>
+                                <div className="flex items-center gap-2 ml-4 flex-shrink-0">
+                                  <button
+                                    onClick={() => handleCancelWithdrawal(transaction.id)}
+                                    disabled={cancelling === transaction.id}
+                                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-md bg-red-600 hover:bg-red-700 text-white transition-colors disabled:opacity-60"
+                                  >
+                                    {cancelling === transaction.id ? (
+                                      <Loader2 className="w-3 h-3 animate-spin" />
+                                    ) : null}
+                                    Yes, cancel
+                                  </button>
+                                  <button
+                                    onClick={() => setConfirmCancelId(null)}
+                                    className="p-1.5 rounded-md text-slate-400 dark:text-slate-500 hover:bg-slate-700/50 dark:hover:bg-slate-200 transition-colors"
+                                  >
+                                    <X className="w-4 h-4" />
+                                  </button>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                      </React.Fragment>
                     ))}
                   </tbody>
                 </table>
@@ -621,6 +702,43 @@ export default function WithdrawPage() {
                         </p>
                       </div>
                     </div>
+
+                    {transaction.status === "pending" && (
+                      <div className="pt-2 border-t border-slate-700/20 dark:border-slate-200">
+                        {confirmCancelId === transaction.id ? (
+                          <div className="bg-red-950/40 dark:bg-red-50 border border-red-800/60 dark:border-red-200 rounded-lg px-3 py-3">
+                            <p className="text-xs text-red-300 dark:text-red-700 font-medium mb-3">
+                              Cancel ${parseFloat(transaction.amount).toFixed(2)} withdrawal? Amount will be refunded.
+                            </p>
+                            <div className="flex gap-2">
+                              <button
+                                onClick={() => handleCancelWithdrawal(transaction.id)}
+                                disabled={cancelling === transaction.id}
+                                className="flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-md bg-red-600 hover:bg-red-700 text-white transition-colors disabled:opacity-60"
+                              >
+                                {cancelling === transaction.id ? (
+                                  <Loader2 className="w-3 h-3 animate-spin" />
+                                ) : null}
+                                Yes, cancel
+                              </button>
+                              <button
+                                onClick={() => setConfirmCancelId(null)}
+                                className="flex-1 py-2 text-xs font-medium rounded-md bg-slate-700/50 dark:bg-slate-200 text-slate-300 dark:text-slate-600 hover:bg-slate-700 dark:hover:bg-slate-300 transition-colors"
+                              >
+                                Keep it
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => setConfirmCancelId(transaction.id)}
+                            className="w-full py-2 text-xs font-medium rounded-md bg-red-900/30 dark:bg-red-50 text-red-400 dark:text-red-600 border border-red-800/50 dark:border-red-200 hover:bg-red-900/50 dark:hover:bg-red-100 transition-colors"
+                          >
+                            Cancel Withdrawal
+                          </button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
