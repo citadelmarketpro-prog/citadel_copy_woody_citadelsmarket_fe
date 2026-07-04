@@ -59,6 +59,7 @@ export default function SiteFooter() {
         { label: t("systemStatus"), href: "/system-status" },
         { label: t("latestNews"), href: "/trade-news" },
         { label: t("referFriend"), href: "/refer-a-friend" },
+        { label: "FAQ", href: "/faq" },
       ],
     },
     {
