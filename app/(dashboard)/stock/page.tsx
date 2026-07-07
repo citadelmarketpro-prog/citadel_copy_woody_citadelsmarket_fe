@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import DashboardNavbar from "@/components/main/DashboardNavbar";
 import { Search, TrendingUp, TrendingDown, Loader2 } from "lucide-react";
@@ -20,7 +19,6 @@ interface Stock {
 }
 
 export default function StockListPage() {
-  const router = useRouter();
   const [stocks, setStocks] = useState<Stock[]>([]);
   const [filteredStocks, setFilteredStocks] = useState<Stock[]>([]);
   const [loading, setLoading] = useState(true);
@@ -71,10 +69,6 @@ export default function StockListPage() {
     }
   }, [searchQuery, stocks]);
 
-  const handleStockClick = (symbol: string) => {
-    router.push(`/stock/${symbol}`);
-  };
-
   return (
     <div className="min-h-screen bg-[#1a1f2e] dark:bg-gray-50 transition-colors pt-20">
       <DashboardNavbar />
@@ -86,7 +80,7 @@ export default function StockListPage() {
             Stock Market
           </h1>
           <p className="text-gray-400 dark:text-gray-600">
-            Trade stocks with real-time market data
+            Live stock market prices
           </p>
         </div>
 
@@ -142,8 +136,7 @@ export default function StockListPage() {
             {filteredStocks.map((stock) => (
               <div
                 key={stock.id}
-                onClick={() => handleStockClick(stock.symbol)}
-                className="bg-[#151922] dark:bg-white p-6 rounded-lg border-2 border-gray-800 dark:border-gray-200 hover:border-green-500 transition-all cursor-pointer"
+                className="bg-[#151922] dark:bg-white p-6 rounded-lg border-2 border-gray-800 dark:border-gray-200 transition-all"
               >
                 {/* Stock Header */}
                 <div className="flex items-center gap-3 mb-4">
