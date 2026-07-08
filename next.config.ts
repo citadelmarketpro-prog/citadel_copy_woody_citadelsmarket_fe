@@ -35,6 +35,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "logo.clearbit.com",
       },
+      {
+        protocol: "https",
+        hostname: "financialmodelingprep.com",
+        pathname: "/image-stock/**",
+      },
     ],
   },
 };
