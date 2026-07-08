@@ -113,7 +113,7 @@ const DashboardSidebar = () => {
     // },
     {
       id: "trade",
-      label: "Trade Stocks",
+      label: "Assets",
       href: "/stock",
     },
     // {

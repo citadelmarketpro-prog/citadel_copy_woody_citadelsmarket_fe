@@ -83,6 +83,7 @@ export default function StockDetailPage() {
   const [stock, setStock] = useState<StockDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     if (!symbol) return;
@@ -136,14 +137,21 @@ export default function StockDetailPage() {
             {/* Hero */}
             <div className="bg-[#151922] dark:bg-white rounded-xl border border-gray-800 dark:border-gray-200 p-6">
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                <div className="w-16 h-16 relative rounded-full overflow-hidden bg-white flex-shrink-0 border border-gray-200">
-                  <Image
-                    src={stock.logo_url}
-                    alt={stock.name}
-                    fill
-                    className="object-contain p-1.5"
-                    unoptimized
-                  />
+                <div className="w-16 h-16 relative rounded-full overflow-hidden bg-gray-800 dark:bg-gray-100 flex-shrink-0">
+                  {stock.logo_url && !imgError ? (
+                    <Image
+                      src={stock.logo_url}
+                      alt={stock.name}
+                      fill
+                      className="object-contain p-1.5"
+                      unoptimized
+                      onError={() => setImgError(true)}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-gray-300 dark:text-gray-600 font-bold text-sm">
+                      {stock.symbol.slice(0, 3)}
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex-1 min-w-0">

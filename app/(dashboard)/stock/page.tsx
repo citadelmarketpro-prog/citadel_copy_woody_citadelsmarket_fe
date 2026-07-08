@@ -19,7 +19,7 @@ interface Stock {
   is_featured: boolean;
 }
 
-type Tab = "all" | "stock" | "crypto" | "etf" | "indices" | "forex";
+type Tab = "all" | "stock" | "crypto" | "etf" | "indices";
 
 const TABS: { key: Tab; label: string }[] = [
   { key: "all",     label: "All" },
@@ -27,7 +27,6 @@ const TABS: { key: Tab; label: string }[] = [
   { key: "crypto",  label: "Crypto" },
   { key: "etf",     label: "ETF" },
   { key: "indices", label: "Indices" },
-  { key: "forex",   label: "Forex" },
 ];
 
 const PAGE_SIZE = 12;
@@ -39,6 +38,10 @@ export default function StockListPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState<Tab>("all");
   const [page, setPage] = useState(1);
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+
+  const markImgFailed = (sym: string) =>
+    setFailedImages((prev) => new Set(prev).add(sym));
 
   useEffect(() => {
     fetchStocks();
@@ -156,18 +159,19 @@ export default function StockListPage() {
                 className="bg-[#151922] dark:bg-white p-5 rounded-lg border border-gray-800 dark:border-gray-200 hover:border-green-500/50 dark:hover:border-green-500/50 transition-all cursor-pointer"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-11 h-11 relative rounded-full overflow-hidden bg-white flex-shrink-0">
-                    {stock.logo_url ? (
+                  <div className="w-11 h-11 relative rounded-full overflow-hidden bg-gray-800 dark:bg-gray-100 flex-shrink-0">
+                    {stock.logo_url && !failedImages.has(stock.symbol) ? (
                       <Image
                         src={stock.logo_url}
                         alt={stock.name}
                         fill
                         className="object-contain p-1"
                         unoptimized
+                        onError={() => markImgFailed(stock.symbol)}
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-600 font-bold text-sm">
-                        {stock.symbol.charAt(0)}
+                      <div className="w-full h-full flex items-center justify-center text-gray-300 dark:text-gray-600 font-bold text-xs">
+                        {stock.symbol.slice(0, 3)}
                       </div>
                     )}
                   </div>
