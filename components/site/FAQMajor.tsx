@@ -168,7 +168,7 @@ const categories: FAQCategory[] = [
       {
         question: "What is the minimum deposit amount?",
         content: [
-          { type: "text", content: "You can start trading with a small amount. The minimum deposit is 1000 US dollars." },
+          { type: "text", content: "You can start trading with a small amount. The minimum deposit is 5000 US dollars." },
         ],
       },
       {
@@ -203,8 +203,10 @@ const categories: FAQCategory[] = [
               "Select a deposit method",
               "Choose the deposit currency",
               "Enter the amount",
-              "Fill in the payment details",
-              "Confirm and make the payment",
+              "Copy your unique deposit address for the asset",
+              "Initiate the transfer from your exchange or wallet",
+              "Upload your receipt",
+              "Confirm your deposit",
             ],
           },
         ],
@@ -254,7 +256,7 @@ const categories: FAQCategory[] = [
       {
         question: "How long does the verification process take?",
         content: [
-          { type: "text", content: "The verification process takes up to 5 business days after you submit the required documents." },
+          { type: "text", content: "The verification process takes up to 5 minutes to 12 hours after you submit the required documents." },
         ],
       },
       {
