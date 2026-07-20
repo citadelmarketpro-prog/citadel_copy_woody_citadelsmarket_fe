@@ -395,6 +395,11 @@ export default function TradingDashboardPage() {
     null,
   );
 
+  // Static "investment" figure shown on every card — mirrors the Trading
+  // Balance / Deposited amount on the /portfolio Balance Overview card,
+  // rather than per-trade allocation.
+  const [tradingBalance, setTradingBalance] = useState(0);
+
   useEffect(() => {
     fetchAllData();
   }, []);
@@ -405,8 +410,24 @@ export default function TradingDashboardPage() {
 
   const fetchAllData = async () => {
     setLoading(true);
-    await Promise.all([fetchPositions(), fetchCopyTrades()]);
+    await Promise.all([fetchPositions(), fetchCopyTrades(), fetchTradingBalance()]);
     setLoading(false);
+  };
+
+  const fetchTradingBalance = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+      if (!token) return;
+      const res = await fetch(`${BACKEND_URL}/dashboard/`, {
+        headers: { Authorization: `Token ${token}` },
+      });
+      const data = await res.json();
+      if (typeof data.balance === "number") {
+        setTradingBalance(data.balance);
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const handleRefresh = async () => {
@@ -672,7 +693,8 @@ export default function TradingDashboardPage() {
                   const userPL = parseFloat(trade.user_profit_loss);
                   const plPercent = parseFloat(trade.profit_loss_percent);
                   const isProfitable = userPL >= 0;
-                  const userInvestment = parseFloat(trade.user_amount_invested);
+                  // Static — mirrors the /portfolio Balance Overview trading balance
+                  const userInvestment = tradingBalance;
 
                   return (
                     <div
@@ -835,7 +857,6 @@ export default function TradingDashboardPage() {
                         <div className="mt-4 flex items-center justify-between">
                           <button
                             className="text-xs sm:text-sm text-slate-400 hover:text-white dark:hover:text-slate-900 transition-colors"
-                            onClick={(e) => e.stopPropagation()}
                           >
                             {expandedCopyTrade === trade.id ? (
                               <div className="flex items-center gap-1">
@@ -878,7 +899,7 @@ export default function TradingDashboardPage() {
                               </div>
                               <div className="text-sm font-semibold">
                                 $
-                                {parseFloat(trade.amount).toLocaleString(
+                                {tradingBalance.toLocaleString(
                                   undefined,
                                   {
                                     minimumFractionDigits: 2,
