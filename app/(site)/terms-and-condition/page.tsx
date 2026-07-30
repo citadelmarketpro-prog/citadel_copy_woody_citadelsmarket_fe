@@ -104,7 +104,7 @@ export default async function TermsAndConditionPage() {
 
           <FadeUp>
             <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">4. Performance Fees</h2>
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">4.1 Net Profit Basis</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">Net Profit Basis</h3>
             <p className="text-gray-700 leading-relaxed">
               Performance fees shall be calculated exclusively on net realized profits. Realized
               losses shall offset future realized profits before any performance fee becomes
@@ -115,7 +115,7 @@ export default async function TermsAndConditionPage() {
 
           <FadeUp>
             <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">5. Loss Protection Policy</h2>
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">5.1 Weekly Loss Threshold</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">Weekly Loss Threshold</h3>
             <p className="text-gray-700 leading-relaxed mb-4">
               Where an eligible mirrored account incurs realized losses exceeding 10% of its
               opening weekly account balance, the Strategy Provider shall reimburse the qualifying
@@ -131,7 +131,7 @@ export default async function TermsAndConditionPage() {
               <li className="leading-relaxed">whether only realized losses count,</li>
               <li className="leading-relaxed">exclusions (e.g., manual trades or client interference),</li>
               <li className="leading-relaxed">calculation methodology,</li>
-              <li className="leading-relaxed">reimbursement timing,</li>
+              <li className="leading-relaxed">reimbursement timing.</li>
             </ul>
           </FadeUp>
 
