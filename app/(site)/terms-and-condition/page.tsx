@@ -45,7 +45,7 @@ export default async function TermsAndConditionPage() {
           <FadeUp>
             <p className="text-sm text-gray-400 mb-10">Last Updated: November 2024</p>
 
-            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Acceptance of Terms</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">1. Acceptance of Terms</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               By accessing and using Citadels Market services, you acknowledge that you have
               read, understood, and agree to be bound by these Terms &amp; Conditions and all
@@ -60,7 +60,7 @@ export default async function TermsAndConditionPage() {
 
           <FadeUp>
             <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">
-              Account Registration and Security
+              2. Account Registration and Security
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               To use our services, you must create an account and provide accurate, complete, and
@@ -89,7 +89,7 @@ export default async function TermsAndConditionPage() {
           </FadeUp>
 
           <FadeUp>
-            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Trading Services</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">3. Trading Services</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               Citadels Market provides access to financial trading services including, but not
               limited to, equities, options, and futures contracts. All trading activities are
@@ -103,7 +103,40 @@ export default async function TermsAndConditionPage() {
           </FadeUp>
 
           <FadeUp>
-            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Risk Disclosure</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">4. Performance Fees</h2>
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">4.1 Net Profit Basis</h3>
+            <p className="text-gray-700 leading-relaxed">
+              Performance fees shall be calculated exclusively on net realized profits. Realized
+              losses shall offset future realized profits before any performance fee becomes
+              payable. No performance fee shall accrue while the account remains at a cumulative
+              net loss.
+            </p>
+          </FadeUp>
+
+          <FadeUp>
+            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">5. Loss Protection Policy</h2>
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">5.1 Weekly Loss Threshold</h3>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Where an eligible mirrored account incurs realized losses exceeding 10% of its
+              opening weekly account balance, the Strategy Provider shall reimburse the qualifying
+              realized loss amount from the designated master account, subject to the eligibility
+              requirements and procedures set out in this Agreement.
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              In professionally drafted agreements, a reimbursement clause would almost always be
+              accompanied by additional provisions defining:
+            </p>
+            <ul className="space-y-3 ml-6 list-disc text-gray-700">
+              <li className="leading-relaxed">eligibility requirements,</li>
+              <li className="leading-relaxed">whether only realized losses count,</li>
+              <li className="leading-relaxed">exclusions (e.g., manual trades or client interference),</li>
+              <li className="leading-relaxed">calculation methodology,</li>
+              <li className="leading-relaxed">reimbursement timing,</li>
+            </ul>
+          </FadeUp>
+
+          <FadeUp>
+            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">6. Risk Disclosure</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               Trading in financial instruments carries a high level of risk and may not be suitable
               for all investors. The high degree of leverage that is often obtainable in trading can
@@ -119,7 +152,7 @@ export default async function TermsAndConditionPage() {
           </FadeUp>
 
           <FadeUp>
-            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Prohibited Activities</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">7. Prohibited Activities</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               You agree not to engage in any of the following prohibited activities:
             </p>
@@ -134,7 +167,7 @@ export default async function TermsAndConditionPage() {
           </FadeUp>
 
           <FadeUp>
-            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Intellectual Property</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">8. Intellectual Property</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               All content, features, and functionality of our platform — including but not limited to
               text, graphics, logos, icons, images, software, and data compilations — are the
@@ -148,7 +181,7 @@ export default async function TermsAndConditionPage() {
           </FadeUp>
 
           <FadeUp>
-            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Limitation of Liability</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">9. Limitation of Liability</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               To the fullest extent permitted by applicable law, Citadels Market shall not be
               liable for any indirect, incidental, special, consequential, or punitive damages, or
@@ -164,7 +197,7 @@ export default async function TermsAndConditionPage() {
           </FadeUp>
 
           <FadeUp>
-            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Termination</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">10. Termination</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               We may terminate or suspend your account and access to our services immediately,
               without prior notice or liability, for any reason, including but not limited to breach
@@ -178,7 +211,7 @@ export default async function TermsAndConditionPage() {
           </FadeUp>
 
           <FadeUp>
-            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Modifications to Terms</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">11. Modifications to Terms</h2>
             <p className="text-gray-700 leading-relaxed">
               Citadels Market reserves the right to modify or replace these Terms &amp;
               Conditions at any time at our sole discretion. We will provide notice of any material
@@ -189,7 +222,7 @@ export default async function TermsAndConditionPage() {
           </FadeUp>
 
           <FadeUp>
-            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Governing Law</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">12. Governing Law</h2>
             <p className="text-gray-700 leading-relaxed">
               These Terms &amp; Conditions shall be governed by and construed in accordance with
               applicable international financial regulations and the laws of the jurisdiction in
