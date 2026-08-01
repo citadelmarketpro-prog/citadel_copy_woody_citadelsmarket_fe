@@ -115,115 +115,6 @@ export default function NotificationsPage() {
     });
   };
 
-  const getNotificationIcon = (type: string) => {
-    switch (type) {
-      case "trade":
-        return (
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-            />
-          </svg>
-        );
-      case "deposit":
-        return (
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"
-            />
-          </svg>
-        );
-      case "withdrawal":
-        return (
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-            />
-          </svg>
-        );
-      case "alert":
-        return (
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-            />
-          </svg>
-        );
-      case "system":
-        return (
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-          </svg>
-        );
-      case "news":
-        return (
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
-            />
-          </svg>
-        );
-      default:
-        return null;
-    }
-  };
-
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case "high":
@@ -423,15 +314,6 @@ export default function NotificationsPage() {
                     }`}
                   >
                     <div className="flex gap-4">
-                      {/* Icon */}
-                      <div
-                        className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center ${getTypeColor(
-                          notification.type
-                        )}`}
-                      >
-                        {getNotificationIcon(notification.type)}
-                      </div>
-
                       {/* Content */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-3 mb-2">
@@ -505,155 +387,188 @@ export default function NotificationsPage() {
       {/* Modal */}
       {selectedNotification && (
         <div
-          className="fixed inset-0 bg-black/70 dark:bg-black/50 flex items-center justify-center p-4 z-50"
+          className="fixed inset-0 bg-black/70 dark:bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50"
           onClick={closeModal}
         >
           <div
-            className="bg-[#151922] dark:bg-white rounded-lg max-w-3xl w-full h-[95vh] flex flex-col animate-fadeIn overflow-hidden"
+            className="bg-[#151922] dark:bg-white rounded-2xl max-w-2xl w-full max-h-[88vh] flex flex-col shadow-2xl border border-gray-800 dark:border-gray-200 animate-fadeIn overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button - Fixed at top */}
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 w-12 h-12 bg-black/80 dark:bg-white/90 hover:bg-black dark:hover:bg-white text-white dark:text-gray-900 rounded-full flex items-center justify-center transition-all shadow-lg z-10"
-              aria-label="Close modal"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                strokeWidth={3}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-
-            {/* Scrollable Content */}
-            <div className="overflow-y-auto flex-1 p-6 sm:p-8">
-              {/* Header */}
-              <div className="mb-6">
-                <div className="flex items-start gap-4 mb-4">
-                  <div
-                    className={`flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center ${getTypeColor(
-                      selectedNotification.type
-                    )}`}
-                  >
-                    {getNotificationIcon(selectedNotification.type)}
+            {/* Header */}
+            <div className="flex items-start justify-between gap-4 px-6 sm:px-8 pt-6 sm:pt-7 pb-5 border-b border-gray-800 dark:border-gray-200">
+              <div className="flex items-start gap-4 min-w-0">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                    <span
+                      className={`text-[10px] px-2 py-0.5 rounded-full font-semibold tracking-wide ${getTypeColor(
+                        selectedNotification.type
+                      )}`}
+                    >
+                      {selectedNotification.type.toUpperCase()}
+                    </span>
+                    <span
+                      className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
+                        selectedNotification.read
+                          ? "bg-gray-700/40 dark:bg-gray-200 text-gray-400 dark:text-gray-600"
+                          : "bg-green-500/15 text-green-500"
+                      }`}
+                    >
+                      {selectedNotification.read ? "Read" : "Unread"}
+                    </span>
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between gap-3 mb-2">
-                      <h2 className="text-2xl sm:text-3xl font-bold text-white dark:text-gray-900 pr-12">
-                        {selectedNotification.title}
-                      </h2>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      <span
-                        className={`text-xs px-3 py-1 rounded-full font-medium ${getTypeColor(
-                          selectedNotification.type
-                        )}`}
-                      >
-                        {selectedNotification.type.toUpperCase()}
-                      </span>
-                      {/* <span
-                        className={`text-xs px-3 py-1 rounded-full font-medium ${getPriorityColor(
-                          selectedNotification.priority
-                        )}`}
-                      >
-                        {selectedNotification.priority.toUpperCase()} PRIORITY
-                      </span> */}
-                    </div>
-                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-white dark:text-gray-900 leading-snug break-words">
+                    {selectedNotification.title}
+                  </h2>
                 </div>
               </div>
-
-              {/* Timestamp */}
-              <div className="flex items-center gap-2 text-sm text-gray-400 dark:text-gray-600 mb-6 pb-6 border-b border-gray-700 dark:border-gray-300">
+              <button
+                onClick={closeModal}
+                className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-gray-400 hover:text-white dark:text-gray-500 dark:hover:text-gray-900 hover:bg-white/10 dark:hover:bg-gray-100 transition-colors"
+                aria-label="Close modal"
+              >
                 <svg
-                  className="w-4 h-4"
+                  className="w-5 h-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  strokeWidth={2.5}
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
-                <span>
-                  {new Date(selectedNotification.created_at).toLocaleString(
-                    "en-US",
-                    {
-                      month: "long",
-                      day: "numeric",
-                      year: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    }
-                  )}
-                </span>
+              </button>
+            </div>
+
+            {/* Scrollable Content */}
+            <div className="overflow-y-auto flex-1 px-6 sm:px-8 py-6 space-y-6">
+              {/* Summary message + timestamp */}
+              <div>
+                {selectedNotification.message && (
+                  <p className="text-gray-300 dark:text-gray-700 text-sm leading-relaxed mb-3">
+                    {selectedNotification.message}
+                  </p>
+                )}
+                <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-500">
+                  <svg
+                    className="w-3.5 h-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>
+                    {new Date(selectedNotification.created_at).toLocaleString(
+                      "en-US",
+                      {
+                        month: "long",
+                        day: "numeric",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      }
+                    )}
+                  </span>
+                </div>
               </div>
 
               {/* Metadata Cards */}
-              {selectedNotification.metadata && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-                  {selectedNotification.metadata.stock && (
-                    <div className="bg-gray-700/30 dark:bg-gray-200 p-4 rounded-lg">
-                      <div className="text-xs text-gray-400 dark:text-gray-600 mb-1">
-                        Stock
+              {selectedNotification.metadata &&
+                (selectedNotification.metadata.stock ||
+                  selectedNotification.metadata.amount ||
+                  selectedNotification.metadata.status) && (
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    {selectedNotification.metadata.stock && (
+                      <div className="bg-gray-800/40 dark:bg-gray-50 border border-gray-700/40 dark:border-gray-200 p-3.5 rounded-xl">
+                        <div className="text-[10px] font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wide mb-1">
+                          Stock
+                        </div>
+                        <div className="text-base font-bold text-white dark:text-gray-900">
+                          {selectedNotification.metadata.stock}
+                        </div>
                       </div>
-                      <div className="text-lg font-bold text-white dark:text-gray-900">
-                        {selectedNotification.metadata.stock}
+                    )}
+                    {selectedNotification.metadata.amount && (
+                      <div className="bg-gray-800/40 dark:bg-gray-50 border border-gray-700/40 dark:border-gray-200 p-3.5 rounded-xl">
+                        <div className="text-[10px] font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wide mb-1">
+                          Amount
+                        </div>
+                        <div className="text-base font-bold text-white dark:text-gray-900">
+                          {selectedNotification.metadata.amount}
+                        </div>
                       </div>
-                    </div>
-                  )}
-                  {selectedNotification.metadata.amount && (
-                    <div className="bg-gray-700/30 dark:bg-gray-200 p-4 rounded-lg">
-                      <div className="text-xs text-gray-400 dark:text-gray-600 mb-1">
-                        Amount
+                    )}
+                    {selectedNotification.metadata.status && (
+                      <div className="bg-gray-800/40 dark:bg-gray-50 border border-gray-700/40 dark:border-gray-200 p-3.5 rounded-xl">
+                        <div className="text-[10px] font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wide mb-1">
+                          Status
+                        </div>
+                        <div className="text-base font-bold text-white dark:text-gray-900">
+                          {selectedNotification.metadata.status}
+                        </div>
                       </div>
-                      <div className="text-lg font-bold text-white dark:text-gray-900">
-                        {selectedNotification.metadata.amount}
-                      </div>
-                    </div>
-                  )}
-                  {selectedNotification.metadata.status && (
-                    <div className="bg-gray-700/30 dark:bg-gray-200 p-4 rounded-lg">
-                      <div className="text-xs text-gray-400 dark:text-gray-600 mb-1">
-                        Status
-                      </div>
-                      <div className="text-lg font-bold text-white dark:text-gray-900">
-                        {selectedNotification.metadata.status}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
+                    )}
+                  </div>
+                )}
 
               {/* Full Details */}
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text-white dark:text-gray-900 mb-3">
-                  Details
-                </h3>
-                <div className="text-gray-300 dark:text-gray-700 leading-relaxed space-y-4">
-                  {selectedNotification.full_details
-                    .split(". ")
-                    .map((sentence, index) => (
-                      <p key={index}>{sentence.trim()}.</p>
-                    ))}
+              {selectedNotification.full_details && (
+                <div>
+                  <h3 className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide mb-3">
+                    Details
+                  </h3>
+                  <div className="space-y-2">
+                    {selectedNotification.full_details
+                      .split("\n")
+                      .map((line) => line.trim())
+                      .filter((line) => line.length > 0)
+                      .map((line, index) => {
+                        const match = line.match(
+                          /^([A-Za-z][\w\s/&-]{1,40}):\s*(.+)$/
+                        );
+                        if (match) {
+                          const [, label, value] = match;
+                          return (
+                            <div
+                              key={index}
+                              className="flex items-center justify-between gap-4 py-2.5 px-3.5 rounded-lg bg-gray-800/40 dark:bg-gray-50 border border-gray-700/40 dark:border-gray-200"
+                            >
+                              <span className="text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wide flex-shrink-0">
+                                {label.trim()}
+                              </span>
+                              <span className="text-sm font-semibold text-white dark:text-gray-900 text-right break-words">
+                                {value.trim()}
+                              </span>
+                            </div>
+                          );
+                        }
+                        return (
+                          <p
+                            key={index}
+                            className="text-gray-300 dark:text-gray-700 text-sm leading-relaxed"
+                          >
+                            {line}
+                          </p>
+                        );
+                      })}
+                  </div>
                 </div>
-              </div>
+              )}
+            </div>
 
-              {/* Close Button */}
+            {/* Footer */}
+            <div className="px-6 sm:px-8 py-5 border-t border-gray-800 dark:border-gray-200">
               <button
                 onClick={closeModal}
-                className="w-full py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors"
+                className="w-full py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl transition-colors"
               >
                 Close
               </button>

@@ -196,7 +196,7 @@ export default function AssetOverviewSection() {
               <YAxis hide />
               <Tooltip content={<CustomTooltip />} />
               <Area
-                type="monotone"
+                type="linear"
                 dataKey="cumulative_pnl"
                 stroke={lineColor}
                 strokeWidth={2.5}

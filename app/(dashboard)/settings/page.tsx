@@ -5,6 +5,13 @@ import DashboardNavbar from "@/components/main/DashboardNavbar";
 import { BACKEND_URL } from "@/lib/constants";
 import { PulseLoader } from "react-spinners";
 import { Shield, Lock } from "lucide-react";
+import {
+  CURRENCIES,
+  CURRENCY_SYMBOLS,
+  CURRENCY_NAMES,
+  getStoredCurrency,
+  setStoredCurrency,
+} from "@/lib/currency";
 
 type Tab = "profile" | "security" | "payment";
 
@@ -68,6 +75,9 @@ export default function SettingsPage() {
   // User settings data
   const [userSettings, setUserSettings] = useState<UserSettings | null>(null);
 
+  // Display currency preference (client-side only — applies to the Portfolio balance card)
+  const [displayCurrency, setDisplayCurrency] = useState("USD");
+
   // Form data
   const [formData, setFormData] = useState({
     firstName: "",
@@ -86,7 +96,13 @@ export default function SettingsPage() {
   useEffect(() => {
     fetchUserSettings();
     fetch2FAStatus(); // ✅ NEW: Fetch 2FA status
+    setDisplayCurrency(getStoredCurrency());
   }, []);
+
+  const handleCurrencyChange = (currency: string) => {
+    setDisplayCurrency(currency);
+    setStoredCurrency(currency);
+  };
 
   const fetchUserSettings = async () => {
     try {
@@ -615,6 +631,34 @@ export default function SettingsPage() {
                       {userSettings.profile.account_id || "Not assigned"}
                     </div>
                   </div>
+                </div>
+              </div>
+
+              {/* Display Currency */}
+              <div className="bg-[#151922] dark:bg-white p-4 sm:p-5 rounded-lg border border-gray-700 dark:border-gray-300">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex-1 min-w-0">
+                    <div className="text-xs sm:text-sm text-gray-400 dark:text-gray-600 mb-1">
+                      Display Currency
+                    </div>
+                    <div className="text-base sm:text-lg font-semibold text-white dark:text-gray-900">
+                      {CURRENCY_NAMES[displayCurrency]} ({displayCurrency})
+                    </div>
+                    <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                      Changes the currency shown on your Portfolio balance card. Trading and deposits are still processed in USD.
+                    </div>
+                  </div>
+                  <select
+                    value={displayCurrency}
+                    onChange={(e) => handleCurrencyChange(e.target.value)}
+                    className="px-4 py-2.5 text-sm bg-slate-700 dark:bg-slate-300 text-white dark:text-gray-900 rounded-lg border border-transparent focus:outline-none focus:ring-2 focus:ring-green-500 self-start sm:self-auto"
+                  >
+                    {CURRENCIES.map((c) => (
+                      <option key={c} value={c}>
+                        {c} ({CURRENCY_SYMBOLS[c]})
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
             </div>

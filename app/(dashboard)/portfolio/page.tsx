@@ -6,13 +6,19 @@ import DashboardNavbar from "@/components/main/DashboardNavbar";
 import GuidedTour from "./_components/GuidedTour";
 import { BACKEND_URL } from "@/lib/constants";
 import { PulseLoader } from "react-spinners";
-import { Info, TrendingUp, TrendingDown, ChevronDown, X, Loader2 } from "lucide-react";
+import { Info, TrendingUp, TrendingDown, X, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import AssetOverviewSection from "./_components/AssetOverviewSection";
 import QuickActions from "./_components/QuickActions";
 import LoyaltyProgramModal from "./_components/LoyaltyProgramModal";
+import {
+  CURRENCY_SYMBOLS,
+  FALLBACK_RATES,
+  CURRENCY_CHANGE_EVENT,
+  getStoredCurrency,
+} from "@/lib/currency";
 
 interface Transaction {
   id: number;
@@ -36,7 +42,9 @@ interface DashboardData {
   currency: string;
   balance: number;
   profit: number;
+  profit_today: number;
   target: number;
+  show_portfolio_growth: boolean;
   current_loyalty_status: string;
   next_loyalty_status: string;
   next_amount_to_upgrade: number;
@@ -168,24 +176,36 @@ export default function Dashboard() {
     return images[status] || images.iron;
   };
 
+  const fmtCompact = (n: number) => {
+    if (n >= 1_000_000_000) return "$" + (n / 1_000_000_000).toFixed(n % 1_000_000_000 === 0 ? 0 : 1) + "B";
+    if (n >= 1_000_000) return "$" + (n / 1_000_000).toFixed(n % 1_000_000 === 0 ? 0 : 1) + "M";
+    if (n >= 1_000) return "$" + (n / 1_000).toFixed(n % 1_000 === 0 ? 0 : 1) + "k";
+    return "$" + n.toFixed(0);
+  };
+
   const [showLoyaltyModal, setShowLoyaltyModal] = useState(false);
 
   // ── Currency toggle ──────────────────────────────────────────────────────
-  const CURRENCIES = ["USD", "EUR", "GBP", "JPY", "CHF", "CAD", "AUD"];
-  const CURRENCY_SYMBOLS: Record<string, string> = {
-    USD: "$", EUR: "€", GBP: "£", JPY: "¥", CHF: "Fr", CAD: "CA$", AUD: "A$",
-  };
-  // Approximate fallback rates so conversion works instantly before the API responds
-  const FALLBACK_RATES: Record<string, number> = {
-    EUR: 0.92, GBP: 0.79, JPY: 149.5, CHF: 0.90, CAD: 1.36, AUD: 1.54,
-  };
+  // Preference is set on the /settings page and persisted in localStorage;
+  // it only affects the display of this balance card.
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
   const [fxRates, setFxRates] = useState<Record<string, number>>(FALLBACK_RATES);
-  const [currencyDropdownOpen, setCurrencyDropdownOpen] = useState(false);
+
+  // Pick up the stored preference once mounted, and stay in sync if it's
+  // changed on the /settings page (or another tab) while this page is open.
+  useEffect(() => {
+    setSelectedCurrency(getStoredCurrency());
+
+    const handleChange = (e: Event) => {
+      setSelectedCurrency((e as CustomEvent<string>).detail);
+    };
+    window.addEventListener(CURRENCY_CHANGE_EVENT, handleChange);
+    return () => window.removeEventListener(CURRENCY_CHANGE_EVENT, handleChange);
+  }, []);
 
   // Fetch live rates on mount and override the fallbacks when they arrive
   useEffect(() => {
-    const targets = CURRENCIES.filter((c) => c !== "USD").join(",");
+    const targets = ["EUR", "GBP", "JPY", "CHF", "CAD", "AUD"].join(",");
     fetch(`https://api.frankfurter.app/latest?from=USD&to=${targets}`)
       .then((r) => r.json())
       .then((data) => {
@@ -194,7 +214,6 @@ export default function Dashboard() {
         }
       })
       .catch(() => {});
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const convertUSD = (usdAmount: number): string => {
@@ -347,120 +366,109 @@ export default function Dashboard() {
             </p>
 
             {/* Main card */}
-            <div className="mt-5 sm:mt-6 bg-[url('/images/asset-bg.png')] bg-[#040a17cc] bg-blend-color-burn bg-cover bg-center rounded-xl overflow-hidden">
+            <div className="mt-5 sm:mt-6 bg-slate-700 dark:bg-slate-300 rounded-xl overflow-hidden">
               <div className="p-5 sm:p-6">
-                {/* Top row: icon + label + currency badge */}
+                {/* Top row: verified/unverified badge + live badge */}
                 <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-200 border border-slate-300 grid place-items-center flex-shrink-0">
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-slate-900" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.72-2.81-.01-2.2-1.9-2.96-3.65-3.38z" />
-                      </svg>
-                    </div>
-                    <span className="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-widest">
-                      Trading Balance
+                  <div
+                    className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 border ${
+                      dashboardData.is_verified
+                        ? "bg-emerald-500/20 dark:bg-emerald-100 border-emerald-500/40 dark:border-emerald-300"
+                        : "bg-yellow-500/20 dark:bg-yellow-100 border-yellow-500/40 dark:border-yellow-300"
+                    }`}
+                  >
+                    {dashboardData.is_verified ? (
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 dark:text-emerald-600" />
+                    ) : (
+                      <AlertCircle className="w-3.5 h-3.5 text-yellow-400 dark:text-yellow-600" />
+                    )}
+                    <span
+                      className={`text-[11px] font-semibold ${
+                        dashboardData.is_verified
+                          ? "text-emerald-400 dark:text-emerald-600"
+                          : "text-yellow-400 dark:text-yellow-600"
+                      }`}
+                    >
+                      {dashboardData.is_verified ? "Verified" : "Unverified"}
                     </span>
                   </div>
-                  {/* Currency dropdown */}
-                  <div className="relative">
-                    <button
-                      onClick={() => setCurrencyDropdownOpen((o) => !o)}
-                      className="flex items-center gap-1 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white bg-slate-700/60 hover:bg-slate-600/80 border border-slate-600/60 hover:border-slate-500 px-2.5 py-1.5 rounded-lg transition-all cursor-pointer"
-                    >
-                      {selectedCurrency}
-                      <ChevronDown
-                        className={`w-3.5 h-3.5 transition-transform duration-200 ${currencyDropdownOpen ? "rotate-180" : ""}`}
-                      />
-                    </button>
 
-                    {currencyDropdownOpen && (
-                      <>
-                        {/* Backdrop to close on outside click */}
-                        <div
-                          className="fixed inset-0 z-10"
-                          onClick={() => setCurrencyDropdownOpen(false)}
-                        />
-                        <div className="absolute right-0 top-full mt-1.5 z-20 bg-slate-800 border border-slate-600/60 rounded-lg shadow-xl overflow-hidden min-w-[90px]">
-                          {CURRENCIES.map((currency) => (
-                            <button
-                              key={currency}
-                              onClick={() => {
-                                setSelectedCurrency(currency);
-                                setCurrencyDropdownOpen(false);
-                              }}
-                              className={`w-full flex items-center justify-between px-3 py-2 text-xs font-semibold transition-colors ${
-                                selectedCurrency === currency
-                                  ? "bg-emerald-700/40 text-emerald-300"
-                                  : "text-slate-300 hover:bg-slate-700 hover:text-white"
-                              }`}
-                            >
-                              <span>{currency}</span>
-                              <span className="text-slate-400 text-[11px]">{CURRENCY_SYMBOLS[currency]}</span>
-                            </button>
-                          ))}
-                        </div>
-                      </>
-                    )}
+                  <div className="flex items-center gap-1.5 rounded-full px-2.5 py-1 border bg-emerald-500/20 dark:bg-emerald-100 border-emerald-500/40 dark:border-emerald-300">
+                    <span className="relative flex w-1.5 h-1.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 dark:bg-emerald-500 opacity-75" />
+                      <span className="relative inline-flex w-1.5 h-1.5 rounded-full bg-emerald-400 dark:bg-emerald-500" />
+                    </span>
+                    <span className="text-[11px] font-semibold text-emerald-400 dark:text-emerald-600">
+                      LIVE
+                    </span>
                   </div>
                 </div>
 
+                {/* Trading Balance label */}
+                <p className="text-[10px] sm:text-xs font-semibold text-slate-400 dark:text-slate-600 tracking-wide mb-1.5">
+                  Trading Balance
+                </p>
+
                 {/* Large balance number */}
-                <p className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                <p className="text-3xl sm:text-5xl font-extrabold text-white dark:text-slate-900 tracking-tight">
                   {sym}{convertUSD(dashboardData.balance)}
                 </p>
 
-                {/* Profit / loss indicator row */}
+                {/* Profit / loss indicator row — today's P/L only */}
                 <div className="flex items-center gap-2 mt-3">
-                  <div className={`flex items-center gap-1 ${dashboardData.profit >= 0 ? "text-emerald-400" : "text-red-400"}`}>
-                    {dashboardData.profit >= 0
+                  <div className={`flex items-center gap-1 ${dashboardData.profit_today >= 0 ? "text-emerald-400 dark:text-emerald-600" : "text-red-400 dark:text-red-600"}`}>
+                    {dashboardData.profit_today >= 0
                       ? <TrendingUp className="w-3.5 h-3.5 shrink-0" />
                       : <TrendingDown className="w-3.5 h-3.5 shrink-0" />
                     }
                     <span className="text-sm font-bold font-mono">
-                      {dashboardData.profit >= 0 ? "+" : "-"}
-                      {sym}{convertUSD(Math.abs(dashboardData.profit))}
+                      {dashboardData.profit_today >= 0 ? "+" : "-"}
+                      {sym}{convertUSD(Math.abs(dashboardData.profit_today))}
                     </span>
                   </div>
                   {dashboardData.total_deposits > 0 && (
                     <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full border ${
-                      dashboardData.profit >= 0
-                        ? "bg-emerald-500/30 border-emerald-400/50 text-emerald-300"
-                        : "bg-red-500/30 border-red-400/50 text-red-300"
+                      dashboardData.profit_today >= 0
+                        ? "bg-emerald-500/30 border-emerald-400/50 text-emerald-300 dark:bg-emerald-100 dark:border-emerald-300 dark:text-emerald-700"
+                        : "bg-red-500/30 border-red-400/50 text-red-300 dark:bg-red-100 dark:border-red-300 dark:text-red-700"
                     }`}>
-                      {dashboardData.profit >= 0 ? "+" : ""}
-                      {((dashboardData.profit / dashboardData.total_deposits) * 100).toFixed(2)}%
+                      {dashboardData.profit_today >= 0 ? "+" : ""}
+                      {((dashboardData.profit_today / dashboardData.total_deposits) * 100).toFixed(2)}%
                     </span>
                   )}
+                  <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-600">
+                    Daily PnL
+                  </span>
                 </div>
 
                 {/* Bottom stats strip */}
                 <div className="mt-6 space-y-1.5">
                   {/* Profit | Deposited */}
-                  <div className="grid grid-cols-2 rounded-xl overflow-hidden bg-black/30 backdrop-blur-md border border-white/10">
+                  <div className="grid grid-cols-2 rounded-xl overflow-hidden bg-black/30 dark:bg-white/60 backdrop-blur-md border border-white/10 dark:border-slate-400/30">
                     <div className="px-4 py-3">
-                      <p className="text-[9px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                      <p className="text-[9px] font-semibold text-slate-400 dark:text-slate-600 uppercase tracking-wider mb-1">
                         Profit
                       </p>
-                      <p className="text-sm font-semibold text-white font-mono">
+                      <p className="text-sm font-semibold text-white dark:text-slate-900 font-mono">
                         {dashboardData.profit < 0 ? "-" : ""}{sym}{convertUSD(Math.abs(dashboardData.profit))}
                       </p>
                     </div>
-                    <div className="px-4 py-3 border-l border-white/10">
-                      <p className="text-[9px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                    <div className="px-4 py-3 border-l border-white/10 dark:border-slate-400/30">
+                      <p className="text-[9px] font-semibold text-slate-400 dark:text-slate-600 uppercase tracking-wider mb-1">
                         Deposited
                       </p>
-                      <p className="text-sm font-semibold text-white font-mono">
+                      <p className="text-sm font-semibold text-white dark:text-slate-900 font-mono">
                         {sym}{convertUSD(dashboardData.balance)}
                       </p>
                     </div>
                   </div>
 
                   {/* Total Balance */}
-                  <div className="rounded-xl bg-black/30 backdrop-blur-md border border-white/10 px-4 py-3 flex items-center justify-between">
-                    <p className="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">
+                  <div className="rounded-xl bg-black/30 dark:bg-white/60 backdrop-blur-md border border-white/10 dark:border-slate-400/30 px-4 py-3 flex items-center justify-between">
+                    <p className="text-[9px] font-semibold text-slate-400 dark:text-slate-600 uppercase tracking-wider">
                       Total Balance
                     </p>
-                    <p className="text-sm font-semibold text-white font-mono">
+                    <p className="text-sm font-semibold text-white dark:text-slate-900 font-mono">
                       {sym}{convertUSD(dashboardData.balance + dashboardData.profit)}
                     </p>
                   </div>
@@ -477,7 +485,7 @@ export default function Dashboard() {
               />
 
               {/* Deposit target progress bar */}
-              {(() => {
+              {dashboardData.show_portfolio_growth && (() => {
                 const target = dashboardData.target ?? 50000;
                 const pct = target > 0
                   ? Math.min((dashboardData.total_deposits / target) * 100, 100)
@@ -489,7 +497,7 @@ export default function Dashboard() {
                         Portfolio Growth
                       </span>
                       <span className="text-[11px] font-bold text-emerald-400 dark:text-emerald-600">
-                        ${target.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} target
+                        {fmtCompact(target)} target
                       </span>
                     </div>
                     <div className="h-2 rounded-full bg-slate-700/50 dark:bg-slate-200 overflow-hidden">
@@ -498,10 +506,7 @@ export default function Dashboard() {
                         style={{ width: `${pct}%` }}
                       />
                     </div>
-                    <div className="flex items-center justify-between mt-1.5">
-                      <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
-                        ${dashboardData.total_deposits.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} deposited
-                      </span>
+                    <div className="flex items-center justify-end mt-1.5">
                       <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-600 font-mono">
                         {pct.toFixed(1)}%
                       </span>
