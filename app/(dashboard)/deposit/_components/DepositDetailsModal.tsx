@@ -167,6 +167,9 @@ export default function DepositDetailsModal({
               </span>{" "}
               to the address below.
             </p>
+            <p className="text-xs text-red-500 dark:text-red-600 font-semibold mt-2">
+              Confirm your Deposit by uploading your payment receipt.
+            </p>
           </div>
 
           {/* Transaction Steps */}
@@ -230,7 +233,7 @@ export default function DepositDetailsModal({
               </div>
               <div className="flex-1">
                 <p className="text-sm text-gray-400 dark:text-gray-600 mb-2">
-                  Send to this wallet address
+                  Send to your unique deposit wallet address.
                 </p>
                 <div className="flex gap-2">
                   <input

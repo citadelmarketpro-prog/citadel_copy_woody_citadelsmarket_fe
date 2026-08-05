@@ -494,7 +494,7 @@ export default function Dashboard() {
                   <div className="mx-2 sm:mx-4 mb-4 px-4 py-3.5 rounded-xl bg-slate-800/60 dark:bg-white border border-slate-700/40 dark:border-slate-200 backdrop-blur-sm">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-[11px] font-semibold text-slate-400 dark:text-slate-600 uppercase tracking-wider">
-                        Portfolio Growth
+                        Portfolio Target
                       </span>
                       <span className="text-[11px] font-bold text-emerald-400 dark:text-emerald-600">
                         {fmtCompact(target)} target
