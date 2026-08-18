@@ -108,16 +108,16 @@ export default function FooterSection() {
                 registered trademark of the group, that operates among various entities.
               </p>
               <p>
-                Citadels Market Limited is registered in Canada, registration number: 2023-00465. Registered
+                Citadels Market Limited is registered in Canada, registration number: 116797. Registered
                 address: Lower Mount Royal, AB T2T 5H7, Canada.
               </p>
               <p>
-                Citadels Market Limited is registered in the United Kingdom, Company number 1054675. Registered
+                Citadels Market Limited is registered in the United Kingdom, Company number 09851229. Registered
                 address: 100 Pall Mall, St. James&apos;s London SW1Y 5NQ, United Kingdom.
               </p>
               <p>
                 © 2025 This website and technology/platform services are owned and operated by Citadels Market
-                Limited, with Registered address: 11264 Playa Court Culver City, California. SEC: (000-56441).
+                Limited, with Registered address: 11264 Playa Court Culver City, California. SEC: (008-53574).
               </p>
             </div>
           </div>

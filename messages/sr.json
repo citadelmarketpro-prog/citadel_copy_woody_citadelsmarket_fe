@@ -219,10 +219,10 @@
     "riskWarning": "Upozorenje o riziku",
     "riskText": "CFD-ovi su složeni instrumenti i nose visok rizik brzog gubitka novca zbog efekta poluge. Nije prikladno za sve.",
     "companyDesc1": "Citadels Market je globalni pružalac finansijskih usluga. Citadels Market je registrovani zaštitni znak grupe.",
-    "companyDesc2": "Citadels Market Limited registrovan je u Kanadi, registracioni broj: 2023-00465. Registrovana adresa: Lower Mount Royal, AB T2T 5H7, Kanada.",
-    "companyDesc3": "Citadels Market Limited registrovan je u Ujedinjenom Kraljevstvu, broj kompanije 1054675. Registrovana adresa: 100 Pall Mall, St. James's London SW1Y 5NQ, Ujedinjeno Kraljevstvo.",
+    "companyDesc2": "Citadels Market Limited registrovan je u Kanadi, registracioni broj: 116797. Registrovana adresa: Lower Mount Royal, AB T2T 5H7, Kanada.",
+    "companyDesc3": "Citadels Market Limited registrovan je u Ujedinjenom Kraljevstvu, broj kompanije 09851229. Registrovana adresa: 100 Pall Mall, St. James's London SW1Y 5NQ, Ujedinjeno Kraljevstvo.",
     "companyDesc4": "Citadels Market je globalni pružalac finansijskih usluga. Svaki trading nosi rizik. Prošli rezultati nisu pokazatelji budućih rezultata.",
-    "companyDesc5": "© 2025 Ovaj veb sajt i tehnološke/platformske usluge su u vlasništvu i njima upravlja Citadels Market Limited sa registrovanom adresom: 11264 Playa Court Culver City, Kalifornija. SEC: (000-56441)."
+    "companyDesc5": "© 2025 Ovaj veb sajt i tehnološke/platformske usluge su u vlasništvu i njima upravlja Citadels Market Limited sa registrovanom adresom: 11264 Playa Court Culver City, Kalifornija. SEC: (008-53574)."
   },
   "langSwitcher": {
     "label": "Jezik"
@@ -592,7 +592,7 @@
     "ctaInsurance": "Погледајте детаље осигурања",
     "regulationLabel": "Регулатива",
     "sec_title": "Citadels Market USA",
-    "sec_body": "Citadels Market is authorised and regulated by the Securities & Exchange Commission (\"SEC\") with number 000-56441.",
+    "sec_body": "Citadels Market is authorised and regulated by the Securities & Exchange Commission (\"SEC\") with number 008-53574.",
     "asic_title": "Citadels Market Australia",
     "asic_body": "Citadels Market is authorised and regulated by the Australian Securities & Investments Commission (\"ASIC\") with AFSL number 416259.",
     "austrac_title": "Citadels Market Digital PTY LTD (Australia)",
