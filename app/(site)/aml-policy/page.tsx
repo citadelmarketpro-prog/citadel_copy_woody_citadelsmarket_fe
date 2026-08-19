@@ -46,8 +46,8 @@ export default async function AmlPolicyPage() {
             <h2 className="text-2xl font-bold text-gray-900 mt-2 mb-4">About This Policy</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               Citadels Market is a global financial services provider regulated by the SEC
-              (CRD 298461), the FCA in the United Kingdom (Reference Number 573263), and CIRO
-              (Reference Number 9290). The Company may extend its services to various regions,
+              (008-53574), the FCA in the United Kingdom (Company Number 09851229), and CIRO
+              (Registration Number 116797). The Company may extend its services to various regions,
               including the European Economic Area (&quot;EEA&quot;) countries.
             </p>
             <p className="text-gray-700 leading-relaxed">

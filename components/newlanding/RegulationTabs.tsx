@@ -5,17 +5,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 
 const regulationIds = [
-  { id: "SEC",     flag: "/sample-landing/us.png",  titleKey: "sec_title",     bodyKey: "sec_body"     },
-  { id: "ASIC",    flag: "/sample-landing/au.png",  titleKey: "asic_title",    bodyKey: "asic_body"    },
-  { id: "AUSTRAC", flag: "/sample-landing/au.png",  titleKey: "austrac_title", bodyKey: "austrac_body" },
-  { id: "BaFin",   flag: "/sample-landing/de.png",  titleKey: "bafin_title",   bodyKey: "bafin_body"   },
-  { id: "CIMA",    flag: "/sample-landing/ky.png",  titleKey: "cima_title",    bodyKey: "cima_body"    },
-  { id: "ESCA",    flag: "/sample-landing/ae.png",  titleKey: "esca_title",    bodyKey: "esca_body"    },
-  { id: "FSC",     flag: "/sample-landing/bvi.png", titleKey: "fsc_title",     bodyKey: "fsc_body"     },
-  { id: "FMA",     flag: "/sample-landing/at.png",  titleKey: "fma_title",     bodyKey: "fma_body"     },
-  { id: "MAS",     flag: "/sample-landing/MS.png",  titleKey: "mas_title",     bodyKey: "mas_body"     },
-  { id: "TFG",     flag: "/sample-landing/cn.png",  titleKey: "tfg_title",     bodyKey: "tfg_body"     },
-  { id: "VFSC",    flag: "/sample-landing/vu.png",  titleKey: "vfsc_title",    bodyKey: "vfsc_body"    },
+  { id: "SEC", flag: "/sample-landing/us.png", titleKey: "sec_title", bodyKey: "sec_body" },
 ];
 
 export default function RegulationTabs() {
@@ -56,6 +46,21 @@ export default function RegulationTabs() {
         </p>
         <h3 className="text-xl font-bold text-gray-900 mb-4">{t(current.titleKey)}</h3>
         <p className="text-gray-600 leading-relaxed">{t(current.bodyKey)}</p>
+
+        <div className="mt-6 pt-6 border-t border-gray-100 grid grid-cols-2 gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">
+              Company Number
+            </p>
+            <p className="text-sm font-semibold text-gray-900">09851229</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">
+              Registration Number
+            </p>
+            <p className="text-sm font-semibold text-gray-900">116797</p>
+          </div>
+        </div>
       </div>
     </div>
   );
