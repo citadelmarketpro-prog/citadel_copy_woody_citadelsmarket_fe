@@ -488,7 +488,7 @@ export default function Dashboard() {
               {dashboardData.show_portfolio_growth && (() => {
                 const target = dashboardData.target ?? 50000;
                 const pct = target > 0
-                  ? Math.min((dashboardData.total_deposits / target) * 100, 100)
+                  ? Math.min(Math.max((dashboardData.profit / target) * 100, 0), 100)
                   : 0;
                 return (
                   <div className="mx-2 sm:mx-4 mb-4 px-4 py-3.5 rounded-xl bg-slate-800/60 dark:bg-white border border-slate-700/40 dark:border-slate-200 backdrop-blur-sm">

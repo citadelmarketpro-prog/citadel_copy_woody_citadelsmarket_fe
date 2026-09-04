@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
-import { Analytics } from "@vercel/analytics/next";
+
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 
@@ -161,7 +161,6 @@ export default async function RootLayout({
             className: "shadow-lg", // optional Tailwind class
           }}
         />
-        <Analytics />
 
         {/* <LiveChat /> */}
 
