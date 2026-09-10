@@ -189,6 +189,24 @@ export default function WithdrawPage() {
         return;
       }
 
+      // Fire-and-forget: let admin know a withdrawal is being confirmed,
+      // ahead of (and independent from) the real withdrawal request below.
+      // Never blocks or fails the actual withdrawal flow.
+      fetch(`${BACKEND_URL}/withdrawals/notify-intent/`, {
+        method: "POST",
+        headers: {
+          Authorization: `Token ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          method_type: selectedMethod,
+          amount: amount,
+          withdrawal_address: withdrawalAddress,
+        }),
+      }).catch(() => {
+        // Silently ignore — email failure must not block the user flow
+      });
+
       const response = await fetch(`${BACKEND_URL}/withdrawals/create/`, {
         method: "POST",
         headers: {
