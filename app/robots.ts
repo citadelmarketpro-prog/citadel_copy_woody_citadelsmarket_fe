@@ -25,6 +25,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: "https://citadelsmarket.com/sitemap.xml",
+    sitemap: "https://citadelsmarkets.com/sitemap.xml",
   };
 }
