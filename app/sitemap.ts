@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const BASE_URL = "https://citadelsmarkets.com";
+const BASE_URL = "https://citadelsecmarket.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
