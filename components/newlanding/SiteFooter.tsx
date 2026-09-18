@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { FadeUp, ZoomIn } from "./motion";
 import LiquidityProvidersSection from "@/components/site/LiquidityProvidersSection";
+import { BrandLogo } from "@/components/shared/BrandLogo";
 
 const awards = [
   "/sample-landing/best-partners-program-global-2024-min.svg",
@@ -189,15 +190,7 @@ export default function SiteFooter() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div className="flex flex-col lg:flex-row gap-10 justify-between">
               <div className="flex-shrink-0">
-                <Link href="/">
-                  <Image
-                    src="/images/logo_light.png"
-                    alt="Citadels Market"
-                    width={200}
-                    height={72}
-                    className="h-24 w-auto object-contain"
-                  />
-                </Link>
+                <BrandLogo tone="white" className="text-3xl sm:text-4xl" />
               </div>
 
               <nav className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 flex-1 max-w-4xl">

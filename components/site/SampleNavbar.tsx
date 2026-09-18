@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "../ui/button";
+import { ThemedBrandLogo } from "@/components/shared/BrandLogo";
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -18,30 +18,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-white/10 dark:bg-black/30 border-b border-emerald-500/20 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link
-          href="/"
-          className="flex dark:hidden text-2xl md:text-4xl font-extrabold self-center tracking-tight items-center gap-1 text-emerald-600 dark:bg-gradient-to-r dark:from-white dark:via-emerald-200 dark:to-emerald-600 dark:bg-clip-text dark:text-transparent"
-        >
-          <Image
-            alt="logo"
-            src={"/images/logo_dark.png"}
-            className="h-15 md:h-20 w-auto"
-            width={1000}
-            height={1000}
-          />
-        </Link>
-        <Link
-          href="/"
-          className=" hidden dark:flex text-2xl md:text-4xl font-extrabold self-center tracking-tight items-center gap-1 text-emerald-600 dark:bg-gradient-to-r dark:from-white dark:via-emerald-200 dark:to-emerald-600 dark:bg-clip-text dark:text-transparent"
-        >
-          <Image
-            alt="logo"
-            src={"/images/logo_light.png"}
-            className="h-15 md:h-20 w-auto"
-            width={1000}
-            height={1000}
-          />
-        </Link>
+        <ThemedBrandLogo className="text-3xl md:text-5xl" wrapperClassName="self-center" scheme="standard" />
 
         {/* Desktop Menu */}
 

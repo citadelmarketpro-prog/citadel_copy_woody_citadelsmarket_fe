@@ -1,34 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, type LucideIcon } from "lucide-react";
 import { FadeLeft, FadeRight } from "./motion";
 
-type Badge = { label: string; className: string };
-
-const bars = [40, 65, 30, 80, 55, 70, 45];
-
-function MockChart({ dark }: { dark: boolean }) {
-  return (
-    <div
-      className={`rounded-2xl p-6 w-full max-w-[280px] ${
-        dark ? "bg-[#0e0e10] border border-white/10" : "bg-white border border-gray-200 shadow-sm"
-      }`}
-    >
-      <div className="flex items-end gap-1.5 h-32">
-        {bars.map((h, i) => (
-          <div
-            key={i}
-            className={`flex-1 rounded-sm ${i % 2 === 0 ? "bg-emerald-500" : "bg-red-400"}`}
-            style={{ height: `${h}%` }}
-          />
-        ))}
-      </div>
-      <div className="flex gap-2 mt-4">
-        <span className="flex-1 text-center py-2 rounded-lg bg-emerald-500 text-white text-sm font-semibold">Rise</span>
-        <span className="flex-1 text-center py-2 rounded-lg bg-red-400 text-white text-sm font-semibold">Fall</span>
-      </div>
-    </div>
-  );
-}
+type Badge = { label: string; className: string; icon?: LucideIcon };
 
 export default function AssetShowcaseSection({
   title,
@@ -50,8 +25,12 @@ export default function AssetShowcaseSection({
   return (
     <section className={dark ? "bg-[#0a0a0a]" : "bg-white"}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-        <div className={`flex flex-col ${reverse ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-10 lg:gap-16`}>
-          <FadeLeft className="flex-1 max-w-md">
+        <div
+          className={`flex flex-col-reverse ${
+            reverse ? "lg:flex-row-reverse" : "lg:flex-row"
+          } items-center gap-10 lg:gap-16`}
+        >
+          <FadeLeft className="flex-1 max-w-md text-left">
             <h2 className={`text-4xl sm:text-5xl font-extrabold mb-4 ${dark ? "text-white" : "text-gray-900"}`}>
               {title}
             </h2>
@@ -67,18 +46,38 @@ export default function AssetShowcaseSection({
           </FadeLeft>
 
           <FadeRight delay={0.15} className="flex-1 flex justify-center">
-            <div className="relative flex items-center gap-4">
-              <div className="flex flex-col gap-4">
-                {badges.map((b) => (
-                  <span
-                    key={b.label}
-                    className={`px-6 py-6 rounded-2xl font-bold text-lg text-center min-w-[140px] ${b.className}`}
-                  >
-                    {b.label}
-                  </span>
-                ))}
+            <div className="relative flex items-center gap-8 sm:gap-10">
+              <div
+                className="relative w-[170px] sm:w-[200px] lg:w-[230px] flex-shrink-0"
+                style={{ aspectRatio: "3 / 6.1" }}
+              >
+                <Image
+                  src="/new_images/phone_mockup_1.webp"
+                  alt=""
+                  fill
+                  sizes="230px"
+                  className="object-contain"
+                />
               </div>
-              <MockChart dark={dark} />
+
+              <div className="relative flex flex-col gap-12 sm:gap-14">
+                <div
+                  className="absolute border-t-2 border-r-2 border-red-500 rounded-tr-2xl pointer-events-none"
+                  style={{ left: -32, top: 26, width: 32, height: 108 }}
+                />
+                {badges.map((b) => {
+                  const Icon = b.icon;
+                  return (
+                    <span
+                      key={b.label}
+                      className={`relative z-10 flex items-center gap-2 px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl font-bold text-sm sm:text-lg min-w-[120px] sm:min-w-[150px] ${b.className}`}
+                    >
+                      {Icon ? <Icon className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" /> : null}
+                      {b.label}
+                    </span>
+                  );
+                })}
+              </div>
             </div>
           </FadeRight>
         </div>

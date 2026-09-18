@@ -10,6 +10,7 @@ import { Eye, EyeOff, Sun, Moon, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import { ThemedBrandLogo } from "@/components/shared/BrandLogo";
 import { BACKEND_URL } from "@/lib/constants";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -98,24 +99,7 @@ export default function LoginPage() {
           transition={{ duration: 0.6 }}
           className="w-full max-w-sm space-y-6 flex flex-col"
         >
-          <Link href="/" className="hidden dark:flex self-center">
-            <Image
-              alt="logo"
-              src={"/images/logo_dark.png"}
-              className="h-20 w-auto"
-              width={400}
-              height={120}
-            />
-          </Link>
-          <Link href="/" className="flex dark:hidden self-center">
-            <Image
-              alt="logo"
-              src={"/images/logo_light.png"}
-              className="h-20 w-auto"
-              width={400}
-              height={120}
-            />
-          </Link>
+          <ThemedBrandLogo className="text-4xl sm:text-5xl" wrapperClassName="self-center" />
 
           <div className="flex items-center justify-between">
             <h1 className="text-3xl font-semibold flex items-center gap-2">

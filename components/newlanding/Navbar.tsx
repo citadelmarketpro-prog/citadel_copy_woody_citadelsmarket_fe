@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import LangSwitcher from "./LangSwitcher";
+import { BrandLogo } from "@/components/shared/BrandLogo";
 
 export default function Navbar() {
   const t = useTranslations("nav");
@@ -63,15 +63,7 @@ export default function Navbar() {
   return (
     <header className="bg-[#0c5c45] sticky top-0 z-50 shadow-lg shadow-black/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-3">
-        <Link href="/" className="flex-shrink-0">
-          <Image
-            src="/images/logo_light.png"
-            alt="Citadels Market"
-            width={180}
-            height={60}
-            className="h-10 w-auto object-contain"
-          />
-        </Link>
+        <BrandLogo tone="white" className="text-2xl sm:text-3xl" wrapperClassName="flex-shrink-0" />
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">

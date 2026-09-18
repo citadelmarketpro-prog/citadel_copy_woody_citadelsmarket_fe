@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { ThemedBrandLogo } from "@/components/shared/BrandLogo";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -59,30 +59,11 @@ export default function EnhancedNavbar() {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <Link
-              href="/"
-              className="flex dark:hidden text-2xl md:text-4xl font-extrabold self-center tracking-tight items-center gap-1 text-emerald-800 z-50 hover:scale-105 transition-transform duration-300"
-            >
-              <Image
-                alt="logo"
-                src={"/images/logo_dark.png"}
-                className="h-12 md:h-16 w-auto drop-shadow-md"
-                width={1000}
-                height={1000}
-              />
-            </Link>
-            <Link
-              href="/"
-              className="hidden dark:flex text-2xl md:text-4xl font-extrabold self-center tracking-tight items-center gap-1 z-50 hover:scale-105 transition-transform duration-300"
-            >
-              <Image
-                alt="logo"
-                src={"/images/logo_light.png"}
-                className="h-12 md:h-16 w-auto drop-shadow-2xl"
-                width={1000}
-                height={1000}
-              />
-            </Link>
+            <ThemedBrandLogo
+              className="text-3xl md:text-4xl"
+              wrapperClassName="z-50 hover:scale-105 transition-transform duration-300"
+              scheme="standard"
+            />
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-2">
@@ -310,32 +291,11 @@ export default function EnhancedNavbar() {
         >
           {/* Logo at Top */}
           <div className="sticky top-0 bg-gradient-to-r from-emerald-200 via-green-200 to-teal-200 dark:from-slate-800 dark:via-emerald-800 dark:to-slate-800 border-b border-emerald-300 dark:border-emerald-700 px-6 py-4 z-10">
-            <Link
-              href="/"
-              onClick={() => setIsOpen(false)}
-              className="flex dark:hidden items-center justify-center"
-            >
-              <Image
-                alt="logo"
-                src={"/images/logo_dark.png"}
-                className="h-14 w-auto drop-shadow-lg"
-                width={1000}
-                height={1000}
-              />
-            </Link>
-            <Link
-              href="/"
-              onClick={() => setIsOpen(false)}
-              className="hidden dark:flex items-center justify-center"
-            >
-              <Image
-                alt="logo"
-                src={"/images/logo_light.png"}
-                className="h-14 w-auto drop-shadow-2xl"
-                width={1000}
-                height={1000}
-              />
-            </Link>
+            <ThemedBrandLogo
+              className="text-2xl"
+              wrapperClassName="items-center justify-center"
+              scheme="standard"
+            />
           </div>
 
           {/* Menu Items */}

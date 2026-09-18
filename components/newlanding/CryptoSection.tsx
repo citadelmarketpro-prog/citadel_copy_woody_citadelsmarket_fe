@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { Bitcoin, Hexagon } from "lucide-react";
 import AssetShowcaseSection from "./AssetShowcaseSection";
 
 export default async function CryptoSection() {
@@ -11,10 +12,9 @@ export default async function CryptoSection() {
       learnMoreLabel={t("learnMore")}
       href="/advance-trading"
       dark
-      reverse
       badges={[
-        { label: "BTC", className: "bg-amber-400 text-gray-900" },
-        { label: "ETH", className: "bg-[#141414] text-white border border-white/20" },
+        { label: "BTC", className: "bg-amber-400 text-gray-900", icon: Bitcoin },
+        { label: "ETH", className: "bg-[#141414] text-white border border-white/20", icon: Hexagon },
       ]}
     />
   );

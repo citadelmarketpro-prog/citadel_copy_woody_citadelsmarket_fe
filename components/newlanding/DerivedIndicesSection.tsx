@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { Activity, ShoppingBasket } from "lucide-react";
 import AssetShowcaseSection from "./AssetShowcaseSection";
 
 export default async function DerivedIndicesSection() {
@@ -10,11 +11,9 @@ export default async function DerivedIndicesSection() {
       description={t("indicesDesc")}
       learnMoreLabel={t("learnMore")}
       href="/option-copy-trading"
-      dark
-      reverse
       badges={[
-        { label: "VOL 100", className: "bg-emerald-400 text-gray-900" },
-        { label: "USD BASKET", className: "bg-sky-300 text-gray-900" },
+        { label: "VOL 100", className: "bg-emerald-400 text-gray-900", icon: Activity },
+        { label: "USD BASKET", className: "bg-sky-300 text-gray-900", icon: ShoppingBasket },
       ]}
     />
   );

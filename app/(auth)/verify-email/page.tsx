@@ -18,7 +18,7 @@ import { BACKEND_URL } from "@/lib/constants";
 import { toast } from "sonner";
 import { PulseLoader } from "react-spinners";
 import Link from "next/link";
-import Image from "next/image";
+import { ThemedBrandLogo } from "@/components/shared/BrandLogo";
 import { useTranslations } from "next-intl";
 import AuthLangSwitcher from "@/components/auth/LangSwitcher";
 
@@ -222,24 +222,7 @@ export default function VerifyEmailPage() {
           className="w-full max-w-md space-y-6"
         >
           {/* Logo */}
-          <Link href="/" className="hidden dark:flex justify-center">
-            <Image
-              alt="logo"
-              src="/images/logo_dark.png"
-              className="h-20 w-auto"
-              width={400}
-              height={120}
-            />
-          </Link>
-          <Link href="/" className="flex dark:hidden justify-center">
-            <Image
-              alt="logo"
-              src="/images/logo_light.png"
-              className="h-20 w-auto"
-              width={400}
-              height={120}
-            />
-          </Link>
+          <ThemedBrandLogo className="text-4xl sm:text-5xl" wrapperClassName="justify-center" />
 
           {/* Theme toggle */}
           {mounted && (

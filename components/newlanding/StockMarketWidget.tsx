@@ -73,18 +73,6 @@ export default function StockMarketWidget() {
           ],
           originalTitle: "Forex",
         },
-        {
-          title: "Indices",
-          symbols: [
-            { s: "FOREXCOM:SPXUSD", d: "S&P 500" },
-            { s: "FOREXCOM:NSXUSD", d: "Nasdaq 100" },
-            { s: "FOREXCOM:DJI",    d: "Dow Jones" },
-            { s: "INDEX:NKY",       d: "Nikkei 225" },
-            { s: "INDEX:DEU40",     d: "DAX 40" },
-            { s: "FOREXCOM:UKXGBP", d: "FTSE 100" },
-          ],
-          originalTitle: "Indices",
-        },
       ],
     });
     containerRef.current.appendChild(script);

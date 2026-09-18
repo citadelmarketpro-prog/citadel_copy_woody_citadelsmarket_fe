@@ -1,10 +1,10 @@
-import Image from "next/image";
 import React from "react";
 import Container from "./Container";
 import Link from "next/link";
 import { UserCircle2Icon } from "lucide-react";
 import { Button } from "../ui/button";
 import { ModeToggle } from "../mode/toggleModeButton";
+import { ThemedBrandLogo } from "@/components/shared/BrandLogo";
 
 const navList = [
   {
@@ -35,13 +35,7 @@ const Navbar = () => {
       <Container>
         <div className="flex items-center justify-between ">
           {/* LOGO */}
-          <Image
-            alt="logo"
-            src={"/images/nodlogo.png"}
-            className="h-15 w-auto"
-            width={1000}
-            height={1000}
-          />
+          <ThemedBrandLogo className="text-3xl" scheme="standard" />
 
           <div className="md:flex items-center gap-5 hidden">
             {navList.map((item, index) => (

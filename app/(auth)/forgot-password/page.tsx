@@ -4,11 +4,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ThemedBrandLogo } from "@/components/shared/BrandLogo";
 import { BACKEND_URL } from "@/lib/constants";
 import { toast } from "sonner";
 import { PulseLoader } from "react-spinners";
@@ -117,24 +117,7 @@ export default function ForgotPasswordPage() {
         className="w-full max-w-md space-y-6"
       >
         {/* Logo */}
-        <Link href="/" className="hidden dark:flex justify-center">
-          <Image
-            alt="logo"
-            src={"/images/logo_dark.png"}
-            className="h-20 w-auto"
-            width={400}
-            height={120}
-          />
-        </Link>
-        <Link href="/" className="flex dark:hidden justify-center">
-          <Image
-            alt="logo"
-            src={"/images/logo_light.png"}
-            className="h-20 w-auto"
-            width={400}
-            height={120}
-          />
-        </Link>
+        <ThemedBrandLogo className="text-4xl sm:text-5xl" wrapperClassName="justify-center" />
 
         <div className="space-y-2">
           <Link

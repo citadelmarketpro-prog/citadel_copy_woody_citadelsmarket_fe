@@ -5,6 +5,7 @@ import DerivedIndicesSection from "@/components/newlanding/DerivedIndicesSection
 import StocksSection from "@/components/newlanding/StocksSection";
 import CommoditiesSection from "@/components/newlanding/CommoditiesSection";
 import CryptoSection from "@/components/newlanding/CryptoSection";
+import StockMarketOverviewSection from "@/components/newlanding/StockMarketOverviewSection";
 import TradeAllDayNightSection from "@/components/newlanding/TradeAllDayNightSection";
 import TradingFingertipsSection from "@/components/newlanding/TradingFingertipsSection";
 import Mt5Section from "@/components/newlanding/Mt5Section";
@@ -28,6 +29,7 @@ export default function SampleLandingPage() {
       <StocksSection />
       <CommoditiesSection />
       <CryptoSection />
+      <StockMarketOverviewSection />
       <TradeAllDayNightSection />
       <TradingFingertipsSection />
       <Mt5Section />

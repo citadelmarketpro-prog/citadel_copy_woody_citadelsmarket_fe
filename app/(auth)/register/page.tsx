@@ -11,6 +11,7 @@ import { Eye, EyeOff, Sun, Moon, Gift, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import { ThemedBrandLogo } from "@/components/shared/BrandLogo";
 import { PulseLoader } from "react-spinners";
 import { BACKEND_URL } from "@/lib/constants";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -293,12 +294,7 @@ function RegisterPageContent() {
           className="w-full max-w-sm space-y-6 flex flex-col"
         >
           {/* Logo */}
-          <Link href="/" className="hidden dark:flex self-center">
-            <Image alt="logo" src="/images/logo_dark.png" className="h-20 w-auto" width={400} height={120} />
-          </Link>
-          <Link href="/" className="flex dark:hidden self-center">
-            <Image alt="logo" src="/images/logo_light.png" className="h-20 w-auto" width={400} height={120} />
-          </Link>
+          <ThemedBrandLogo className="text-4xl sm:text-5xl" wrapperClassName="self-center" />
 
           {/* Theme toggle */}
           {mounted && (

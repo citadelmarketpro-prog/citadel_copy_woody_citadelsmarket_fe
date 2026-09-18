@@ -25,7 +25,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 lg:hidden">
         <div className="absolute right-[-10%] bottom-0 w-[92%] max-w-[440px]" style={{ aspectRatio: "1080 / 1724" }}>
           <Image
-            src="/new_images/68db419f4fda96d00c37421b_homepage-hero-person-v2.webp"
+            src="/new_images/img_76.webp"
             alt=""
             fill
             sizes="90vw"
@@ -79,7 +79,7 @@ export default function HeroSection() {
                 />
               </div>
               <Image
-                src="/new_images/68db419f4fda96d00c37421b_homepage-hero-person-v2.webp"
+                src="/new_images/img_76.webp"
                 alt="Trader checking the citamarkets app"
                 fill
                 sizes="480px"
