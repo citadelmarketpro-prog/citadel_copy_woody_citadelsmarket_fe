@@ -36,10 +36,18 @@
   },
   "hero": {
     "integratesWith": "Integrates with",
+    "kicker": "Trading for",
+    "titleLine1": "Anyone",
+    "titleLine2": "Anywhere",
+    "titleLine3": "Anytime",
     "title": "Purpose-Driven Copytrading, Built on Innovation and Transparency",
-    "subtitle": "Trade smarter, not harder, by automatically mirroring the strategies of top-performing investors, giving you a smarter way to grow your portfolio with confidence, transparency, and control.",
+    "subtitle": "Widest range of products, markets, platforms with 24/7 customer support.",
+    "openAccount": "Open account",
     "register": "Register",
-    "login": "Login"
+    "login": "Login",
+    "trustpilotScorePrefix": "citamarkets scores",
+    "trustpilotScoreSuffix": "out of 5 based on",
+    "trustpilotReviews": "reviews"
   },
   "platform": {
     "title": "A user-friendly trading platform",
@@ -54,6 +62,8 @@
     "p2": "From educational broker's tools, demo accounts, and 24/7 support to your financial success, Citadels Market works tirelessly to remain at the forefront in trading online. Join now! Take full advantage of this online trading leader and make your way into the world of professional trading."
   },
   "stats": {
+    "headline": "Trade with confidence",
+    "subtitle": "citamarkets is a trusted partner of traders worldwide.",
     "traderAccounts": "Trader accounts",
     "monthlyTransactions": "Monthly transactions",
     "avgMonthlyPayouts": "Average monthly payouts",
@@ -178,6 +188,78 @@
     "title": "A reliable trading platform is the foundation of success",
     "p1": "Every trader wants to profit in the best conditions and doesn't want to fear for the safety of personal funds. The first obvious thing a novice trader does is to study different online trading sites.",
     "p2": "The main criteria for a successful internet trading platform are international reputation, unwavering reliability, constant support at all stages, and unique useful trading features. These qualities are combined in the award-winning Citadels Market broker and electronic trading platform."
+  },
+  "showcase": {
+    "forexTitle": "Forex",
+    "forexDesc": "Trade the most popular currency pairs with high leverage, tight spreads, and fast execution.",
+    "indicesTitle": "Derived Indices",
+    "indicesDesc": "Trade 24/7 on exclusive synthetic and derived indices. Choose volatility levels that match your strategy.",
+    "stocksTitle": "Stocks",
+    "stocksDesc": "Trade global market leaders like Apple, Tesla, and NVIDIA.",
+    "commoditiesTitle": "Commodities",
+    "commoditiesDesc": "Trade gold, silver, oil, natural gas, sugar, and more with competitive leverage and tight spreads.",
+    "cryptoTitle": "Crypto",
+    "cryptoDesc": "Trade round the clock on the volatility of cryptocurrencies like Bitcoin and Ethereum.",
+    "learnMore": "Learn more"
+  },
+  "tradeAllDay": {
+    "dayTitle": "Trade all day",
+    "nightTitle": "Trade all night",
+    "subtitle": "Cryptocurrencies and our unique Derived Indices are available 24/7.",
+    "cta": "Open account"
+  },
+  "mt5": {
+    "title": "Power of MT5 with exclusive indices",
+    "body": "citamarkets MT5 brings you the world's favourite platform with the widest range of forex, stocks, commodities, cryptocurrencies, and exclusive Derived Indices with zero commissions, tight spreads, and swap-free trading.",
+    "cta": "Explore MT5",
+    "assets": "Multiple assets",
+    "spreads": "Tight spreads"
+  },
+  "copyExperts": {
+    "title": "Copy expert traders",
+    "body": "Tap into the expertise of seasoned traders. Follow their strategies, and mirror their trades automatically.",
+    "cta": "Explore copy trading",
+    "sampleReturn": "+37.5%"
+  },
+  "payouts": {
+    "title": "Optimised payouts, limited downsides",
+    "body": "You'll never lose more than you put in. Know your maximum risk upfront when trading global markets and round-the-clock indices.",
+    "cta": "Explore trading tools"
+  },
+  "automate": {
+    "title": "Automate your trades",
+    "body": "Keep your strategies running on 24/7 exclusive indices and traditional markets. Trade with predetermined risk — no surprises, no coding required.",
+    "cta": "Explore automated trading"
+  },
+  "moneyYourWay": {
+    "title": "Your money, your way",
+    "body": "Quick deposits, easy withdrawals, and local payment options mean your money is always accessible.",
+    "disclaimer": "*Availability of payment methods and processing speeds may vary based on location and selected payment option.",
+    "cta": "Learn more"
+  },
+  "support": {
+    "title": "Get answers when you need",
+    "body": "We don't have opening or closing hours. That means you can speak to our support whenever you need, wherever you are."
+  },
+  "testimonials": {
+    "title": "What our customers say",
+    "trustpilotScorePrefix": "citamarkets scores",
+    "trustpilotScoreSuffix": "out of 5 based on",
+    "trustpilotReviews": "reviews"
+  },
+  "gettingStarted": {
+    "title": "Get started in 3 simple steps",
+    "step1Title": "Sign up",
+    "step1Body": "Sign up in minutes. Practise with a zero-risk demo account.",
+    "step2Title": "Deposit",
+    "step2Body": "Use your favourite local payment method to fund your account.",
+    "step3Title": "Trade",
+    "step3Body": "Start your trading journey."
+  },
+  "finalCta": {
+    "title": "Join our global traders",
+    "subtitle": "Open an account in minutes and start trading the world's markets — forex, stocks, indices, and more.",
+    "cta": "Open account"
   },
   "footer": {
     "valuesTitle": "Our Values",

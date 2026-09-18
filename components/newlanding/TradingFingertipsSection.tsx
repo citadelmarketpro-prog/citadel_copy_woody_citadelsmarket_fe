@@ -7,9 +7,9 @@ export default async function TradingFingertipsSection() {
   return (
     <section className="py-14 sm:py-20 bg-[#0a0a0a] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeUp>
-          <h2 className="text-2xl font-bold text-white mb-2">{t("title")}</h2>
-          <p className="text-gray-400 mb-8 text-sm">{t("subtitle")}</p>
+        <FadeUp className="text-center mb-10">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-2">{t("title")}</h2>
+          <p className="text-gray-400 text-sm">{t("subtitle")}</p>
         </FadeUp>
         <div className="bg-white rounded-xl overflow-hidden">
           <div className="flex flex-col lg:flex-row gap-6 p-6 sm:p-8">
