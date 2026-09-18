@@ -18,7 +18,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://citadelsecmarket.com"),
+  metadataBase: new URL("https://citamarkets.com"),
   title: {
     default: "Citadels Market - Your Goal to Global Investment",
     template: "%s | Citadels Market",
@@ -55,14 +55,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://citadelsecmarket.com",
+    url: "https://citamarkets.com",
     siteName: "Citadels Market",
     title: "Citadels Market - Your Goal to Global Investment",
     description:
       "Copy Stocks, Options & Contracts with Precision. The Premier Copy-Trading Hub for Options Traders",
     images: [
       {
-        url: "https://www.citadelsecmarket.com/og-image.png", // Create this image (1200x630px recommended)
+        url: "https://www.citamarkets.com/og-image.png", // Create this image (1200x630px recommended)
         width: 1200,
         height: 630,
         alt: "Citadels Market - Copy Trading Platform",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     title: "Citadels Market - Your Goal to Global Investment",
     description:
       "Copy Stocks, Options & Contracts with Precision. The Premier Copy-Trading Hub for Options Traders",
-    images: ["https://www.citadelsecmarket.com/twitter-image.jpg"], // Create this image (1200x600px recommended)
+    images: ["https://www.citamarkets.com/twitter-image.jpg"], // Create this image (1200x600px recommended)
     creator: "@citadelmarketspro", // Replace with your actual Twitter handle
     site: "@citadelmarketspro", // Replace with your actual Twitter handle
   },
@@ -99,7 +99,7 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   alternates: {
-    canonical: "https://citadelsecmarket.com",
+    canonical: "https://citamarkets.com",
   },
   // verification: {
   //   google: "your-google-verification-code",

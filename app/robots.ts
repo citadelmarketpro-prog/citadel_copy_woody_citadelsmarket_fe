@@ -36,6 +36,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: "https://citadelsecmarket.com/sitemap.xml",
+    sitemap: "https://citamarkets.com/sitemap.xml",
   };
 }

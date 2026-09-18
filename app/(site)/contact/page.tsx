@@ -68,10 +68,10 @@ export default async function ContactPage() {
                   <Mail size={20} className="text-emerald-600" strokeWidth={1.75} />
                 </div>
                 <a
-                  href="mailto:support@citadelsecmarket.com"
+                  href="mailto:support@citamarkets.com"
                   className="text-gray-700 hover:text-emerald-600 transition-colors text-sm"
                 >
-                  support@citadelsecmarket.com
+                  support@citamarkets.com
                 </a>
               </div>
               {phones.map((p) => (
