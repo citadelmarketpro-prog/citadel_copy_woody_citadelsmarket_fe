@@ -4,9 +4,9 @@ import SiteFooter from "@/components/newlanding/SiteFooter";
 import FAQMajor from "@/components/site/FAQMajor";
 
 export const metadata: Metadata = {
-  title: "FAQ — Frequently Asked Questions | Citadels Market",
+  title: "FAQ — Frequently Asked Questions | OsaicMarkets",
   description:
-    "Find answers to common questions about digital options trading, deposits, withdrawals, account verification, and more on Citadels Market.",
+    "Find answers to common questions about digital options trading, deposits, withdrawals, account verification, and more on OsaicMarkets.",
 };
 
 export default function FAQPage() {

@@ -7,7 +7,7 @@ function LogoText({ tone, className = "" }: { tone: "green" | "white"; className
         tone === "green" ? "text-emerald-600" : "text-white"
       } ${className}`}
     >
-      citamarkets
+      osaicmarkets
     </span>
   );
 }

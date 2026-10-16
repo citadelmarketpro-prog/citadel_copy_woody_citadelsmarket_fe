@@ -15,7 +15,7 @@ export default async function Mt5Section() {
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
               <Image
                 src="/front_images/african-american-man-using-pc-purchase-sell-stocks.jpg"
-                alt="Trader using the citamarkets MT5 platform"
+                alt="Trader using the osaicmarkets MT5 platform"
                 fill
                 sizes="(min-width: 1024px) 448px, 90vw"
                 className="object-cover"

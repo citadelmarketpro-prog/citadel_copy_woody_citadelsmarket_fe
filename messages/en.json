@@ -45,7 +45,7 @@
     "openAccount": "Open account",
     "register": "Register",
     "login": "Login",
-    "trustpilotScorePrefix": "citamarkets scores",
+    "trustpilotScorePrefix": "osaicmarkets scores",
     "trustpilotScoreSuffix": "out of 5 based on",
     "trustpilotReviews": "reviews"
   },
@@ -57,13 +57,13 @@
   },
   "about": {
     "heading": "About Us",
-    "title": "Time to take action with the international Citadels Market broker",
-    "p1": "Trading will bring you profit with proper support, constant education, and a reasonable approach. Citadels Market is a broker platform that has created all the conditions to help you improve your trading life in every possible way.",
-    "p2": "From educational broker's tools, demo accounts, and 24/7 support to your financial success, Citadels Market works tirelessly to remain at the forefront in trading online. Join now! Take full advantage of this online trading leader and make your way into the world of professional trading."
+    "title": "Time to take action with the international OsaicMarkets broker",
+    "p1": "Trading will bring you profit with proper support, constant education, and a reasonable approach. OsaicMarkets is a broker platform that has created all the conditions to help you improve your trading life in every possible way.",
+    "p2": "From educational broker's tools, demo accounts, and 24/7 support to your financial success, OsaicMarkets works tirelessly to remain at the forefront in trading online. Join now! Take full advantage of this online trading leader and make your way into the world of professional trading."
   },
   "stats": {
     "headline": "Trade with confidence",
-    "subtitle": "citamarkets is a trusted partner of traders worldwide.",
+    "subtitle": "osaicmarkets is a trusted partner of traders worldwide.",
     "traderAccounts": "Trader accounts",
     "monthlyTransactions": "Monthly transactions",
     "avgMonthlyPayouts": "Average monthly payouts",
@@ -81,7 +81,7 @@
     "f2Head": "Always by your side",
     "f2Desc": "24/7 live support with a 30-second average response time.",
     "f3Head": "Licensed and regulated",
-    "f3Desc": "Citadels Market is authorized financial services provider and cryptocurrency exchange.",
+    "f3Desc": "OsaicMarkets is authorized financial services provider and cryptocurrency exchange.",
     "f3Link": "Our licenses"
   },
   "features": {
@@ -152,10 +152,10 @@
     "s3Title": "Options",
     "s3Desc": "Buying stocks and holding on to them with a view to making long term gains is after all, one of the more common investment strategies. It's also a perfectly sensible way to invest, providing you have some idea about which stocks.",
     "s4Title": "Oil and Gas",
-    "s4Desc": "Trade oil and gas commodities with Citadels Market — access global energy markets with competitive spreads and powerful trading tools."
+    "s4Desc": "Trade oil and gas commodities with OsaicMarkets — access global energy markets with competitive spreads and powerful trading tools."
   },
   "findYourself": {
-    "title": "Find Yourself on Citadels Market",
+    "title": "Find Yourself on OsaicMarkets",
     "c1Head": "Clear Investment Processes",
     "c1Body": "Our transparent investment processes detail how each investment team identifies and implements investment opportunities and the risk/return profile to be expected. We believe that strict adherence to these guidelines is one of the most effective forms of risk management.",
     "c2Head": "ESG Integration",
@@ -187,7 +187,7 @@
     "heading": "Become a Pro Trader",
     "title": "A reliable trading platform is the foundation of success",
     "p1": "Every trader wants to profit in the best conditions and doesn't want to fear for the safety of personal funds. The first obvious thing a novice trader does is to study different online trading sites.",
-    "p2": "The main criteria for a successful internet trading platform are international reputation, unwavering reliability, constant support at all stages, and unique useful trading features. These qualities are combined in the award-winning Citadels Market broker and electronic trading platform."
+    "p2": "The main criteria for a successful internet trading platform are international reputation, unwavering reliability, constant support at all stages, and unique useful trading features. These qualities are combined in the award-winning OsaicMarkets broker and electronic trading platform."
   },
   "showcase": {
     "forexTitle": "Forex",
@@ -210,7 +210,7 @@
   },
   "mt5": {
     "title": "Power of MT5 with exclusive indices",
-    "body": "citamarkets MT5 brings you the world's favourite platform with the widest range of forex, stocks, commodities, cryptocurrencies, and exclusive Derived Indices with zero commissions, tight spreads, and swap-free trading.",
+    "body": "osaicmarkets MT5 brings you the world's favourite platform with the widest range of forex, stocks, commodities, cryptocurrencies, and exclusive Derived Indices with zero commissions, tight spreads, and swap-free trading.",
     "cta": "Explore MT5",
     "assets": "Multiple assets",
     "spreads": "Tight spreads"
@@ -243,7 +243,7 @@
   },
   "testimonials": {
     "title": "What our customers say",
-    "trustpilotScorePrefix": "citamarkets scores",
+    "trustpilotScorePrefix": "osaicmarkets scores",
     "trustpilotScoreSuffix": "out of 5 based on",
     "trustpilotReviews": "reviews"
   },
@@ -300,18 +300,18 @@
     "regulations": "Regulations (SEC)",
     "riskWarning": "Risk Warning",
     "riskText": "CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage. You should consider copying a Lead Trader we provide that understand how CFDs work without the risk of losing your money. Trading derivatives is risky. It isn't suitable for everyone but only suitable for Lead Traders; you could lose substantially more than your initial investment if you don't copy trades from Lead Traders.",
-    "companyDesc1": "Citadels Market is a global financial services provider. Citadels Market is a registered trademark of the group, that operates among various entities.",
-    "companyDesc2": "Citadels Market Limited is registered in Canada, registration number: 116797. Registered address: Lower Mount Royal, AB T2T 5H7, Canada.",
-    "companyDesc3": "Citadels Market Limited is registered in the United Kingdom, Company number 09851229. Registered address: 100 Pall Mall, St. James's London SW1Y 5NQ, United Kingdom.",
-    "companyDesc4": "Citadels Market is a Global financial service provider. Citadels Market is a registered trademark of the Citadel Group. All trading involves risk. Past performance is not indicative of future results. The content of this website must not be construed as personal advice.",
-    "companyDesc5": "© 2025 This website and technology/platform services are owned and operated by Citadels Market Limited, with Registered address: 11264 Playa Court Culver City, California. SEC: (008-53574)."
+    "companyDesc1": "OsaicMarkets is a global financial services provider. OsaicMarkets is a registered trademark of the group, that operates among various entities.",
+    "companyDesc2": "OsaicMarkets Limited is registered in Canada, registration number: 116797. Registered address: Lower Mount Royal, AB T2T 5H7, Canada.",
+    "companyDesc3": "OsaicMarkets Limited is registered in the United Kingdom, Company number 09851229. Registered address: 100 Pall Mall, St. James's London SW1Y 5NQ, United Kingdom.",
+    "companyDesc4": "OsaicMarkets is a Global financial service provider. OsaicMarkets is a registered trademark of the OsaicMarkets Group. All trading involves risk. Past performance is not indicative of future results. The content of this website must not be construed as personal advice.",
+    "companyDesc5": "© 2025 This website and technology/platform services are owned and operated by OsaicMarkets Limited, with Registered address: 11264 Playa Court Culver City, California. SEC: (008-53574)."
   },
   "langSwitcher": {
     "label": "Language"
   },
   "liquidityProviders": {
     "title": "LIQUIDITY PROVIDERS",
-    "subtitle": "Citadels Market currently has a variety of liquidity providers, including but not limited to:",
+    "subtitle": "OsaicMarkets currently has a variety of liquidity providers, including but not limited to:",
     "ctaTitle": "Instant account opening & funding",
     "ctaSubtitle": "Trade within minutes!",
     "getStarted": "Get Started",
@@ -319,29 +319,29 @@
   },
   "aboutPage": {
     "heroTitle": "About Us",
-    "heroSub": "Citadels Market has been sharing financial freedom with traders since 2014 — continuously improving our platform so traders can enjoy and make use of that freedom wherever they are.",
-    "s2Head": "Time to take action with the international Citadels Market broker",
-    "s2P1": "Trading will bring you profit with proper support, constant education, and a reasonable approach. Citadels Market is a broker platform that has created all the conditions to help you improve your trading life in every possible way.",
-    "s2P2": "From educational broker's tools, demo accounts, and 24/7 support to your financial success, Citadels Market works tirelessly to remain at the forefront of online trading. Join now and take full advantage of this online trading leader to make your way into the world of professional trading.",
+    "heroSub": "OsaicMarkets has been sharing financial freedom with traders since 2014 — continuously improving our platform so traders can enjoy and make use of that freedom wherever they are.",
+    "s2Head": "Time to take action with the international OsaicMarkets broker",
+    "s2P1": "Trading will bring you profit with proper support, constant education, and a reasonable approach. OsaicMarkets is a broker platform that has created all the conditions to help you improve your trading life in every possible way.",
+    "s2P2": "From educational broker's tools, demo accounts, and 24/7 support to your financial success, OsaicMarkets works tirelessly to remain at the forefront of online trading. Join now and take full advantage of this online trading leader to make your way into the world of professional trading.",
     "s2P3": "Our people are our greatest asset. It is only with the determination and dedication of our team that we can serve our clients, generate long-term value for our shareholders, and contribute to the broader public.",
     "s2Cta": "Open free account",
     "valuesHead": "Our Values",
     "v1Head": "Corporate Governance",
-    "v1Body": "The Board of Directors and management of Citadels Market have long recognised the importance of corporate governance practices that ensure effective oversight and strong accountability. Our goal is to generate superior financial returns for our investors by building stronger and more valuable businesses.",
+    "v1Body": "The Board of Directors and management of OsaicMarkets have long recognised the importance of corporate governance practices that ensure effective oversight and strong accountability. Our goal is to generate superior financial returns for our investors by building stronger and more valuable businesses.",
     "v2Head": "Global Impact",
     "v2Body": "As a major global financial institution, we consider the effects our business has on the environment and people around the world. We strive to uncover new ways of ensuring sustainable economic growth that protects healthy markets and delivers value to our clients, communities, businesses, and governments everywhere.",
     "v3Head": "ESG Commitment",
-    "v3Body": "At Citadels Market, we aim to accelerate the evolution of ESG on behalf of clients, investors, communities and all stakeholders — to make a positive impact on people and the planet.",
+    "v3Body": "At OsaicMarkets, we aim to accelerate the evolution of ESG on behalf of clients, investors, communities and all stakeholders — to make a positive impact on people and the planet.",
     "v4Head": "Investment Philosophy",
     "v4Body": "We know that the best way to achieve our objective is to be disciplined in our approach. We begin by investing in portfolios that meet well-defined criteria in industries where we have relevant knowledge, then leverage our accumulated experience and work closely with managers to energise our businesses.",
     "riskHead": "Risk Management at the Center",
     "riskP1": "We seek to manage risk in order to capitalise on opportunities and improve our performance. Disciplined risk estimation and management are deeply integrated components of the investment process across each of our strategies.",
-    "riskP2": "At Citadels Market, we advance sustainable economic growth and financial opportunity. Our purpose comes to life through four core values: Client Service, Excellence, Integrity, and Partnership.",
-    "riskCta": "Join Citadels Market"
+    "riskP2": "At OsaicMarkets, we advance sustainable economic growth and financial opportunity. Our purpose comes to life through four core values: Client Service, Excellence, Integrity, and Partnership.",
+    "riskCta": "Join OsaicMarkets"
   },
   "swingTradingPage": {
     "heroTitle": "Swing Trading",
-    "heroSub": "Citadels Market has been sharing financial freedom with traders since 2014 — continuously improving the platform so traders can enjoy the freedom to trade whenever and wherever they like.",
+    "heroSub": "OsaicMarkets has been sharing financial freedom with traders since 2014 — continuously improving the platform so traders can enjoy the freedom to trade whenever and wherever they like.",
     "s2Head": "Swing Trading",
     "s2Sub": "Swing trading is one of the most popular forms of active stock trading, where traders look for intermediate-term opportunities using various forms of technical analysis.",
     "s2P1": "Swing trading is a style of trading that attempts to capture short- to medium-term gains in a stock over a period of a few days to several weeks. Swing traders primarily use technical analysis to identify trading opportunities in equity markets.",
@@ -434,7 +434,7 @@
     "outlookHead": "Sector Outlook & Investment Tactics",
     "outlookP1": "The global natural gas market was estimated to be worth $955 billion in 2022 and has been growing at a compounded annual growth rate of over 7%.",
     "outlookP2": "For stock investors, this creates long-term opportunities in publicly listed energy producers, pipeline operators, and liquefied natural gas (LNG) exporters.",
-    "outlookP3": "At Citadels Market, energy sector stocks form part of a broader universe of publicly listed equities available through our platform.",
+    "outlookP3": "At OsaicMarkets, energy sector stocks form part of a broader universe of publicly listed equities available through our platform.",
     "card1Head": "Energy Sector ETFs",
     "card1Body": "ETFs such as the Energy Select Sector SPDR (XLE) offer broad exposure to U.S. oil and gas stocks, spreading risk across multiple energy producers.",
     "card2Head": "Individual Stock Picks",
@@ -442,7 +442,7 @@
   },
   "advanceTradingPage": {
     "heroTitle": "Advanced Trading Account",
-    "heroSub": "Citadels Market has been sharing financial freedom with traders since 2014 — continuously improving the platform so traders can enjoy the freedom to trade whenever and wherever they like.",
+    "heroSub": "OsaicMarkets has been sharing financial freedom with traders since 2014 — continuously improving the platform so traders can enjoy the freedom to trade whenever and wherever they like.",
     "s2Head": "Advanced Trading Account",
     "s2Sub": "Advanced Trading Account / Mechanical trading systems",
     "s2P1": "Advanced Trading Accounts — also referred to as mechanical trading systems, algorithmic trading, automated trading, or system trading — allow traders to establish specific rules for both stock trade entries and exits that, once programmed, can be automatically executed via a computer.",
@@ -457,7 +457,7 @@
   },
   "tradingLivePage": {
     "heroTitle": "Live Trading Interface",
-    "heroSub": "The Citadels Market trading platform is a software system offered to investors and traders — enabling you to place stock trades and monitor your account in real time, whenever and wherever you like.",
+    "heroSub": "The OsaicMarkets trading platform is a software system offered to investors and traders — enabling you to place stock trades and monitor your account in real time, whenever and wherever you like.",
     "s2Head": "Live Trading Interface",
     "s2Sub": "A trading platform is a software system, typically offered through a brokerage, that lets you trade online, on your own — accessing stock markets, placing trades, monitoring positions, and managing your account.",
     "s2P1": "Trading platforms can offer a number of powerful features. Broadly speaking, these include real-time stock quotes, live business and financial news feeds, instant access to streaming and historical stock market data, technical analysis tools, investment research, and educational resources.",
@@ -482,12 +482,12 @@
   },
   "optionCopyTradingPage": {
     "heroTitle": "Option Copy Trading",
-    "heroSub": "Citadels Market has been sharing financial freedom with traders since 2014 — continuously improving the platform so traders can enjoy the freedom to trade whenever and wherever they like.",
+    "heroSub": "OsaicMarkets has been sharing financial freedom with traders since 2014 — continuously improving the platform so traders can enjoy the freedom to trade whenever and wherever they like.",
     "s2Head": "Option Copy Trading",
     "s2Sub": "Copy trading is replicating another trader's positions using social platforms, automated tools and signals",
     "s2P1": "Copy trading is a type of trading where you copy the trades performed by another, more experienced trader. It can be manual, semi-automatic or fully automatic.",
     "s2P2": "Copy trading allows individuals to automatically copy another trader's positions when they are opened or closed. Experienced traders communicate their stock positions using signals, where followers can replicate the same entries and exits in real time.",
-    "s2P3": "At Citadels Market, copy trading is focused exclusively on equities. You can copy positions across a broad range of publicly listed stocks — from high-growth technology companies to stable, dividend-paying blue chips.",
+    "s2P3": "At OsaicMarkets, copy trading is focused exclusively on equities. You can copy positions across a broad range of publicly listed stocks — from high-growth technology companies to stable, dividend-paying blue chips.",
     "s2P4": "Copy trading can be a good way to grow your stock portfolio, but it is important to understand that wealth builds gradually. Diversification and disciplined risk management are the foundation of long-term success.",
     "prosConsHead": "Pros and Cons",
     "pros": "Pros",
@@ -526,7 +526,7 @@
     "heroTitle": "Security",
     "heroSub": "Your security is our top priority. We employ industry-leading encryption, multi-factor authentication, and continuous monitoring to keep your account and funds protected at all times.",
     "pillarsHead": "How we keep your funds safe",
-    "pillarsSub": "Citadels Market is built on a foundation of financial integrity. Every structural safeguard below is in place specifically to protect your capital.",
+    "pillarsSub": "OsaicMarkets is built on a foundation of financial integrity. Every structural safeguard below is in place specifically to protect your capital.",
     "p1Head": "Segregated Funds",
     "p1Body": "Client funds are held in fully segregated accounts, completely separate from company operating capital. Your money is always yours.",
     "p2Head": "Top-Tier Banks",
@@ -539,7 +539,7 @@
     "accountP2": "Our security infrastructure is regularly audited by independent third-party experts to ensure we meet and exceed industry standards.",
     "accountCta": "Open secure account",
     "featuresHead": "Built-in protection features",
-    "featuresSub": "Every Citadels Market account comes equipped with multiple layers of active security tools designed to prevent unauthorised access.",
+    "featuresSub": "Every OsaicMarkets account comes equipped with multiple layers of active security tools designed to prevent unauthorised access.",
     "f1Head": "Two-Factor Authentication (2FA)",
     "f1Body": "Add an extra layer of protection to your account. With 2FA enabled, every login requires a one-time code from your mobile device — even if your password is compromised, your account stays safe.",
     "f2Head": "One-Time Password Verification",
@@ -550,26 +550,26 @@
     "safeSub": "Security is a shared responsibility. Follow these guidelines to protect your account and avoid falling victim to fraud or phishing attacks.",
     "dos": "Do's",
     "donts": "Don'ts",
-    "do1": "Use a strong, unique password for your Citadels Market account.",
+    "do1": "Use a strong, unique password for your OsaicMarkets account.",
     "do2": "Enable Two-Factor Authentication (2FA) in your account settings.",
     "do3": "Verify the website URL is correct before logging in.",
     "do4": "Contact our official support if you receive suspicious communications.",
     "do5": "Keep your registered email and phone number up to date.",
     "do6": "Log out of your account when using a shared or public device.",
     "dont1": "Never share your password, OTP, or 2FA code with anyone — including support staff.",
-    "dont2": "Do not click links in unsolicited emails claiming to be from Citadels Market.",
+    "dont2": "Do not click links in unsolicited emails claiming to be from OsaicMarkets.",
     "dont3": "Never install software or apps recommended by unsolicited callers.",
     "dont4": "Do not use public Wi-Fi networks to access your trading account.",
     "dont5": "Never send funds to an account you cannot independently verify.",
     "dont6": "Do not ignore browser security warnings when visiting our site.",
     "suspiciousLabel": "Stay Vigilant",
     "suspiciousHead": "Suspicious communications",
-    "suspiciousP1": "Citadels Market will never contact you unsolicited to request your password, OTP, or payment details. We will never ask you to install remote-access software or transfer funds to a \"safe account.\"",
-    "suspiciousP2": "If you receive a phone call, email, or message claiming to be from Citadels Market and it feels suspicious — do not engage. Hang up or close the message immediately and contact us through our official support channels to verify.",
+    "suspiciousP1": "OsaicMarkets will never contact you unsolicited to request your password, OTP, or payment details. We will never ask you to install remote-access software or transfer funds to a \"safe account.\"",
+    "suspiciousP2": "If you receive a phone call, email, or message claiming to be from OsaicMarkets and it feels suspicious — do not engage. Hang up or close the message immediately and contact us through our official support channels to verify.",
     "suspiciousP3": "Our official domain is always citadelmarketsprotrading.com. Any communication from a different domain should be treated as fraudulent.",
     "suspiciousCta": "Contact official support",
     "ctaHead": "Trade with complete peace of mind",
-    "ctaSub": "Citadels Market combines institutional-grade security with a seamless trading experience. Your funds are protected. Your data is private. Your account is yours alone.",
+    "ctaSub": "OsaicMarkets combines institutional-grade security with a seamless trading experience. Your funds are protected. Your data is private. Your account is yours alone.",
     "ctaOpen": "Open free account",
     "ctaInsurance": "View insurance details"
   },
@@ -581,11 +581,11 @@
   },
   "insightPage": {
     "heroTitle": "Insight",
-    "heroSub": "Account security is as important as your trading strategy. Here is what you need to know to keep your Citadels Market account safe.",
+    "heroSub": "Account security is as important as your trading strategy. Here is what you need to know to keep your OsaicMarkets account safe.",
     "s2Head": "Two-Factor Authentication",
     "s2Sub": "Two-factor authentication (2FA) is an essential security measure for financial services to protect user accounts and transactions.",
     "s2P1": "It adds an extra layer of security by requiring users to provide two forms of identification before accessing their accounts. This means that even if an attacker obtains your password, they still cannot log in without the second factor.",
-    "s2P2": "At Citadels Market, we strongly recommend enabling 2FA on your account. It is one of the most effective steps you can take to protect your portfolio and personal information from unauthorised access.",
+    "s2P2": "At OsaicMarkets, we strongly recommend enabling 2FA on your account. It is one of the most effective steps you can take to protect your portfolio and personal information from unauthorised access.",
     "s2Note": "Enable 2FA in your account settings under Security → Two-Factor Authentication.",
     "whyHead": "Why 2FA Matters",
     "whySub": "Financial accounts are high-value targets for attackers. Two-factor authentication addresses the most common attack vectors and gives you meaningful protection even when passwords are compromised.",
@@ -598,7 +598,7 @@
     "b4Head": "Convenience & User-Friendly Experience",
     "b4Body": "Mobile authenticator apps are typically easy to use and offer a convenient way to generate verification codes. Users can quickly access the app on their smartphones and retrieve the code required for authentication.",
     "setupHead": "Setting Up Your Authenticator",
-    "setupP1": "To get started with 2FA on your Citadels Market account, you will need a mobile authenticator app. The most widely used and trusted apps include Google Authenticator and Microsoft Authenticator.",
+    "setupP1": "To get started with 2FA on your OsaicMarkets account, you will need a mobile authenticator app. The most widely used and trusted apps include Google Authenticator and Microsoft Authenticator.",
     "setupP2": "Once installed, navigate to your account security settings and select Two-Factor Authentication. You will be shown a QR code which you scan with your authenticator app. From that point forward, every login will require you to enter the six-digit code shown in the app.",
     "setupP3": "Keep a secure backup of your recovery codes in case you lose access to your device. Store them somewhere safe and offline — never in the same place as your password."
   },
@@ -613,8 +613,8 @@
     "heroSub": "Find out if there are any planned or unplanned outages to our systems. If you need any assistance, please contact us.",
     "maintenanceHead": "Weekly Server Maintenance",
     "maintenanceSub": "Scheduled maintenance is performed weekly during the window below. Services may be briefly unavailable during this period.",
-    "statusHead": "Citadels Market System Status",
-    "statusSub": "Live status of all Citadels Market services and infrastructure components.",
+    "statusHead": "OsaicMarkets System Status",
+    "statusSub": "Live status of all OsaicMarkets services and infrastructure components.",
     "operational": "Operational"
   },
   "tradeNewsPage": {
@@ -638,7 +638,7 @@
     "fr3": "Place trades of at least $50,000 notional value within 30 days of application",
     "howHead": "How It Works",
     "step1Title": "Access",
-    "step1Body": "Log in to your Citadels Market account and go to the 'Refer a Friend' tab in the menu to access your unique referral link.",
+    "step1Body": "Log in to your OsaicMarkets account and go to the 'Refer a Friend' tab in the menu to access your unique referral link.",
     "step2Title": "Send",
     "step2Body": "Copy and send your unique referral link to friends, or use the social sharing options to post it directly on your pages.",
     "step3Title": "Start Trading",
@@ -667,7 +667,7 @@
     "memberVal3": "Active",
     "memberCta": "Open free account",
     "ctaHead": "Regulated, secure, and transparent",
-    "ctaSub": "Citadels Market operates under strict regulatory oversight and maintains the highest standards of financial security. Our commitment to compliance ensures that every transaction you make is protected by industry-leading safeguards.",
+    "ctaSub": "OsaicMarkets operates under strict regulatory oversight and maintains the highest standards of financial security. Our commitment to compliance ensures that every transaction you make is protected by industry-leading safeguards.",
     "ctaStart": "Start trading safely",
     "ctaLearn": "Learn more about us"
   },
@@ -675,18 +675,18 @@
     "heroTitle": "Regulations",
     "heroSub": "We have a range of trading tools to help you manage your trading risk, improve your trading strategies and stay in the know.",
     "licencesHead": "Our regulatory licence",
-    "licencesSub": "Citadels Market operates under the supervision of the U.S. Securities and Exchange Commission, ensuring the highest standards of compliance and client protection.",
+    "licencesSub": "OsaicMarkets operates under the supervision of the U.S. Securities and Exchange Commission, ensuring the highest standards of compliance and client protection.",
     "ctaHead": "Trade with confidence under global oversight",
-    "ctaSub": "Every regulatory licence we hold is a commitment to transparency, fairness, and the protection of your capital. Citadels Market is built on a foundation of compliance so you can focus on what matters — trading.",
+    "ctaSub": "Every regulatory licence we hold is a commitment to transparency, fairness, and the protection of your capital. OsaicMarkets is built on a foundation of compliance so you can focus on what matters — trading.",
     "ctaOpen": "Open free account",
     "ctaInsurance": "View insurance details",
     "regulationLabel": "Regulation",
-    "sec_title": "Citadels Market USA",
-    "sec_body": "Citadels Market is authorised and regulated by the Securities & Exchange Commission (\"SEC\") with number 008-53574."
+    "sec_title": "OsaicMarkets USA",
+    "sec_body": "OsaicMarkets is authorised and regulated by the Securities & Exchange Commission (\"SEC\") with number 008-53574."
   },
   "termsPage": {
     "heroTitle": "Terms & Conditions",
-    "heroSub": "Please read these terms carefully before using Citadels Market services. Your use of the platform constitutes your acceptance of these terms.",
+    "heroSub": "Please read these terms carefully before using OsaicMarkets services. Your use of the platform constitutes your acceptance of these terms.",
     "ctaHead": "Questions about our terms?",
     "ctaSub": "Our support team is available to clarify any section of these terms. You can also reach out to our legal department for more detailed guidance.",
     "ctaContact": "Contact Support",
@@ -694,7 +694,7 @@
   },
   "privacyPage": {
     "heroTitle": "Privacy Policy",
-    "heroSub": "Your privacy is important to us. This policy explains how Citadels Market collects, uses, and protects your personal information.",
+    "heroSub": "Your privacy is important to us. This policy explains how OsaicMarkets collects, uses, and protects your personal information.",
     "ctaHead": "Questions about your privacy?",
     "ctaSub": "If you have any concerns about how we handle your personal information, our support team is here to help.",
     "ctaContact": "Contact Support",
@@ -702,7 +702,7 @@
   },
   "amlPage": {
     "heroTitle": "AML Policy",
-    "heroSub": "Citadels Market is committed to the prevention of money laundering and terrorist financing in full compliance with applicable laws and regulations.",
+    "heroSub": "OsaicMarkets is committed to the prevention of money laundering and terrorist financing in full compliance with applicable laws and regulations.",
     "ctaHead": "Trade with confidence under global oversight",
     "ctaSub": "Our compliance framework is built to protect both our clients and the integrity of the financial system. If you have questions about our AML practices, our compliance team is here to help.",
     "ctaContact": "Contact Compliance Team",
@@ -782,7 +782,7 @@
       "spamInfo": "Check your spam folder or click \"Resend Code\" to get a new one.",
       "codeExpires": "The code expires in 10 minutes.",
       "rightPanelTitle": "One More Step!",
-      "rightPanelSubtitle": "Verify your email to unlock all features and start your trading journey with Citadels Market.",
+      "rightPanelSubtitle": "Verify your email to unlock all features and start your trading journey with OsaicMarkets.",
       "pleaseEnterCode": "Please enter the complete 4-digit code"
     },
     "verify2fa": {

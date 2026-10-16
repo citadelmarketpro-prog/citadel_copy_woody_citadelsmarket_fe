@@ -24,7 +24,7 @@ export default function Header() {
       <div className="flex items-center gap-2 font-bold text-lg">
         <div className="w-6 h-6 rounded-md bg-primary"></div>
         <span>
-          Citadel<sup className="text-primary">pro</sup>
+          Osaic<sup className="text-primary">markets</sup>
         </span>
       </div>
 

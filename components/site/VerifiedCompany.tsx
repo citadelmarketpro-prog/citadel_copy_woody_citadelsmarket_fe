@@ -20,7 +20,7 @@ const VerifiedCompanySection = () => {
         </ScrollReveal>
         <ScrollReveal direction="up" delay={0.2}>
           <p className="text-gray-700 dark:text-gray-300 text-lg max-w-4xl mx-auto mb-10 leading-relaxed">
-            At Citadels Market, transparency and trust are at the heart of our
+            At OsaicMarkets, transparency and trust are at the heart of our
             services. We are a legally registered company, giving our clients
             the confidence that they are working with a verified and compliant
             business.
@@ -31,7 +31,7 @@ const VerifiedCompanySection = () => {
         <ScrollReveal direction="up" delay={0.2}>
           <ul className="text-gray-700 text-center dark:text-gray-400 text-sm max-w-3xl mx-auto  leading-relaxed space-y-2 mb-12">
             <li>
-              - <strong>Official Registration:</strong> Citadel Pro is
+              - <strong>Official Registration:</strong> OsaicMarkets is
               incorporated and listed with the relevant government authority.
             </li>
             <li>

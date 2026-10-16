@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { FadeUp, ZoomIn } from "./motion";
 import LiquidityProvidersSection from "@/components/site/LiquidityProvidersSection";
-import { BrandLogo } from "@/components/shared/BrandLogo";
 
 const awards = [
   "/sample-landing/best-partners-program-global-2024-min.svg",
@@ -180,51 +179,57 @@ export default function SiteFooter() {
       </section>
 
       {/* Footer */}
-      <footer
-        className="text-gray-400 text-xs"
-        style={{
-          background: "linear-gradient(229deg,rgb(75,75,75) 1.87%,rgb(10,10,10) 95.11%)",
-        }}
-      >
+      <footer className="bg-cream-100 pt-16">
         <FadeUp>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <div className="flex flex-col lg:flex-row gap-10 justify-between">
-              <div className="flex-shrink-0">
-                <BrandLogo tone="white" className="text-3xl sm:text-4xl" />
+          <div className="mx-auto max-w-[1300px] px-6">
+            <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr]">
+              <div>
+                <span className="text-2xl font-extrabold tracking-tight text-olive-ink/20">
+                  Osaic<span className="text-olive-ink/30">Markets</span>
+                </span>
+                <div className="mt-6 flex items-center gap-4 rounded-2xl bg-white p-5">
+                  <div className="min-w-0">
+                    <p className="text-[15px] font-bold leading-snug text-olive-ink">
+                      Copytrade with OsaicMarkets
+                    </p>
+                    <Link
+                      href="/register"
+                      className="mt-3 inline-flex items-center gap-2 rounded-full bg-olive-ink px-4 py-2 text-[12px] font-semibold text-white"
+                    >
+                      Get started
+                    </Link>
+                  </div>
+                </div>
               </div>
 
-              <nav className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 flex-1 max-w-4xl">
-                {footerCols.map((col, ci) => (
-                  <div key={ci}>
-                    <h3 className="text-white text-base font-semibold mb-3">{col.head}</h3>
-                    <ul className="space-y-3 list-none p-0 m-0">
-                      {col.links.map((l) => (
-                        <li key={l.href}>
-                          <Link
-                            href={l.href}
-                            className="text-gray-400 hover:text-white transition-colors text-xs no-underline"
-                          >
-                            {l.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </nav>
+              {footerCols.map((col, ci) => (
+                <div key={ci}>
+                  <h3 className="text-[13px] font-bold text-olive-ink">{col.head}</h3>
+                  <ul className="mt-4 space-y-3">
+                    {col.links.map((l) => (
+                      <li key={l.href}>
+                        <Link
+                          href={l.href}
+                          className="text-[13px] text-olive-ink/55 hover:text-olive-ink"
+                        >
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
 
-            <div className="mt-8 border border-[#383838] rounded-xl p-5">
-              <div className="space-y-4 text-gray-400 text-xs leading-relaxed">
-                <p>
-                  <strong>{t("riskWarning")}:</strong> {t("riskText")}
-                </p>
-                <p>{t("companyDesc1")}</p>
-                <p>{t("companyDesc2")}</p>
-                <p>{t("companyDesc3")}</p>
-                <p>{t("companyDesc4")}</p>
-                <p>{t("companyDesc5")}</p>
-              </div>
+            <div className="mt-14 border-t border-olive-ink/10 py-8 text-[11px] leading-relaxed text-olive-ink/50">
+              <p className="mb-3">
+                <strong>{t("riskWarning")}:</strong> {t("riskText")}
+              </p>
+              <p className="mb-3">{t("companyDesc1")}</p>
+              <p className="mb-3">{t("companyDesc2")}</p>
+              <p className="mb-3">{t("companyDesc3")}</p>
+              <p className="mb-3">{t("companyDesc4")}</p>
+              <p>{t("companyDesc5")}</p>
             </div>
           </div>
         </FadeUp>

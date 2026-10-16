@@ -43,7 +43,7 @@ export default async function PrivacyPolicyPage() {
           <FadeUp>
             <h2 className="text-2xl font-bold text-gray-900 mt-2 mb-4">Personal Information</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              When you apply for or maintain a Citadels Market Demo or Live account, we collect
+              When you apply for or maintain a OsaicMarkets Demo or Live account, we collect
               personal information about you for business purposes — to evaluate your financial
               needs, to process your requests and transactions, to inform you about products and
               services that may be of interest to you, and to provide client service. You may choose
@@ -74,9 +74,9 @@ export default async function PrivacyPolicyPage() {
           <FadeUp>
             <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Security Technology</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Citadels Market uses Secure Socket Layer (SSL) encryption technology to protect
+              OsaicMarkets uses Secure Socket Layer (SSL) encryption technology to protect
               certain information that you submit. This type of technology protects you from having
-              your information intercepted by anyone other than Citadels Market while it is
+              your information intercepted by anyone other than OsaicMarkets while it is
               being transmitted to us. We work hard to ensure that our websites are secure and that
               they meet industry standards.
             </p>
@@ -110,24 +110,24 @@ export default async function PrivacyPolicyPage() {
               Sharing Information with Third Parties
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Citadels Market does not disclose your personal information to third parties,
+              OsaicMarkets does not disclose your personal information to third parties,
               except as described in this policy. Third-party disclosures may include sharing such
               information with non-affiliated companies that perform support services for your
-              account or facilitate your transactions with Citadels Market, including those that
+              account or facilitate your transactions with OsaicMarkets, including those that
               provide professional, legal, or accounting advice.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              Non-affiliated companies that assist Citadels Market in providing services to you
+              Non-affiliated companies that assist OsaicMarkets in providing services to you
               are required to maintain the confidentiality of such information to the extent they
               receive it, and to use your personal information only in the course of providing such
-              services and only for the purposes that Citadels Market dictates.
+              services and only for the purposes that OsaicMarkets dictates.
             </p>
           </FadeUp>
 
           <FadeUp>
             <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Regulatory Disclosure</h2>
             <p className="text-gray-700 leading-relaxed">
-              Under limited circumstances, Citadels Market may disclose your personal
+              Under limited circumstances, OsaicMarkets may disclose your personal
               information to third parties as permitted by, or to comply with, applicable laws and
               regulations. For example, we may disclose personal information to cooperate with
               regulatory authorities and law enforcement agencies, to comply with subpoenas or other

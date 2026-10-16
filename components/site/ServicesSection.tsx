@@ -101,7 +101,7 @@ const ServicesSection = () => {
         <ScrollReveal direction="up" delay={0.2}>
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Why Trade Stocks on Citadel?
+              Why Trade Stocks on OsaicMarkets?
             </h2>
             <p className="text-gray-600 dark:text-gray-300 text-lg">
               Learn Steps to Capitalize on Price Differences and Maximize Your

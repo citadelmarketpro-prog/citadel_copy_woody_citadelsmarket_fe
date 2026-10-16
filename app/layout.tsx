@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
@@ -17,11 +17,16 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://citamarkets.com"),
+  metadataBase: new URL("https://osaicmarkets.com"),
   title: {
-    default: "Citadels Market - Your Goal to Global Investment",
-    template: "%s | Citadels Market",
+    default: "OsaicMarkets - Your Goal to Global Investment",
+    template: "%s | OsaicMarkets",
   },
   description:
     "Copy Stocks, Options & Contracts with Precision. The Premier Copy-Trading Hub for Options Traders. Start trading like experts with our advanced copy-trading platform.",
@@ -44,9 +49,9 @@ export const metadata: Metadata = {
     "mirror trading",
     "algorithmic trading",
   ],
-  authors: [{ name: "Citadels Market" }],
-  creator: "Citadels Market",
-  publisher: "Citadels Market",
+  authors: [{ name: "OsaicMarkets" }],
+  creator: "OsaicMarkets",
+  publisher: "OsaicMarkets",
   formatDetection: {
     email: false,
     address: false,
@@ -55,28 +60,28 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://citamarkets.com",
-    siteName: "Citadels Market",
-    title: "Citadels Market - Your Goal to Global Investment",
+    url: "https://osaicmarkets.com",
+    siteName: "OsaicMarkets",
+    title: "OsaicMarkets - Your Goal to Global Investment",
     description:
       "Copy Stocks, Options & Contracts with Precision. The Premier Copy-Trading Hub for Options Traders",
     images: [
       {
-        url: "https://www.citamarkets.com/og-image.png", // Create this image (1200x630px recommended)
+        url: "https://www.osaicmarkets.com/og-image.png", // Create this image (1200x630px recommended)
         width: 1200,
         height: 630,
-        alt: "Citadels Market - Copy Trading Platform",
+        alt: "OsaicMarkets - Copy Trading Platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Citadels Market - Your Goal to Global Investment",
+    title: "OsaicMarkets - Your Goal to Global Investment",
     description:
       "Copy Stocks, Options & Contracts with Precision. The Premier Copy-Trading Hub for Options Traders",
-    images: ["https://www.citamarkets.com/twitter-image.jpg"], // Create this image (1200x600px recommended)
-    creator: "@citadelmarketspro", // Replace with your actual Twitter handle
-    site: "@citadelmarketspro", // Replace with your actual Twitter handle
+    images: ["https://www.osaicmarkets.com/twitter-image.jpg"], // Create this image (1200x600px recommended)
+    creator: "@osaicmarkets", // Replace with your actual Twitter handle
+    site: "@osaicmarkets", // Replace with your actual Twitter handle
   },
   robots: {
     index: true,
@@ -99,7 +104,7 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   alternates: {
-    canonical: "https://citamarkets.com",
+    canonical: "https://osaicmarkets.com",
   },
   // verification: {
   //   google: "your-google-verification-code",
@@ -123,10 +128,10 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <head>
         {/* Additional SEO meta tags */}
-        <meta name="application-name" content="Citadels Market" />
+        <meta name="application-name" content="OsaicMarkets" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Citadels Market" />
+        <meta name="apple-mobile-web-app-title" content="OsaicMarkets" />
         <meta name="mobile-web-app-capable" content="yes" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

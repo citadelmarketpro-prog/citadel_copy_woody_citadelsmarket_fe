@@ -111,7 +111,7 @@ const ReadyToStartSection = () => {
               Your funds are held in top-tier institutions
             </h3>
             <p className="text-gray-600 dark:text-gray-400 text-center text-lg mb-12 max-w-3xl mx-auto">
-              The Citadels Market works with globally renowned banking
+              The OsaicMarkets works with globally renowned banking
               partners including:
             </p>
 
@@ -143,7 +143,7 @@ const ReadyToStartSection = () => {
             </h3>
             <p className="text-gray-600 dark:text-gray-400 text-center text-lg mb-12">
               Discover why millions of investors from over 100 countries joined
-              Citadels Market
+              OsaicMarkets
             </p>
 
             {/* Trust Features Grid */}

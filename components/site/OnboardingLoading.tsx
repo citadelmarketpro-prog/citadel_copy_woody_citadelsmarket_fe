@@ -64,7 +64,7 @@ const OnboardingLoading = () => {
       step: 2,
       title: "Personalizing your experience...",
       description:
-        "We're tailoring Citadels Market to your preferences for a more relevant and efficient workflow.",
+        "We're tailoring OsaicMarkets to your preferences for a more relevant and efficient workflow.",
       icon: (
         <motion.div
           className="relative "
@@ -187,7 +187,7 @@ const OnboardingLoading = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
           >
-            All set! Click below to start using Citadels Market
+            All set! Click below to start using OsaicMarkets
           </motion.h2>
           <motion.p
             className="text-gray-400 dark:text-gray-600 text-lg mb-8 leading-relaxed"

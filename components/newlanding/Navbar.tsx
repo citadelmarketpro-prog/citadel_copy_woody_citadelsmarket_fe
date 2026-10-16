@@ -2,192 +2,302 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ChevronDown, Menu, X } from "lucide-react";
-import { useTranslations } from "next-intl";
-import LangSwitcher from "./LangSwitcher";
-import { BrandLogo } from "@/components/shared/BrandLogo";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { ModeToggle } from "@/components/mode/toggleModeButton";
+
+type SimpleLink = { label: string; href: string };
+
+type NavItem =
+  | { label: string; href: string; dropdown?: undefined }
+  | {
+      label: string;
+      href?: undefined;
+      dropdown: { groups: { heading?: string; links: SimpleLink[] }[] };
+    };
+
+// Mirrors the footer's own link groups (components/newlanding/SiteFooter.tsx)
+// so the navbar and footer never drift out of sync with each other.
+const NAV_ITEMS: NavItem[] = [
+  {
+    label: "Trading",
+    dropdown: {
+      groups: [
+        {
+          heading: "Trades",
+          links: [
+            { label: "Swing Trading", href: "/swing-trading" },
+            { label: "Futures", href: "/futures" },
+            { label: "Buy Options", href: "/option-trading" },
+            { label: "Oil & Gas", href: "/oil-and-gas" },
+          ],
+        },
+        {
+          heading: "Tools",
+          links: [
+            { label: "Option Copy Trading", href: "/option-trading" },
+            { label: "Stock and Advance Trading", href: "/advance-trading" },
+            { label: "Buy Live Trading", href: "/trading-live" },
+            { label: "Copy Trading", href: "/option-copy-trading" },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    label: "Company",
+    dropdown: {
+      groups: [
+        {
+          links: [
+            { label: "About us", href: "/about" },
+            { label: "Insurance", href: "/insurance" },
+            { label: "Demo Account", href: "/register" },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    label: "Support",
+    dropdown: {
+      groups: [
+        {
+          links: [
+            { label: "Contact Us", href: "/contact" },
+            { label: "System Status", href: "/system-status" },
+            { label: "Latest market news", href: "/trade-news" },
+            { label: "Refer a Friend", href: "/refer-a-friend" },
+            { label: "FAQ", href: "/faq" },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    label: "Legal",
+    dropdown: {
+      groups: [
+        {
+          links: [
+            { label: "Terms & Conditions", href: "/terms-and-condition" },
+            { label: "Privacy Policy", href: "/privacy-policy" },
+            { label: "AML Policy", href: "/aml-policy" },
+            { label: "Regulations (SEC)", href: "/regulations" },
+          ],
+        },
+      ],
+    },
+  },
+];
 
 export default function Navbar() {
-  const t = useTranslations("nav");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
-  const [hoveredNav, setHoveredNav] = useState<string | null>(null);
-
-  const navItems = [
-    {
-      label: t("company"),
-      dropdown: {
-        heading: t("about"),
-        items: [
-          { label: t("aboutUs"), sub: t("aboutUsSub"), href: "/about" },
-          { label: t("insurance"), sub: t("insuranceSub"), href: "/insurance" },
-          { label: t("regulations"), sub: t("regulationsSub"), href: "/regulations" },
-          { label: t("leadTraders"), sub: t("leadTradersSub"), href: "/lead-traders" },
-          { label: t("security"), sub: t("securitySub"), href: "/security" },
-        ],
-      },
-    },
-    {
-      label: t("mirrorTrading"),
-      dropdown: {
-        heading: t("trades"),
-        items: [
-          { label: t("optionCopyTrading"), sub: t("optionCopyTradingSub"), href: "/option-copy-trading" },
-          { label: t("advanceTrading"), sub: t("advanceTradingSub"), href: "/advance-trading" },
-          { label: t("liveTrading"), sub: t("liveTradingSub"), href: "/trading-live" },
-        ],
-      },
-    },
-    {
-      label: t("stocks"),
-      dropdown: {
-        heading: t("stocks"),
-        items: [
-          { label: t("swingTrading"), sub: t("swingTradingSub"), href: "/swing-trading" },
-          { label: t("futures"), sub: t("futuresSub"), href: "/futures" },
-          { label: t("options"), sub: t("optionsSub"), href: "/option-trading" },
-          { label: t("oilAndGas"), sub: t("oilAndGasSub"), href: "/oil-and-gas" },
-        ],
-      },
-    },
-    { label: t("software"), href: "/software" },
-    { label: t("insight"), href: "/insight" },
-  ];
 
   useEffect(() => {
-    if (mobileOpen) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
-    return () => { document.body.style.overflow = ""; };
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   return (
-    <header className="bg-[#0c5c45] sticky top-0 z-50 shadow-lg shadow-black/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-3">
-        <BrandLogo tone="white" className="text-2xl sm:text-3xl" wrapperClassName="flex-shrink-0" />
-
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navItems.map((item) =>
-            item.dropdown ? (
-              <div
-                key={item.label}
-                className="relative"
-                onMouseEnter={() => setHoveredNav(item.label)}
-                onMouseLeave={() => setHoveredNav(null)}
-              >
-                <button className="flex items-center gap-1 text-sm font-medium text-white/80 hover:text-emerald-400 transition-colors py-2">
-                  {item.label}
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-                {hoveredNav === item.label && (
-                  <div className="absolute top-full left-0 mt-1 bg-white shadow-xl rounded-b-lg p-5 min-w-[520px] z-50 border-t-2 border-emerald-500">
-                    <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-3">
-                      {item.dropdown.heading}
-                    </h4>
-                    <ul className="grid grid-cols-3 gap-3 list-none p-0 m-0">
-                      {item.dropdown.items.map((di) => (
-                        <li key={di.href}>
-                          <Link
-                            href={di.href}
-                            className="block p-3 rounded-lg bg-emerald-50 hover:bg-emerald-100 transition-colors no-underline"
-                          >
-                            <span className="text-sm font-medium text-gray-800 block">{di.label}</span>
-                            <span className="block text-xs text-gray-500 mt-0.5">{di.sub}</span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <Link
-                key={item.label}
-                href={item.href ?? "/"}
-                className="text-sm font-medium text-white/80 hover:text-emerald-400 transition-colors"
-              >
-                {item.label}
-              </Link>
-            )
-          )}
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <LangSwitcher />
-          <Link
-            href="/register"
-            className="inline-flex items-center px-3 py-1.5 sm:px-5 sm:py-2 bg-white text-emerald-700 text-xs sm:text-sm font-semibold rounded-lg hover:bg-emerald-50 transition-colors"
-          >
-            {t("getStarted")}
+    <div className="sticky top-0 z-50 bg-cream-100 px-3 pt-2 sm:px-5 sm:pt-3">
+      <header className="relative mx-auto max-w-[1320px] rounded-[28px] bg-olive-500/95 shadow-lg shadow-olive-900/20 backdrop-blur supports-[backdrop-filter]:bg-olive-500/90">
+        <div className="flex items-center justify-between gap-4 px-5 py-3 sm:px-7">
+          {/* Logo */}
+          <Link href="/" className="flex shrink-0 items-center gap-0.5">
+            <span className="text-xl font-extrabold tracking-tight text-white sm:text-2xl">
+              Osaic
+            </span>
+            <span className="text-xl font-extrabold tracking-tight text-lime-300 sm:text-2xl">
+              Markets
+            </span>
           </Link>
+
+          {/* Desktop nav links */}
+          <nav className="hidden items-center gap-7 lg:flex">
+            {NAV_ITEMS.map((item) =>
+              item.dropdown ? (
+                <div
+                  key={item.label}
+                  className="relative"
+                  onMouseEnter={() => setHovered(item.label)}
+                  onMouseLeave={() => setHovered(null)}
+                >
+                  <button className="flex items-center gap-1 py-2 text-[15px] font-medium text-white/80 transition-colors hover:text-white">
+                    {item.label}
+                    <ChevronDown className="h-3.5 w-3.5" />
+                  </button>
+
+                  {hovered === item.label && (
+                    <div className="absolute left-1/2 top-full z-10 w-max min-w-[220px] -translate-x-1/2 pt-3">
+                      <div
+                        className={`flex gap-8 rounded-2xl bg-white p-5 shadow-xl shadow-olive-900/15 ${
+                          item.dropdown.groups.length > 1 ? "" : ""
+                        }`}
+                      >
+                        {item.dropdown.groups.map((group, gi) => (
+                          <div key={gi}>
+                            {group.heading && (
+                              <p className="mb-2 text-[11px] font-bold uppercase tracking-widest text-olive-ink/40">
+                                {group.heading}
+                              </p>
+                            )}
+                            <ul className="flex flex-col gap-2">
+                              {group.links.map((l) => (
+                                <li key={l.label}>
+                                  <Link
+                                    href={l.href}
+                                    className="whitespace-nowrap text-[14px] font-medium text-olive-ink/80 hover:text-olive-ink"
+                                  >
+                                    {l.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="text-[15px] font-medium text-white/80 transition-colors hover:text-white"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
+          </nav>
+
+          {/* Right actions */}
+          <div className="hidden items-center gap-3 lg:flex">
+            <span className="rounded-full bg-white/15 p-0.5">
+              <ModeToggle />
+            </span>
+            <Link
+              href="/login"
+              className="inline-flex h-10 items-center gap-1.5 rounded-full bg-white px-5 text-sm font-semibold text-olive-ink transition-transform hover:scale-[1.03]"
+            >
+              Log in <span aria-hidden>&rarr;</span>
+            </Link>
+            <Link
+              href="/register"
+              className="inline-flex h-10 items-center gap-1.5 rounded-full bg-olive-ink px-5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
+            >
+              Get started for free <span aria-hidden>&rarr;</span>
+            </Link>
+          </div>
+
+          {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 text-white/80"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
+            onClick={() => setMobileOpen(true)}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white lg:hidden"
+            aria-label="Open menu"
           >
-            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <Menu className="h-5 w-5" />
           </button>
         </div>
-      </div>
+      </header>
 
       {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="md:hidden bg-[#0a4f3b] border-t border-white/10 px-4 pb-6 space-y-1">
-          {navItems.map((item) =>
-            item.dropdown ? (
-              <div key={item.label}>
-                <button
-                  className="w-full flex items-center justify-between py-3 text-sm font-medium text-white/80"
-                  onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
-                >
-                  {item.label}
-                  <ChevronDown
-                    className={`w-4 h-4 transition-transform ${mobileExpanded === item.label ? "rotate-180" : ""}`}
-                  />
-                </button>
-                {mobileExpanded === item.label && (
-                  <div className="pl-3 space-y-1 mb-2">
-                    {item.dropdown.items.map((di) => (
-                      <Link
-                        key={di.href}
-                        href={di.href}
-                        className="block py-2 px-3 rounded-lg bg-white/10 text-sm text-white/80 no-underline"
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        {di.label}
-                        <span className="block text-xs text-white/50">{di.sub}</span>
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <Link
-                key={item.label}
-                href={item.href ?? "/"}
-                className="block py-3 text-sm font-medium text-white/80 no-underline"
-                onClick={() => setMobileOpen(false)}
-              >
-                {item.label}
+        <div className="fixed inset-0 z-[60] bg-olive-ink/40 backdrop-blur-sm lg:hidden">
+          <div className="mx-3 mt-3 max-h-[85vh] overflow-y-auto rounded-[28px] bg-cream-100 p-6 shadow-2xl">
+            <div className="mb-6 flex items-center justify-between">
+              <Link href="/" className="flex items-center gap-0.5" onClick={() => setMobileOpen(false)}>
+                <span className="text-xl font-extrabold tracking-tight text-olive-ink">Osaic</span>
+                <span className="text-xl font-extrabold tracking-tight text-olive-600">Markets</span>
               </Link>
-            )
-          )}
-          <Link
-            href="/register"
-            className="block mt-3 text-center py-2.5 bg-white text-emerald-700 text-sm font-semibold rounded-lg no-underline"
-            onClick={() => setMobileOpen(false)}
-          >
-            {t("getStarted")}
-          </Link>
-          <Link
-            href="/login"
-            className="block mt-2 text-center py-2.5 border border-white/30 text-white text-sm font-semibold rounded-lg no-underline"
-            onClick={() => setMobileOpen(false)}
-          >
-            {t("login")}
-          </Link>
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-olive-ink/10 text-olive-ink"
+                aria-label="Close menu"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <nav className="flex flex-col gap-1">
+              {NAV_ITEMS.map((item) =>
+                item.dropdown ? (
+                  <div key={item.label} className="border-b border-olive-ink/5">
+                    <button
+                      onClick={() =>
+                        setMobileExpanded(mobileExpanded === item.label ? null : item.label)
+                      }
+                      className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-base font-medium text-olive-ink/90 hover:bg-olive-ink/5"
+                    >
+                      {item.label}
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${
+                          mobileExpanded === item.label ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {mobileExpanded === item.label && (
+                      <div className="flex flex-col gap-4 px-3 pb-4">
+                        {item.dropdown.groups.map((group, gi) => (
+                          <div key={gi}>
+                            {group.heading && (
+                              <p className="mb-1.5 text-[11px] font-bold uppercase tracking-widest text-olive-ink/40">
+                                {group.heading}
+                              </p>
+                            )}
+                            <div className="flex flex-col gap-1">
+                              {group.links.map((l) => (
+                                <Link
+                                  key={l.label}
+                                  href={l.href}
+                                  onClick={() => setMobileOpen(false)}
+                                  className="rounded-lg px-2 py-2 text-sm text-olive-ink/75 hover:bg-olive-ink/5"
+                                >
+                                  {l.label}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="rounded-xl px-3 py-3 text-base font-medium text-olive-ink/90 hover:bg-olive-ink/5"
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
+            </nav>
+
+            <div className="mt-5 flex flex-col gap-3">
+              <Link
+                href="/login"
+                onClick={() => setMobileOpen(false)}
+                className="inline-flex h-11 items-center justify-center rounded-full border border-olive-ink/15 bg-white text-sm font-semibold text-olive-ink"
+              >
+                Log in
+              </Link>
+              <Link
+                href="/register"
+                onClick={() => setMobileOpen(false)}
+                className="inline-flex h-11 items-center justify-center rounded-full bg-olive-ink text-sm font-semibold text-white"
+              >
+                Get started for free
+              </Link>
+            </div>
+          </div>
         </div>
       )}
-    </header>
+    </div>
   );
 }

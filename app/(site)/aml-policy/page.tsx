@@ -45,13 +45,13 @@ export default async function AmlPolicyPage() {
 
             <h2 className="text-2xl font-bold text-gray-900 mt-2 mb-4">About This Policy</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Citadels Market is a global financial services provider regulated by the SEC
+              OsaicMarkets is a global financial services provider regulated by the SEC
               (008-53574), the FCA in the United Kingdom (Company Number 09851229), and CIRO
               (Registration Number 116797). The Company may extend its services to various regions,
               including the European Economic Area (&quot;EEA&quot;) countries.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              This Anti-Money Laundering (AML) Policy sets out the measures Citadels Market
+              This Anti-Money Laundering (AML) Policy sets out the measures OsaicMarkets
               takes to detect, prevent, and report money laundering and the financing of terrorism.
               All employees, officers, and associated persons are required to comply fully with this
               policy. Failure to do so may result in disciplinary action or referral to the relevant
@@ -65,7 +65,7 @@ export default async function AmlPolicyPage() {
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               In compliance with anti-money laundering (AML) and know your customer (KYC)
-              regulations, Citadels Market requires all clients to complete identity
+              regulations, OsaicMarkets requires all clients to complete identity
               verification before accessing live trading services. By creating an account, you
               consent to providing identity verification documents and authorize us to verify your
               identity through third-party verification services.
@@ -100,7 +100,7 @@ export default async function AmlPolicyPage() {
               Data Collection &amp; Processing
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              You expressly consent to Citadels Market processing your personal data for the
+              You expressly consent to OsaicMarkets processing your personal data for the
               purposes of providing our services, including but not limited to account management,
               transaction processing, identity verification, fraud prevention, and regulatory
               compliance. This includes:
@@ -117,7 +117,7 @@ export default async function AmlPolicyPage() {
           <FadeUp>
             <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Risk Assessment</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Citadels Market conducts regular risk assessments to identify and evaluate the
+              OsaicMarkets conducts regular risk assessments to identify and evaluate the
               money laundering and terrorist financing risks associated with our products, services,
               clients, and geographic exposure. Risk ratings are assigned to all client accounts
               and are reviewed on an ongoing basis.
@@ -136,7 +136,7 @@ export default async function AmlPolicyPage() {
               Conflict of Interest Controls
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Citadels Market is committed to maintaining the highest standards of integrity
+              OsaicMarkets is committed to maintaining the highest standards of integrity
               and fairness. We identify, manage, and mitigate potential conflicts of interest that
               may arise between our interests and those of our clients.
             </p>
@@ -158,7 +158,7 @@ export default async function AmlPolicyPage() {
               Monitoring &amp; Suspicious Activity Reporting
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Citadels Market maintains ongoing transaction monitoring systems designed to
+              OsaicMarkets maintains ongoing transaction monitoring systems designed to
               detect unusual or suspicious activity. All employees are trained to recognise and
               report indicators of potential money laundering, including unusual transaction
               volumes, structuring, and inconsistent account behaviour.
@@ -187,8 +187,8 @@ export default async function AmlPolicyPage() {
               Consent to Recording &amp; Communications
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              You consent to the recording and monitoring of your communications with Citadel Pros
-              Market, including telephone conversations, video calls, live chat sessions, and
+              You consent to the recording and monitoring of your communications with OsaicMarkets,
+              including telephone conversations, video calls, live chat sessions, and
               electronic communications. These recordings may be used for quality assurance,
               training, dispute resolution, and regulatory compliance purposes.
             </p>
@@ -203,7 +203,7 @@ export default async function AmlPolicyPage() {
             <p className="text-gray-700 leading-relaxed mb-4">
               This AML Policy is designed to comply with all applicable regulatory requirements,
               including but not limited to the Bank Secrecy Act (BSA), the USA Patriot Act, FATF
-              Recommendations, FCA rules, and CIRO guidelines. Citadels Market cooperates
+              Recommendations, FCA rules, and CIRO guidelines. OsaicMarkets cooperates
               fully with regulatory authorities in their oversight of our AML compliance programme.
             </p>
             <p className="text-gray-700 leading-relaxed">
@@ -218,7 +218,7 @@ export default async function AmlPolicyPage() {
               Reporting Concerns &amp; Complaints
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              If you believe that Citadels Market has not adequately managed a compliance
+              If you believe that OsaicMarkets has not adequately managed a compliance
               concern, or if you wish to report a potential AML issue, please contact us immediately
               through:
             </p>

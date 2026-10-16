@@ -253,7 +253,7 @@ export default function LoginPage() {
           </div>
           <div className="text-center mt-1 text-sm space-y-2.5">
             <p className="text-gray-400 dark:text-gray-700">
-              Copyright &copy; {new Date().getFullYear()} Citadels Market
+              Copyright &copy; {new Date().getFullYear()} OsaicMarkets
             </p>
             <div className="flex items-center justify-center gap-4">
               <Link

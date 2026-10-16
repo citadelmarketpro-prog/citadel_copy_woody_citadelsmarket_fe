@@ -139,14 +139,14 @@ const Footer = () => {
               Disclaimer
             </h5>
             <p className="dark:text-gray-400 text-gray-600 text-xs leading-relaxed mb-4">
-              Citadels Market is a Global financial service provider.
-              Citadels Market is a registered trademark of the Citadel
+              OsaicMarkets is a Global financial service provider.
+              OsaicMarkets is a registered trademark of the OsaicMarkets
               Group. All trading involves risk. Past performance is not
               indicative of future results. The content of this website must not
               be construed as personal advice.
             </p>
             <p className="dark:text-gray-500 text-gray-500 text-xs">
-              © Copyright {new Date().getFullYear()} Citadels Market
+              © Copyright {new Date().getFullYear()} OsaicMarkets
             </p>
           </div>
         </div>

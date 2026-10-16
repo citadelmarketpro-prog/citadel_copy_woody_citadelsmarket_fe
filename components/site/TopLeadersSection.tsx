@@ -116,7 +116,7 @@ const TopLeadersSection = () => {
         <ScrollReveal direction="up" delay={0.2}>
           <div className="mb-12 text-center">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Citadel Markets&apos; Top Leaders
+              OsaicMarkets&apos; Top Leaders
             </h2>
             <p className="text-gray-600 dark:text-gray-400 text-lg max-w-3xl mx-auto">
               Discover your perfect match using more than 40 filters. Rank

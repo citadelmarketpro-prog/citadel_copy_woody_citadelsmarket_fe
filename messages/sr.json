@@ -49,9 +49,9 @@
   },
   "about": {
     "heading": "O Nama",
-    "title": "Vreme je za akciju sa međunarodnim brokerom Citadels Market",
-    "p1": "Trading će vam doneti profit uz odgovarajuću podršku, stalnu edukaciju i razuman pristup. Citadels Market je brokerska platforma koja je stvorila sve uslove za poboljšanje vašeg trgovačkog života.",
-    "p2": "Od obrazovnih alata brokera, demo naloga i podrške 24/7 do vašeg finansijskog uspeha, Citadels Market radi neiscrpno kako bi ostao u vrhu online tradinga. Pridružite se sada!"
+    "title": "Vreme je za akciju sa međunarodnim brokerom OsaicMarkets",
+    "p1": "Trading će vam doneti profit uz odgovarajuću podršku, stalnu edukaciju i razuman pristup. OsaicMarkets je brokerska platforma koja je stvorila sve uslove za poboljšanje vašeg trgovačkog života.",
+    "p2": "Od obrazovnih alata brokera, demo naloga i podrške 24/7 do vašeg finansijskog uspeha, OsaicMarkets radi neiscrpno kako bi ostao u vrhu online tradinga. Pridružite se sada!"
   },
   "stats": {
     "traderAccounts": "Nalozi tradera",
@@ -71,7 +71,7 @@
     "f2Head": "Uvek na vašoj strani",
     "f2Desc": "Podrška uživo 24/7 sa prosečnim vremenom odgovora od 30 sekundi.",
     "f3Head": "Licenciran i regulisan",
-    "f3Desc": "Citadels Market je ovlašćeni pružalac finansijskih usluga i menjačnica kriptovaluta.",
+    "f3Desc": "OsaicMarkets je ovlašćeni pružalac finansijskih usluga i menjačnica kriptovaluta.",
     "f3Link": "Naše licence"
   },
   "features": {
@@ -142,10 +142,10 @@
     "s3Title": "Opcije",
     "s3Desc": "Kupovina akcija i njihovo čuvanje sa ciljem dugoročnih dobitaka jedna je od najčešćih investicionih strategija.",
     "s4Title": "Nafta i Gas",
-    "s4Desc": "Trgujte sirovinama nafte i gasa sa Citadels Marketom — pristupite globalnim energetskim tržištima sa konkurentnim spreadovima i snažnim alatima za trading."
+    "s4Desc": "Trgujte sirovinama nafte i gasa sa OsaicMarketsom — pristupite globalnim energetskim tržištima sa konkurentnim spreadovima i snažnim alatima za trading."
   },
   "findYourself": {
-    "title": "Pronađite sebe na Citadels Marketu",
+    "title": "Pronađite sebe na OsaicMarketsu",
     "c1Head": "Jasni Investicioni Procesi",
     "c1Body": "Naši transparentni investicioni procesi opisuju kako svaki investicioni tim identifikuje i sprovodi investicione prilike.",
     "c2Head": "ESG Integracija",
@@ -177,7 +177,7 @@
     "heading": "Postanite Profesionalni Trader",
     "title": "Pouzdana platforma za trading osnova je uspeha",
     "p1": "Svaki trader želi da zarađuje u najboljim uslovima i ne želi da strahuje za bezbednost ličnih sredstava.",
-    "p2": "Glavni kriterijumi uspešne online platforme za trading su međunarodna reputacija, nepokolebljiva pouzdanost, stalna podrška i jedinstvene funkcije tradinga. Ove se kvalitete kombinuju u nagrađivanom brokeru Citadels Market."
+    "p2": "Glavni kriterijumi uspešne online platforme za trading su međunarodna reputacija, nepokolebljiva pouzdanost, stalna podrška i jedinstvene funkcije tradinga. Ove se kvalitete kombinuju u nagrađivanom brokeru OsaicMarkets."
   },
   "footer": {
     "valuesTitle": "Naše Vrednosti",
@@ -218,11 +218,11 @@
     "regulations": "Propisi (SEC)",
     "riskWarning": "Upozorenje o riziku",
     "riskText": "CFD-ovi su složeni instrumenti i nose visok rizik brzog gubitka novca zbog efekta poluge. Nije prikladno za sve.",
-    "companyDesc1": "Citadels Market je globalni pružalac finansijskih usluga. Citadels Market je registrovani zaštitni znak grupe.",
-    "companyDesc2": "Citadels Market Limited registrovan je u Kanadi, registracioni broj: 116797. Registrovana adresa: Lower Mount Royal, AB T2T 5H7, Kanada.",
-    "companyDesc3": "Citadels Market Limited registrovan je u Ujedinjenom Kraljevstvu, broj kompanije 09851229. Registrovana adresa: 100 Pall Mall, St. James's London SW1Y 5NQ, Ujedinjeno Kraljevstvo.",
-    "companyDesc4": "Citadels Market je globalni pružalac finansijskih usluga. Svaki trading nosi rizik. Prošli rezultati nisu pokazatelji budućih rezultata.",
-    "companyDesc5": "© 2025 Ovaj veb sajt i tehnološke/platformske usluge su u vlasništvu i njima upravlja Citadels Market Limited sa registrovanom adresom: 11264 Playa Court Culver City, Kalifornija. SEC: (008-53574)."
+    "companyDesc1": "OsaicMarkets je globalni pružalac finansijskih usluga. OsaicMarkets je registrovani zaštitni znak grupe.",
+    "companyDesc2": "OsaicMarkets Limited registrovan je u Kanadi, registracioni broj: 116797. Registrovana adresa: Lower Mount Royal, AB T2T 5H7, Kanada.",
+    "companyDesc3": "OsaicMarkets Limited registrovan je u Ujedinjenom Kraljevstvu, broj kompanije 09851229. Registrovana adresa: 100 Pall Mall, St. James's London SW1Y 5NQ, Ujedinjeno Kraljevstvo.",
+    "companyDesc4": "OsaicMarkets je globalni pružalac finansijskih usluga. Svaki trading nosi rizik. Prošli rezultati nisu pokazatelji budućih rezultata.",
+    "companyDesc5": "© 2025 Ovaj veb sajt i tehnološke/platformske usluge su u vlasništvu i njima upravlja OsaicMarkets Limited sa registrovanom adresom: 11264 Playa Court Culver City, Kalifornija. SEC: (008-53574)."
   },
   "langSwitcher": {
     "label": "Jezik"
@@ -591,8 +591,8 @@
     "ctaOpen": "Отворите бесплатан налог",
     "ctaInsurance": "Погледајте детаље осигурања",
     "regulationLabel": "Регулатива",
-    "sec_title": "Citadels Market USA",
-    "sec_body": "Citadels Market is authorised and regulated by the Securities & Exchange Commission (\"SEC\") with number 008-53574."
+    "sec_title": "OsaicMarkets USA",
+    "sec_body": "OsaicMarkets is authorised and regulated by the Securities & Exchange Commission (\"SEC\") with number 008-53574."
   },
   "termsPage": {
     "heroTitle": "Услови и одредбе",
@@ -620,7 +620,7 @@
   },
   "liquidityProviders": {
     "title": "ПРОВАЈДЕРИ ЛИКВИДНОСТИ",
-    "subtitle": "Citadels Market тренутно сарађује са различитим провајдерима ликвидности, укључујући, али не ограничавајући се на:",
+    "subtitle": "OsaicMarkets тренутно сарађује са различитим провајдерима ликвидности, укључујући, али не ограничавајући се на:",
     "ctaTitle": "Тренутно отварање налога и финансирање",
     "ctaSubtitle": "Почните да тргујете за неколико минута!",
     "getStarted": "Почните",
@@ -700,7 +700,7 @@
       "spamInfo": "Check your spam folder or click \"Resend Code\" to get a new one.",
       "codeExpires": "The code expires in 10 minutes.",
       "rightPanelTitle": "One More Step!",
-      "rightPanelSubtitle": "Verify your email to unlock all features and start your trading journey with Citadels Market.",
+      "rightPanelSubtitle": "Verify your email to unlock all features and start your trading journey with OsaicMarkets.",
       "pleaseEnterCode": "Please enter the complete 4-digit code"
     },
     "verify2fa": {

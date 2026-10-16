@@ -13,7 +13,7 @@ export default async function TestimonialsSection() {
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3] w-full">
               <Image
                 src="/front_images/trading-stock-stock-market-trading-investment-broker-stock-exchange-market.jpg"
-                alt="A citamarkets trader reviewing the markets"
+                alt="A osaicmarkets trader reviewing the markets"
                 fill
                 sizes="(min-width: 1024px) 448px, 90vw"
                 className="object-cover"

@@ -156,11 +156,11 @@ const CryptoHeroSection = () => {
               {/* Subheading */}
               <p className="dark:text-white text-black text-lg lg:text-xl font-light max-w-2xl">
                 <span className="font-semibold mt-2 mb-4 inline-block">
-                  Go long, go short, or go Citadel Markets!
+                  Go long, go short, or go OsaicMarkets!
                 </span>
                 <br />
                 <span className="dark:text-gray-300 text-gray-900 font-semibold">
-                  Citadel Markets empowers you to mirror real-time stock and options
+                  OsaicMarkets empowers you to mirror real-time stock and options
                   trades from top-performing traders. Whether you&apos;re
                   following tickers, contracts, or strategic options moves, our
                   platform brings precision, flexibility, and

@@ -47,7 +47,7 @@ export default async function TermsAndConditionPage() {
 
             <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">1. Acceptance of Terms</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              By accessing and using Citadels Market services, you acknowledge that you have
+              By accessing and using OsaicMarkets services, you acknowledge that you have
               read, understood, and agree to be bound by these Terms &amp; Conditions and all
               applicable laws and regulations. If you do not agree with any of these terms, you are
               prohibited from using or accessing our services.
@@ -75,7 +75,7 @@ export default async function TermsAndConditionPage() {
               </li>
               <li className="text-gray-700 leading-relaxed">
                 <span className="font-semibold text-gray-900">Account Security</span> — You agree
-                to immediately notify Citadels Market of any unauthorized use of your account
+                to immediately notify OsaicMarkets of any unauthorized use of your account
                 or any other breach of security. We will not be liable for any loss or damage
                 arising from your failure to protect your account information.
               </li>
@@ -91,7 +91,7 @@ export default async function TermsAndConditionPage() {
           <FadeUp>
             <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">3. Trading Services</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Citadels Market provides access to financial trading services including, but not
+              OsaicMarkets provides access to financial trading services including, but not
               limited to, equities, options, and futures contracts. All trading activities are
               subject to market conditions and our platform terms.
             </p>
@@ -171,7 +171,7 @@ export default async function TermsAndConditionPage() {
             <p className="text-gray-700 leading-relaxed mb-4">
               All content, features, and functionality of our platform — including but not limited to
               text, graphics, logos, icons, images, software, and data compilations — are the
-              exclusive property of Citadels Market and are protected by international copyright,
+              exclusive property of OsaicMarkets and are protected by international copyright,
               trademark, and other intellectual property laws.
             </p>
             <p className="text-gray-700 leading-relaxed">
@@ -183,7 +183,7 @@ export default async function TermsAndConditionPage() {
           <FadeUp>
             <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">9. Limitation of Liability</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              To the fullest extent permitted by applicable law, Citadels Market shall not be
+              To the fullest extent permitted by applicable law, OsaicMarkets shall not be
               liable for any indirect, incidental, special, consequential, or punitive damages, or
               any loss of profits or revenues, whether incurred directly or indirectly, or any loss
               of data, use, goodwill, or other intangible losses.
@@ -213,7 +213,7 @@ export default async function TermsAndConditionPage() {
           <FadeUp>
             <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">11. Modifications to Terms</h2>
             <p className="text-gray-700 leading-relaxed">
-              Citadels Market reserves the right to modify or replace these Terms &amp;
+              OsaicMarkets reserves the right to modify or replace these Terms &amp;
               Conditions at any time at our sole discretion. We will provide notice of any material
               changes by posting the new terms on this page and updating the &quot;Last Updated&quot;
               date. Your continued use of our services after any such changes constitutes your
@@ -226,7 +226,7 @@ export default async function TermsAndConditionPage() {
             <p className="text-gray-700 leading-relaxed">
               These Terms &amp; Conditions shall be governed by and construed in accordance with
               applicable international financial regulations and the laws of the jurisdiction in
-              which Citadels Market operates, without regard to its conflict of law provisions.
+              which OsaicMarkets operates, without regard to its conflict of law provisions.
               Any disputes arising from these terms shall be subject to the exclusive jurisdiction
               of the courts in that jurisdiction.
             </p>

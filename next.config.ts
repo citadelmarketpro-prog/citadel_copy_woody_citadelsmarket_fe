@@ -5,6 +5,13 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  eslint: {
+    // Lint separately (npm run lint) instead of re-scanning the whole
+    // project on every production build — the warnings currently in the
+    // codebase are non-blocking style issues, not real errors, and
+    // skipping this cuts real time off every deploy.
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
       {

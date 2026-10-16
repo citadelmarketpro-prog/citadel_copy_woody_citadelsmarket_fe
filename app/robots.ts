@@ -36,6 +36,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: "https://citamarkets.com/sitemap.xml",
+    sitemap: "https://osaicmarkets.com/sitemap.xml",
   };
 }

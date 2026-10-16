@@ -68,10 +68,10 @@ export default async function ContactPage() {
                   <Mail size={20} className="text-emerald-600" strokeWidth={1.75} />
                 </div>
                 <a
-                  href="mailto:support@citamarkets.com"
+                  href="mailto:support@osaicmarkets.com"
                   className="text-gray-700 hover:text-emerald-600 transition-colors text-sm"
                 >
-                  support@citamarkets.com
+                  support@osaicmarkets.com
                 </a>
               </div>
               {phones.map((p) => (
@@ -95,7 +95,7 @@ export default async function ContactPage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Citadels Market office location"
+                  title="OsaicMarkets office location"
                 />
               </div>
             </FadeRight>

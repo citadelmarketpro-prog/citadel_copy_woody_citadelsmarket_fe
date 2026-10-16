@@ -105,7 +105,7 @@ export default async function AboutPage() {
               <div className="w-full min-h-[320px] h-full rounded-2xl overflow-hidden">
                 <Image
                   src="/sample-landing/pexels-vlada-karpovich-7433853.jpg"
-                  alt="Citadels Market trading team"
+                  alt="OsaicMarkets trading team"
                   width={800}
                   height={600}
                   className="w-full h-full object-cover"
