@@ -206,7 +206,7 @@ export default function Dashboard() {
   // Fetch live rates on mount and override the fallbacks when they arrive
   useEffect(() => {
     const targets = ["EUR", "GBP", "JPY", "CHF", "CAD", "AUD"].join(",");
-    fetch(`https://api.frankfurter.app/latest?from=USD&to=${targets}`)
+    fetch(`https://api.frankfurter.dev/v1/latest?from=USD&to=${targets}`)
       .then((r) => r.json())
       .then((data) => {
         if (data.rates && typeof data.rates === "object") {
