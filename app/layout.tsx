@@ -20,6 +20,7 @@ const poppins = Poppins({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  themeColor: "#0c5c45",
 };
 
 export const metadata: Metadata = {
@@ -65,21 +66,12 @@ export const metadata: Metadata = {
     title: "OsaicMarkets - Your Goal to Global Investment",
     description:
       "Copy Stocks, Options & Contracts with Precision. The Premier Copy-Trading Hub for Options Traders",
-    images: [
-      {
-        url: "https://www.osaicmarkets.com/og-image.png", // Create this image (1200x630px recommended)
-        width: 1200,
-        height: 630,
-        alt: "OsaicMarkets - Copy Trading Platform",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "OsaicMarkets - Your Goal to Global Investment",
     description:
       "Copy Stocks, Options & Contracts with Precision. The Premier Copy-Trading Hub for Options Traders",
-    images: ["https://www.osaicmarkets.com/twitter-image.jpg"], // Create this image (1200x600px recommended)
     creator: "@osaicmarkets", // Replace with your actual Twitter handle
     site: "@osaicmarkets", // Replace with your actual Twitter handle
   },
@@ -94,14 +86,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
-  },
   manifest: "/site.webmanifest",
   alternates: {
     canonical: "https://osaicmarkets.com",
@@ -111,8 +95,7 @@ export const metadata: Metadata = {
   // },
   category: "finance",
   other: {
-    "msapplication-TileColor": "#134E4A",
-    "theme-color": "#134E4A",
+    "msapplication-TileColor": "#0c5c45",
   },
 };
 
