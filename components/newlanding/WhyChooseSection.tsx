@@ -1,5 +1,7 @@
 import { Link2, ClipboardList, Component, MessageCircle, RefreshCw, Crown } from "lucide-react";
-import { FadeUp } from "./motion";
+import { FadeUp, FadeLeft, FadeRight, FadeDown, STAGGER_STEP } from "./motion";
+
+const DIRS = [FadeUp, FadeLeft, FadeRight, FadeDown];
 
 const FEATURES = [
   {
@@ -51,21 +53,24 @@ export default function WhyChooseSection() {
         </FadeUp>
 
         <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {FEATURES.map((f, i) => (
-            <FadeUp key={f.title} delay={(i % 3) * 0.1}>
-              <div className="h-full rounded-3xl bg-cream-100 p-7">
-                <span className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-olive-600 text-white">
-                  <f.icon className="h-5 w-5" />
-                </span>
-                <h3 className="text-[16px] font-bold leading-snug text-olive-ink">
-                  {f.title}
-                </h3>
-                <p className="mt-3 text-[13px] leading-relaxed text-olive-ink/60">
-                  {f.body}
-                </p>
-              </div>
-            </FadeUp>
-          ))}
+          {FEATURES.map((f, i) => {
+            const Anim = DIRS[i % DIRS.length];
+            return (
+              <Anim key={f.title} delay={(i % 3) * STAGGER_STEP}>
+                <div className="h-full rounded-3xl bg-cream-100 p-7">
+                  <span className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-olive-600 text-white">
+                    <f.icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="text-[16px] font-bold leading-snug text-olive-ink">
+                    {f.title}
+                  </h3>
+                  <p className="mt-3 text-[13px] leading-relaxed text-olive-ink/60">
+                    {f.body}
+                  </p>
+                </div>
+              </Anim>
+            );
+          })}
         </div>
       </div>
     </section>

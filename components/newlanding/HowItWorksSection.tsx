@@ -1,4 +1,6 @@
-import { FadeUp } from "./motion";
+import { FadeUp, FadeLeft, FadeRight, FadeDown, STAGGER_STEP } from "./motion";
+
+const DIRS = [FadeUp, FadeLeft, FadeRight, FadeDown];
 
 const STEPS = [
   {
@@ -38,21 +40,24 @@ export default function HowItWorksSection() {
         </FadeUp>
 
         <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {STEPS.map((step, i) => (
-            <FadeUp key={step.n} delay={i * 0.1}>
-              <div className="h-full rounded-3xl bg-cream-100 p-7 text-left">
-                <span className="mb-6 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-olive-600 text-sm font-bold text-white">
-                  {step.n}
-                </span>
-                <h3 className="text-[17px] font-bold leading-snug text-olive-ink">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-olive-ink/60">
-                  {step.body}
-                </p>
-              </div>
-            </FadeUp>
-          ))}
+          {STEPS.map((step, i) => {
+            const Anim = DIRS[i % DIRS.length];
+            return (
+              <Anim key={step.n} delay={i * STAGGER_STEP}>
+                <div className="h-full rounded-3xl bg-cream-100 p-7 text-left">
+                  <span className="mb-6 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-olive-600 text-sm font-bold text-white">
+                    {step.n}
+                  </span>
+                  <h3 className="text-[17px] font-bold leading-snug text-olive-ink">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-[13px] leading-relaxed text-olive-ink/60">
+                    {step.body}
+                  </p>
+                </div>
+              </Anim>
+            );
+          })}
         </div>
       </div>
     </section>

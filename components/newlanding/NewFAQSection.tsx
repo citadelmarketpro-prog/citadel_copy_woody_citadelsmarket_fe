@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { FadeUp } from "./motion";
+import { FadeUp, FadeLeft, FadeRight, FadeDown, STAGGER_STEP } from "./motion";
+
+const DIRS = [FadeUp, FadeLeft, FadeRight, FadeDown];
 
 const FAQS = [
   {
@@ -43,8 +45,9 @@ export default function NewFAQSection() {
         <div className="mt-12 grid grid-cols-1 gap-4 text-left sm:grid-cols-2">
           {FAQS.map((item, i) => {
             const isOpen = open === i;
+            const Anim = DIRS[i % DIRS.length];
             return (
-              <FadeUp key={item.q} delay={(i % 2) * 0.1}>
+              <Anim key={item.q} delay={(i % 2) * STAGGER_STEP}>
                 <div className="rounded-2xl bg-white p-6">
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
@@ -77,7 +80,7 @@ export default function NewFAQSection() {
                     )}
                   </AnimatePresence>
                 </div>
-              </FadeUp>
+              </Anim>
             );
           })}
         </div>

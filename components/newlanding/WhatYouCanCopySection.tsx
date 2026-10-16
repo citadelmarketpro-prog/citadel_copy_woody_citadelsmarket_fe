@@ -1,5 +1,7 @@
 import { BarChart3, Sparkles, GitMerge } from "lucide-react";
-import { FadeUp } from "./motion";
+import { FadeUp, FadeLeft, FadeRight, FadeDown, STAGGER_STEP } from "./motion";
+
+const DIRS = [FadeUp, FadeLeft, FadeRight, FadeDown];
 
 const ITEMS = [
   {
@@ -30,21 +32,24 @@ export default function WhatYouCanCopySection() {
         </FadeUp>
 
         <div className="mt-14 grid grid-cols-1 gap-5 text-left sm:grid-cols-3">
-          {ITEMS.map((item, i) => (
-            <FadeUp key={item.title} delay={i * 0.1}>
-              <div className="h-full rounded-3xl bg-cream-100 p-7">
-                <span className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-olive-600 text-white">
-                  <item.icon className="h-5 w-5" />
-                </span>
-                <h3 className="text-[16px] font-bold leading-snug text-olive-ink">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-[13px] leading-relaxed text-olive-ink/60">
-                  {item.body}
-                </p>
-              </div>
-            </FadeUp>
-          ))}
+          {ITEMS.map((item, i) => {
+            const Anim = DIRS[i % DIRS.length];
+            return (
+              <Anim key={item.title} delay={i * STAGGER_STEP}>
+                <div className="h-full rounded-3xl bg-cream-100 p-7">
+                  <span className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-olive-600 text-white">
+                    <item.icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="text-[16px] font-bold leading-snug text-olive-ink">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-[13px] leading-relaxed text-olive-ink/60">
+                    {item.body}
+                  </p>
+                </div>
+              </Anim>
+            );
+          })}
         </div>
       </div>
     </section>

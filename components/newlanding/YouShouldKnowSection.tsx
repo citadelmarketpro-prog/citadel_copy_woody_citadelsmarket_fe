@@ -13,7 +13,7 @@ export default function YouShouldKnowSection() {
         </FadeUp>
 
         <div className="mt-14 grid grid-cols-1 gap-5 text-left sm:grid-cols-2">
-          <FadeLeft delay={0.1}>
+          <FadeLeft delay={0}>
             <div className="h-full rounded-3xl bg-white p-9">
               <p className="text-[12px] font-bold uppercase tracking-widest text-rose-500">
                 The Challenge
@@ -29,7 +29,7 @@ export default function YouShouldKnowSection() {
             </div>
           </FadeLeft>
 
-          <FadeRight delay={0.2}>
+          <FadeRight delay={0.06}>
             <div className="h-full rounded-3xl bg-white p-9">
               <p className="text-[12px] font-bold uppercase tracking-widest text-olive-600">
                 The Solution

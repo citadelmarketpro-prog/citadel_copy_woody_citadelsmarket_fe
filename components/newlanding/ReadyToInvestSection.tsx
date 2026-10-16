@@ -1,5 +1,7 @@
 import { ShieldCheck, Link2, Repeat2 } from "lucide-react";
-import { FadeUp } from "./motion";
+import { FadeUp, FadeLeft, FadeRight, FadeDown, STAGGER_STEP } from "./motion";
+
+const DIRS = [FadeUp, FadeLeft, FadeRight, FadeDown];
 
 const STEPS = [
   {
@@ -31,17 +33,20 @@ export default function ReadyToInvestSection() {
 
         <div className="relative mt-16 grid grid-cols-1 gap-6 sm:grid-cols-3">
           <span className="pointer-events-none absolute left-[calc(16.6%+28px)] right-[calc(16.6%+28px)] top-11 hidden h-px bg-white/25 sm:block" />
-          {STEPS.map((step, i) => (
-            <FadeUp key={step.title} delay={i * 0.12}>
-              <div className="relative h-full rounded-3xl bg-cream-100 p-7 text-left">
-                <span className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-olive-600 text-white">
-                  <step.icon className="h-5 w-5" />
-                </span>
-                <h3 className="text-[16px] font-bold leading-snug text-olive-ink">{step.title}</h3>
-                <p className="mt-3 text-[13px] leading-relaxed text-olive-ink/60">{step.body}</p>
-              </div>
-            </FadeUp>
-          ))}
+          {STEPS.map((step, i) => {
+            const Anim = DIRS[i % DIRS.length];
+            return (
+              <Anim key={step.title} delay={i * STAGGER_STEP}>
+                <div className="relative h-full rounded-3xl bg-cream-100 p-7 text-left">
+                  <span className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-olive-600 text-white">
+                    <step.icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="text-[16px] font-bold leading-snug text-olive-ink">{step.title}</h3>
+                  <p className="mt-3 text-[13px] leading-relaxed text-olive-ink/60">{step.body}</p>
+                </div>
+              </Anim>
+            );
+          })}
         </div>
       </div>
     </section>

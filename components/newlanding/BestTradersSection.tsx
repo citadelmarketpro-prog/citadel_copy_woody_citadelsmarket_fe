@@ -5,7 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight, TrendingUp } from "lucide-react";
-import { FadeUp } from "./motion";
+import { FadeUp, FadeLeft, FadeRight, FadeDown, STAGGER_STEP } from "./motion";
+
+const DIRS = [FadeUp, FadeLeft, FadeRight, FadeDown];
 
 export type Trader = {
   id: number;
@@ -55,60 +57,63 @@ export default function BestTradersSection({ traders }: { traders: Trader[] }) {
           </div>
         </FadeUp>
 
-        <FadeUp delay={0.15} className="relative mt-14">
+        <FadeUp className="relative mt-14">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex gap-5">
-              {traders.map((t) => {
+              {traders.map((t, i) => {
                 const risk = riskLabel(t.risk);
+                const Anim = DIRS[i % DIRS.length];
                 return (
                   <div key={t.id} className="min-w-0 flex-[0_0_100%] sm:flex-[0_0_calc(50%-10px)] lg:flex-[0_0_calc(33.333%-14px)]">
-                    <div className="h-full rounded-3xl border border-olive-ink/10 bg-cream-100 p-7">
-                      <div className="flex items-center gap-3">
-                        <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-olive-400 flex items-center justify-center">
-                          {t.avatar ? (
-                            <Image src={t.avatar} alt={t.name} fill sizes="48px" className="object-cover" />
-                          ) : (
-                            <span className="text-[14px] font-bold text-white">{initialsOf(t.name)}</span>
-                          )}
-                        </span>
-                        <div className="min-w-0">
-                          <p className="truncate text-[15px] font-bold text-olive-ink">{t.name}</p>
-                          <p className="truncate text-[12px] text-olive-ink/55">{t.username}</p>
-                        </div>
-                      </div>
-
-                      <div className="mt-6 flex items-center justify-between rounded-2xl bg-white px-5 py-4">
-                        <div>
-                          <div className="flex items-center gap-1">
-                            <span className="text-[22px] font-bold text-olive-ink">
-                              ${Number(t.gain).toLocaleString()}
-                            </span>
-                            <TrendingUp className="h-4 w-4 text-olive-600" />
-                          </div>
-                          <p className="mt-1 text-[11px] text-olive-ink/50">Profit (1M)</p>
-                        </div>
-                        <div className="text-right">
-                          <span className="text-[22px] font-bold text-olive-ink">
-                            {t.copiers.toLocaleString()}
+                    <Anim delay={i * STAGGER_STEP} className="h-full">
+                      <div className="h-full rounded-3xl border border-olive-ink/10 bg-cream-100 p-7">
+                        <div className="flex items-center gap-3">
+                          <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-olive-400 flex items-center justify-center">
+                            {t.avatar ? (
+                              <Image src={t.avatar} alt={t.name} fill sizes="48px" className="object-cover" />
+                            ) : (
+                              <span className="text-[14px] font-bold text-white">{initialsOf(t.name)}</span>
+                            )}
                           </span>
-                          <p className="mt-1 text-[11px] text-olive-ink/50">Copiers</p>
+                          <div className="min-w-0">
+                            <p className="truncate text-[15px] font-bold text-olive-ink">{t.name}</p>
+                            <p className="truncate text-[12px] text-olive-ink/55">{t.username}</p>
+                          </div>
                         </div>
-                      </div>
 
-                      <div className="mt-5 flex items-center justify-between">
-                        <span className="text-[13px] font-medium text-olive-ink/70">Risk level:</span>
-                        <span className={`rounded-full px-3 py-1 text-[12px] font-semibold ${risk.className}`}>
-                          {risk.label}
-                        </span>
-                      </div>
+                        <div className="mt-6 flex items-center justify-between rounded-2xl bg-white px-5 py-4">
+                          <div>
+                            <div className="flex items-center gap-1">
+                              <span className="text-[22px] font-bold text-olive-ink">
+                                ${Number(t.gain).toLocaleString()}
+                              </span>
+                              <TrendingUp className="h-4 w-4 text-olive-600" />
+                            </div>
+                            <p className="mt-1 text-[11px] text-olive-ink/50">Profit (1M)</p>
+                          </div>
+                          <div className="text-right">
+                            <span className="text-[22px] font-bold text-olive-ink">
+                              {t.copiers.toLocaleString()}
+                            </span>
+                            <p className="mt-1 text-[11px] text-olive-ink/50">Copiers</p>
+                          </div>
+                        </div>
 
-                      <Link
-                        href="/register"
-                        className="mt-6 inline-flex h-11 w-full items-center justify-center rounded-full border border-olive-ink/15 bg-white text-[14px] font-semibold text-olive-ink transition-colors hover:bg-olive-ink/5"
-                      >
-                        Copy trader
-                      </Link>
-                    </div>
+                        <div className="mt-5 flex items-center justify-between">
+                          <span className="text-[13px] font-medium text-olive-ink/70">Risk level:</span>
+                          <span className={`rounded-full px-3 py-1 text-[12px] font-semibold ${risk.className}`}>
+                            {risk.label}
+                          </span>
+                        </div>
+
+                        <Link
+                          href="/register"
+                          className="mt-6 inline-flex h-11 w-full items-center justify-center rounded-full border border-olive-ink/15 bg-white text-[14px] font-semibold text-olive-ink transition-colors hover:bg-olive-ink/5"
+                        >
+                          Copy trader
+                        </Link>
+                      </div>
+                    </Anim>
                   </div>
                 );
               })}

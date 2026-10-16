@@ -65,14 +65,14 @@ export default function HeroSection() {
           </div>
         </FadeUp>
 
-        <FadeLeft delay={0.5}>
+        <FadeLeft delay={0.1}>
           <FloatingTraderCard name="Speki" role="Value investor" photo="/images/pro_woman_2.jpg" side="left" />
         </FadeLeft>
-        <FadeRight delay={0.5}>
+        <FadeRight delay={0.1}>
           <FloatingTraderCard name="Romy lane" role="Strategist" photo="/team/team_4.jpg" side="right" />
         </FadeRight>
 
-        <FadeUp delay={0.1}>
+        <FadeUp delay={0.04}>
           <h1 className="text-[40px] font-extrabold leading-[1.08] tracking-tight text-olive-ink sm:text-[56px] lg:text-[64px]">
             Copy Futures, Options &amp;
             <br />
@@ -81,7 +81,7 @@ export default function HeroSection() {
           </h1>
         </FadeUp>
 
-        <FadeUp delay={0.2}>
+        <FadeUp delay={0.08}>
           <p className="mx-auto mt-6 max-w-[480px] text-[15px] leading-relaxed text-olive-ink/65 sm:text-[17px]">
             We empower you to mirror real-time stock and options trades from top-performing
             traders. Whether you&apos;re following tickers, contracts, or strategic options
@@ -90,7 +90,7 @@ export default function HeroSection() {
           </p>
         </FadeUp>
 
-        <FadeUp delay={0.3}>
+        <FadeUp delay={0.12}>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               href="/register"
@@ -108,7 +108,7 @@ export default function HeroSection() {
         </FadeUp>
 
         {/* Social proof */}
-        <ZoomIn delay={0.4}>
+        <ZoomIn delay={0.16}>
           <div className="mt-12 flex flex-col items-center gap-3">
             <div className="flex -space-x-3">
               {AVATAR_PHOTOS.map((photo, i) => (
