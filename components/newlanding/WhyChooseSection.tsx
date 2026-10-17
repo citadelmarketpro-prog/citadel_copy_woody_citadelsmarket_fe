@@ -1,5 +1,5 @@
 import { Link2, ClipboardList, Component, MessageCircle, RefreshCw, Crown } from "lucide-react";
-import { FadeUp, FadeLeft, FadeRight, FadeDown, STAGGER_STEP } from "./motion";
+import { FadeUp, FadeLeft, FadeRight, FadeDown, IconPop, STAGGER_STEP } from "./motion";
 
 const DIRS = [FadeUp, FadeLeft, FadeRight, FadeDown];
 
@@ -57,10 +57,13 @@ export default function WhyChooseSection() {
             const Anim = DIRS[i % DIRS.length];
             return (
               <Anim key={f.title} delay={(i % 3) * STAGGER_STEP}>
-                <div className="h-full rounded-3xl bg-cream-100 p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-olive-900/30">
-                  <span className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-olive-600 text-white">
+                <div className="group h-full rounded-3xl bg-cream-100 p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-olive-900/30">
+                  <IconPop
+                    delay={(i % 3) * STAGGER_STEP + 0.12}
+                    className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-olive-600 text-white transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"
+                  >
                     <f.icon className="h-5 w-5" />
-                  </span>
+                  </IconPop>
                   <h3 className="text-[16px] font-bold leading-snug text-olive-ink">
                     {f.title}
                   </h3>

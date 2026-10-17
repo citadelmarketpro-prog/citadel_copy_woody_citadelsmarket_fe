@@ -1,5 +1,5 @@
 import { ShieldCheck, Link2, Repeat2 } from "lucide-react";
-import { FadeUp, FadeLeft, FadeRight, FadeDown, STAGGER_STEP } from "./motion";
+import { FadeUp, FadeLeft, FadeRight, FadeDown, IconPop, STAGGER_STEP } from "./motion";
 
 const DIRS = [FadeUp, FadeLeft, FadeRight, FadeDown];
 
@@ -37,10 +37,13 @@ export default function ReadyToInvestSection() {
             const Anim = DIRS[i % DIRS.length];
             return (
               <Anim key={step.title} delay={i * STAGGER_STEP}>
-                <div className="relative h-full rounded-3xl bg-cream-100 p-7 text-left transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-olive-900/30">
-                  <span className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-olive-600 text-white">
+                <div className="group relative h-full rounded-3xl bg-cream-100 p-7 text-left transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-olive-900/30">
+                  <IconPop
+                    delay={i * STAGGER_STEP + 0.12}
+                    className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-olive-600 text-white transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"
+                  >
                     <step.icon className="h-5 w-5" />
-                  </span>
+                  </IconPop>
                   <h3 className="text-[16px] font-bold leading-snug text-olive-ink">{step.title}</h3>
                   <p className="mt-3 text-[13px] leading-relaxed text-olive-ink/60">{step.body}</p>
                 </div>

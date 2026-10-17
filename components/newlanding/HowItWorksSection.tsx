@@ -1,4 +1,4 @@
-import { FadeUp, FadeLeft, FadeRight, FadeDown, STAGGER_STEP } from "./motion";
+import { FadeUp, FadeLeft, FadeRight, FadeDown, IconPop, STAGGER_STEP } from "./motion";
 
 const DIRS = [FadeUp, FadeLeft, FadeRight, FadeDown];
 
@@ -44,10 +44,13 @@ export default function HowItWorksSection() {
             const Anim = DIRS[i % DIRS.length];
             return (
               <Anim key={step.n} delay={i * STAGGER_STEP}>
-                <div className="h-full rounded-3xl bg-cream-100 p-7 text-left transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-olive-900/10">
-                  <span className="mb-6 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-olive-600 text-sm font-bold text-white">
+                <div className="group h-full rounded-3xl bg-cream-100 p-7 text-left transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-olive-900/10">
+                  <IconPop
+                    delay={i * STAGGER_STEP + 0.12}
+                    className="mb-6 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-olive-600 text-sm font-bold text-white transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"
+                  >
                     {step.n}
-                  </span>
+                  </IconPop>
                   <h3 className="text-[17px] font-bold leading-snug text-olive-ink">
                     {step.title}
                   </h3>
