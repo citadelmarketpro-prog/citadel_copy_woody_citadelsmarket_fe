@@ -1,6 +1,6 @@
 "use client";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
-import { useRef, type ReactNode } from "react";
+import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 
 const vp = { once: true, amount: 0.15 };
 
@@ -80,29 +80,3 @@ export function ZoomIn({ children, delay = 0, className = "" }: { children: Reac
 
 /** Fast per-item stagger step for cascading grids/lists. */
 export const STAGGER_STEP = 0.07;
-
-/**
- * Scroll-linked parallax wrapper — moves its children a bit slower/faster
- * than the page scroll for continuous depth, not just a one-time reveal.
- * `strength` in px: positive drifts content up as you scroll past it.
- */
-export function Parallax({
-  children,
-  strength = 60,
-  className = "",
-}: {
-  children: ReactNode;
-  strength?: number;
-  className?: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [strength, -strength]);
-  return (
-    <motion.div ref={ref} style={{ y }} className={className}>
-      {children}
-    </motion.div>
-  );
-}
-
-export type { MotionValue };

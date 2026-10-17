@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { TrendingUp, Star } from "lucide-react";
-import { FadeUp, FadeLeft, FadeRight, ZoomIn, Parallax } from "./motion";
+import { FadeUp, FadeLeft, FadeRight, ZoomIn } from "./motion";
 
 const AVATAR_PHOTOS = [
   "/team/team_3.jpg",
@@ -47,16 +47,14 @@ function FloatingTraderCard({
 export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-cream-100">
-      {/* Subtle vertical stripe texture — drifts gently as you scroll */}
-      <Parallax strength={40} className="pointer-events-none absolute inset-0 opacity-60">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(90deg, rgba(104,127,63,0.05) 0px, rgba(104,127,63,0.05) 1px, transparent 1px, transparent 120px)",
-          }}
-        />
-      </Parallax>
+      {/* Subtle vertical stripe texture */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-60"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(90deg, rgba(104,127,63,0.05) 0px, rgba(104,127,63,0.05) 1px, transparent 1px, transparent 120px)",
+        }}
+      />
 
       <div className="relative mx-auto max-w-[900px] px-6 pb-20 pt-16 text-center sm:pb-28 sm:pt-20">
         {/* Eyebrow badge */}
