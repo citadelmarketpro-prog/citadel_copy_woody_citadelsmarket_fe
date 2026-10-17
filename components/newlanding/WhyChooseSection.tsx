@@ -57,7 +57,7 @@ export default function WhyChooseSection() {
             const Anim = DIRS[i % DIRS.length];
             return (
               <Anim key={f.title} delay={(i % 3) * STAGGER_STEP}>
-                <div className="h-full rounded-3xl bg-cream-100 p-7">
+                <div className="h-full rounded-3xl bg-cream-100 p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-olive-900/30">
                   <span className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-olive-600 text-white">
                     <f.icon className="h-5 w-5" />
                   </span>

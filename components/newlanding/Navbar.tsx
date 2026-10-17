@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { ModeToggle } from "@/components/mode/toggleModeButton";
 
 type SimpleLink = { label: string; href: string };
 
@@ -177,9 +176,6 @@ export default function Navbar() {
 
           {/* Right actions */}
           <div className="hidden items-center gap-3 lg:flex">
-            <span className="rounded-full bg-white/15 p-0.5">
-              <ModeToggle />
-            </span>
             <Link
               href="/login"
               className="inline-flex h-10 items-center gap-1.5 rounded-full bg-white px-5 text-sm font-semibold text-olive-ink transition-transform hover:scale-[1.03]"

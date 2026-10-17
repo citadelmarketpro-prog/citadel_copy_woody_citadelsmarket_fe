@@ -66,7 +66,7 @@ export default function BestTradersSection({ traders }: { traders: Trader[] }) {
                 return (
                   <div key={t.id} className="min-w-0 flex-[0_0_100%] sm:flex-[0_0_calc(50%-10px)] lg:flex-[0_0_calc(33.333%-14px)]">
                     <Anim delay={i * STAGGER_STEP} className="h-full">
-                      <div className="h-full rounded-3xl border border-olive-ink/10 bg-cream-100 p-7">
+                      <div className="h-full rounded-3xl border border-olive-ink/10 bg-cream-100 p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-olive-900/10">
                         <div className="flex items-center gap-3">
                           <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-olive-400 flex items-center justify-center">
                             {t.avatar ? (

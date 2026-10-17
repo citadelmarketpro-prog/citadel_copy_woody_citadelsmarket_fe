@@ -36,7 +36,7 @@ export default function WhatYouCanCopySection() {
             const Anim = DIRS[i % DIRS.length];
             return (
               <Anim key={item.title} delay={i * STAGGER_STEP}>
-                <div className="h-full rounded-3xl bg-cream-100 p-7">
+                <div className="h-full rounded-3xl bg-cream-100 p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-olive-900/10">
                   <span className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-olive-600 text-white">
                     <item.icon className="h-5 w-5" />
                   </span>

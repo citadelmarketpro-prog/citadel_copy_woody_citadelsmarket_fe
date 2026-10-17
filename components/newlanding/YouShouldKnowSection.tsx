@@ -14,7 +14,7 @@ export default function YouShouldKnowSection() {
 
         <div className="mt-14 grid grid-cols-1 gap-5 text-left sm:grid-cols-2">
           <FadeLeft delay={0}>
-            <div className="h-full rounded-3xl bg-white p-9">
+            <div className="h-full rounded-3xl bg-white p-9 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-olive-900/10">
               <p className="text-[12px] font-bold uppercase tracking-widest text-rose-500">
                 The Challenge
               </p>
@@ -30,7 +30,7 @@ export default function YouShouldKnowSection() {
           </FadeLeft>
 
           <FadeRight delay={0.06}>
-            <div className="h-full rounded-3xl bg-white p-9">
+            <div className="h-full rounded-3xl bg-white p-9 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-olive-900/10">
               <p className="text-[12px] font-bold uppercase tracking-widest text-olive-600">
                 The Solution
               </p>

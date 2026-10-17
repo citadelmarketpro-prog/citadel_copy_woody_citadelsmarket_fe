@@ -44,7 +44,7 @@ export default function HowItWorksSection() {
             const Anim = DIRS[i % DIRS.length];
             return (
               <Anim key={step.n} delay={i * STAGGER_STEP}>
-                <div className="h-full rounded-3xl bg-cream-100 p-7 text-left">
+                <div className="h-full rounded-3xl bg-cream-100 p-7 text-left transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-olive-900/10">
                   <span className="mb-6 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-olive-600 text-sm font-bold text-white">
                     {step.n}
                   </span>
