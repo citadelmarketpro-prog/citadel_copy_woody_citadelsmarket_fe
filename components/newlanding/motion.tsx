@@ -11,8 +11,8 @@ const SPRING = { type: "spring" as const, stiffness: 260, damping: 22, mass: 0.7
 export function FadeUp({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 56, scale: 0.96, filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: 56, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ ...SPRING, delay }}
       viewport={vp}
       className={className}
@@ -25,8 +25,8 @@ export function FadeUp({ children, delay = 0, className = "" }: { children: Reac
 export function FadeDown({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: -56, scale: 0.96, filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: -56, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ ...SPRING, delay }}
       viewport={vp}
       className={className}
@@ -39,8 +39,8 @@ export function FadeDown({ children, delay = 0, className = "" }: { children: Re
 export function FadeLeft({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: -64, filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, x: -64 }}
+      whileInView={{ opacity: 1, x: 0 }}
       transition={{ ...SPRING, delay }}
       viewport={vp}
       className={className}
@@ -53,8 +53,8 @@ export function FadeLeft({ children, delay = 0, className = "" }: { children: Re
 export function FadeRight({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 64, filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, x: 64 }}
+      whileInView={{ opacity: 1, x: 0 }}
       transition={{ ...SPRING, delay }}
       viewport={vp}
       className={className}
