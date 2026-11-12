@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://osaicmarkets.com"),
   title: {
     default: "OsaicMarkets - Your Goal to Global Investment",
-    template: "%s | OsaicMarkets",
+    template: "OsaicMarkets | %s",
   },
   description:
     "Copy Stocks, Options & Contracts with Precision. The Premier Copy-Trading Hub for Options Traders. Start trading like experts with our advanced copy-trading platform.",
