@@ -8,7 +8,7 @@ import { getLocale, getMessages } from "next-intl/server";
 
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/mode/theme-provider";
-import Script from "next/script";
+import SmartsuppChat from "@/components/SmartsuppChat";
 
 const poppins = Poppins({
   // pick the weights you need
@@ -150,13 +150,9 @@ export default async function RootLayout({
           }}
         />
 
-        {/* <LiveChat /> */}
+        {/* LiveChat - Smartsupp */}
+        <SmartsuppChat project="OsaicMarkets" website="osaicmarkets.com" color="#0c5c45" />
 
-        <Script
-          src="//code.jivosite.com/widget/mk9QIh5Zcw"
-          strategy="afterInteractive"
-        />
-        
       </body>
     </html>
   );
